@@ -1,0 +1,37 @@
+<!--
+  COMPONENT: Newsletter Signup
+  KEY CLASS: .newsletter  (32 CLC pages — near-universal, footer-adjacent)
+  WHAT: Email capture — gold divider, single email field + subscribe button,
+        Webflow form success/fail states.
+  BRAND COLOR: auto (yellow-div + button inherit host vars).
+
+  NOTE: This is a Webflow form. When injected via the hybrid loader, the host
+  page's Webflow form handler must be present for submit to work — verify in WS-5
+  that the injected form still submits (Webflow binds forms on page init; injected
+  forms may need the host's Webflow.require('forms').ready() re-run, or a fallback
+  action= endpoint). Flag if it doesn't bind.
+
+  Usually no per-page swap needed — it's the same signup everywhere.
+-->
+<div id="newsletter" class="newsletter">
+  <div class="page-padding full">
+    <div class="container-large full">
+      <div class="vertical-page full center">
+        <div class="main-div _2">
+          <div class="h4-mission services">
+            <h3 class="h4-type _1">Sign Up for OUR Newsletter</h3>
+            <div class="yellow-div _2"></div>
+          </div>
+          <div class="form-block-2 w-form">
+            <form class="form" method="post">
+              <input class="text-field w-input" name="Email" placeholder="Your Email" type="email" required>
+              <input type="submit" class="submit-button w-button" value="Subscribe">
+            </form>
+            <div class="w-form-done"><div>Thank you! Your submission has been received!</div></div>
+            <div class="w-form-fail"><div>Oops! Something went wrong while submitting the form.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

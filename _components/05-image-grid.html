@@ -1,0 +1,28 @@
+<!--
+  COMPONENT: Image Grid (generic) — the universal card-grid primitive
+  KEY CLASSES: .team-circles / .team-grid / .team-card  (grid sections)
+  WHAT: A responsive grid of cards, each holding one image. On Cops & Cones it's
+        reused THREE times for different content (recap photos, sponsor logos,
+        partner logos) — proof it's a generic image grid, not team-specific.
+  BRAND COLOR: auto (heading + yellow-div inherit host vars).
+
+  KNOBS (modifiers tune the grid context):
+    • Section-level: `cac-sponsors`, `recap-pics`  (drop for a plain grid)
+    • Grid-level:    `recap-pics`
+    • Bare .team-circles / .team-grid = the plain "Partners" grid.
+
+  Heading + gold bar sit ABOVE the grid (see 06-centered-heading.html).
+  Repeat the .team-card block once per image.
+-->
+<section class="team-circles cac-sponsors recap-pics">   <!-- modifiers optional -->
+  <div class="container-7">
+    <h2 class="centered-heading cops-cones">Thanks For A &quot;Sweet&quot; Time</h2>
+    <div class="yellow-div-copy"></div>
+    <div class="team-grid recap-pics">
+      <div class="team-card"><img src="#" alt="" class="team-member-image"></div>
+      <div class="team-card"><img src="#" alt="" class="team-member-image"></div>
+      <div class="team-card"><img src="#" alt="" class="team-member-image"></div>
+      <!-- repeat .team-card per image -->
+    </div>
+  </div>
+</section>

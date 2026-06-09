@@ -1,0 +1,32 @@
+<!--
+  COMPONENT: Hero / Page Banner
+  KEY CLASS: .main-image  (13 CLC pages)
+  WHAT: Full-bleed image banner with dark overlay + H1 title.
+  BRAND COLOR: auto (overlay + heading inherit host :root vars).
+
+  KNOB — background image:
+    Layer a PAGE-SPECIFIC modifier class onto `.main-image` to set the bg image.
+    Examples seen: `.cops-cones`, `._4`. The bg is defined in the host stylesheet
+    keyed to that modifier — so to add a new page bg you (or Webflow) define the
+    modifier class once on the live site; here you just reference it.
+
+  SWAP per page: the modifier class on .main-image, and the <h1> text.
+-->
+<div class="services-main">
+  <div class="main-image _4 cops-cones">           <!-- modifier sets the bg image -->
+    <div class="black-overlay no-padding">
+      <div class="space-block _2"></div>
+      <div class="page-padding">
+        <div class="container-large">
+          <div class="padding-vertical no-padding">
+            <div class="who-div">
+              <div class="div-block-19">
+                <h1 class="heading-6">Cops &amp; Cones</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

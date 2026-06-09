@@ -1,0 +1,44 @@
+<!--
+  COMPONENT: When-&-Where / Map Block
+  KEY CLASSES: .map / .map-text / .map-em  (event pages)
+  WHAT: Two-column — Google Maps iframe embed on one side, event When/Where on the other.
+  BRAND COLOR: auto (heading + yellow-div inherit host vars).
+
+  RESPONSIVE EMBEDS: CLC ships three iframe copies toggled by device-target classes
+    (.html-embed-mobile / .html-embed-tab / .html-embed). Only the desktop copy is
+    shown below for clarity — duplicate the embed div with the mobile/tab classes if
+    you want pixel-parity with the original, or rely on a single responsive iframe.
+
+  SWAP per event:
+    • iframe src  -> the new venue map embed (e.g. Turtle Bay for Cops & Cones 2026)
+    • map-body    -> the When / Where text
+-->
+<div class="map cfr-what-to-expect">
+  <div class="page-padding cfr-what-to-expect">
+    <div class="container-large">
+      <div class="vertical-page">
+        <div class="columns-2 w-row">
+          <div class="column-8 w-col w-col-6 w-col-stack">
+            <div class="map-em">
+              <div class="html-embed w-embed w-iframe">
+                <iframe src="#MAP-EMBED-URL" style="border:0;width:100%;height:400px" loading="lazy"></iframe>
+              </div>
+            </div>
+          </div>
+          <div class="column-2 cfr-what-to-expect w-col w-col-6 w-col-stack">
+            <div class="map-text _2 cfr-what-to-expect less-padding-top">
+              <h3 class="map-text">When &amp; Where</h3>
+              <div class="yellow-div"></div>
+              <div class="map-body">
+                <span>
+                  <strong>When</strong>: August 30, 2026 | 1–4 PM<br>
+                  <strong>Where</strong>: Turtle Bay
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

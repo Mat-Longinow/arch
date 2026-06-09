@@ -1,0 +1,53 @@
+<!--
+  COMPONENT: Double-Pane (text + image) — THE WORKHORSE
+  KEY CLASSES: .columns._2 / .image-holder / .column  (10 CLC pages)
+  WHAT: A two-column row — one text column, one image column.
+  BRAND COLOR: auto (heading + yellow-div + shade modifiers inherit host vars).
+
+  KNOBS:
+    1. ORDER OF CHILDREN -> image-right (Variant A) vs image-left (Variant B).
+    2. WIDTHS: w-col-6 / w-col-6 = 50/50;  w-col-7 / w-col-5 = text-wider.
+    3. SHADE MODIFIER on panes / .div-block-38: `white` | `whi` | `grey`
+       (maps to --white / --white-smoke / --grey).
+
+  ⚠️ GOTCHA: .image-holder is NOT always the image pane. In Variant A below it
+     holds the TEXT. Trust child order + contents, not the class name.
+
+  RSVP: put the event RSVP link inline in the body <p> (see 04 for the FB link swap).
+-->
+
+<!-- ===== Variant A — image RIGHT (text-left). Cops & Cones uses this. ===== -->
+<div class="div-block-38 white _3">
+  <div class="columns _2 whi w-row">
+    <div class="image-holder _2 white w-col w-col-6">      <!-- TEXT pane (legacy class name) -->
+      <div class="full-wrap">
+        <h3 class="heading-25">Cops &amp; Cones 2025</h3>
+        <div class="yellow-div left-side"></div>           <!-- gold divider, left-aligned -->
+        <p class="paragraph-12 crt-info-blurb">
+          … body copy … <a href="#RSVP-FB-EVENT-URL">RSVP here</a>.
+        </p>
+      </div>
+    </div>
+    <div class="column _2 white w-col w-col-6">             <!-- IMAGE pane -->
+      <div class="div-block-39 _2">
+        <img src="#" alt="" class="image-6">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Variant B — image LEFT (text-right). our-services alternates A/B. ===== -->
+<div class="columns _2 whi our-service-columns w-row">
+  <div class="image-holder _2 white w-col w-col-6">         <!-- IMAGE pane first -->
+    <div class="div-block-39 _2">
+      <img src="#" alt="" class="image-6">
+    </div>
+  </div>
+  <div class="column _2 white w-col w-col-6">                <!-- TEXT pane -->
+    <div class="full-wrap">
+      <h3 class="heading-25">Section title</h3>
+      <div class="yellow-div left-side"></div>
+      <p class="paragraph-12">… body copy …</p>
+    </div>
+  </div>
+</div>
