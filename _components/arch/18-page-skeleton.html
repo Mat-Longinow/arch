@@ -1,0 +1,74 @@
+<!-- 18 — Full Arch page skeleton. Composition example showing the correct
+     numbered-wrapper nesting end-to-end: hero → mission → double-pane → section
+     heading → text → CTA. NAV and FOOTER are CHROME (already on the live Webflow
+     page) — shown commented for reference only; DO NOT inject them.
+
+     Per-page build: copy this file to ~/Desktop/arch/pages/<page>.html, drop in the
+     components you need (each section already carries its matching numbered wrapper),
+     swap content, git push. Color resolves to Arch's palette automatically via :root. -->
+
+<!-- ===== CHROME — DO NOT INJECT (live Webflow page renders nav + footer) =====
+<div class="navbar w-nav">…</div>
+... page content ...
+<div class="div-block-27"><div class="div-block-26">… footer …</div></div>
+================================================================================ -->
+
+<!-- 01 — Hero (logo) -->
+<div class="hero">
+  <div class="wrapper-title">
+    <div class="wrapper-title overlay">
+      <div class="container-large">
+        <div class="div-block-28 logo our-story-logo">
+          <img src="images/Dark_Background_Logo-removebg-preview-1.png" loading="lazy" alt="Arch Collaborative" class="image-10">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 — Mission statement (wrapper set 2) -->
+<div class="mission-who">
+  <div class="page-padding-2">
+    <div class="container-large-2">
+      <div class="vertical-page">
+        <div id="our-mission" class="mission">
+          <div class="main-div mission _3">
+            <div class="h4-mission center">
+              <h4 class="h4-type-copy blue our-story-title">Page Title</h4>
+              <div class="yellow-div-longer"></div>
+            </div>
+
+            <!-- 07 — Double-pane nested in the mission block -->
+            <div class="w-row">
+              <div class="column-14 w-col w-col-6">
+                <div class="text2 our-story-text">Intro body copy goes here.</div>
+              </div>
+              <div class="column-13 w-col w-col-6">
+                <div class="div-block-39 _2"><img src="images/your-image.jpg" loading="lazy" alt=""></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 09 — Text section (bare wrapper) with 05 heading + 10 CTA -->
+<div class="page-padding">
+  <div class="our-team full">
+    <h3 class="heading-10-copy">Section Heading</h3>
+    <div class="yellow-div _2-copy"></div>
+    <div class="careers-text _2">
+      <div class="text-block-41">Section body copy. Supports <br><br> paragraph breaks.</div>
+      <div class="div-block-93">
+        <div class="div-block-94">
+          <a href="#" class="button-link support w-inline-block">
+            <div class="button-3 learn-more support"><h4 class="h4-type button-3">Learn More</h4></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

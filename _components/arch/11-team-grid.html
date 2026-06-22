@@ -1,0 +1,53 @@
+<!-- 11 — Team / board grid. Wrapper set 4 (.page-padding-4 / .container-large-4 /
+     .vertical-page-3). TWO parts: a CMS collection (.w-dyn-list — bind to a Webflow
+     Members collection in the Designer; left as the empty collection wrapper here) and
+     a STATIC fallback list (.holder.hide). For page-guts injection use the static
+     .holder block and remove .hide; repeat .names-images per member.
+     Add .bhcip modifier on .team for the BHCIP project-team variant. -->
+<div class="team">
+  <div class="page-padding-4">
+    <div class="container-large-4">
+      <div class="vertical-page-3">
+        <div class="div-block-96">
+
+          <div class="our-team full">
+            <h3 class="heading-10">Our Team</h3>
+            <div class="yellow-div-3 _2"></div>
+          </div>
+
+          <!-- CMS collection (bind in Webflow): -->
+          <div class="board-wrapper">
+            <div class="w-dyn-list">
+              <div role="list" class="collection-list-3 w-dyn-items">
+                <div role="listitem" class="board-tem removetag w-dyn-item">
+                  <div class="mem-item">
+                    <img loading="lazy" src="" alt="" class="image-12 w-dyn-bind-empty">
+                    <h3 class="heading-46 w-dyn-bind-empty"></h3>
+                    <div class="text-block-24-copy nopad w-dyn-bind-empty"></div>
+                    <div class="text-block-42 nopad w-dyn-bind-empty"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="w-dyn-empty"><div>No items found.</div></div>
+            </div>
+          </div>
+
+          <!-- Static fallback list (remove .hide to show; repeat .names-images per member): -->
+          <div class="holder hide">
+            <div class="names-images">
+              <div class="div-block-33"></div>
+              <div class="names">
+                <h4 class="names">Dean Germano</h4>
+                <div class="yellow-div-3 grey"></div>
+              </div>
+              <div class="div-block-34">
+                <div class="text-block-8">Chairman of the Board</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

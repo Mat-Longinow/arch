@@ -1,0 +1,30 @@
+<!-- 12 — FAQ accordion. Click-to-expand Q&A. Wrapper set 5 (.page-padding-5 /
+     .container-large-5 / .vertical-page-3). The Webflow interaction (data-w-id +
+     inline transform/opacity) drives the open/close; the live page's webflow.js
+     animates it. Keep the data-w-id and style attrs. Repeat .faq-text per question
+     (.hide on the wrapper = collapsed-by-default in source, but Webflow toggles it).
+     BHCIP variant wraps in .page-padding.bchip-q-a-section. -->
+<div class="faq">
+  <div class="page-padding-5">
+    <div class="container-large-5">
+      <div class="vertical-page-3">
+        <div class="faq-holder">
+
+          <div class="faq-text">
+            <div data-w-id="08de2f7b-b0a0-0ee6-3039-55f0d0fb4b56" class="faq-title-wrapper">
+              <h3 class="faq-h1">What is the Aster Project?</h3>
+              <img style="transform:rotateZ(180deg)" loading="lazy" alt="" src="images/up-arrow.svg" class="image-18">
+            </div>
+            <div style="display:none;opacity:0" class="faq-text-wrapper">
+              <div class="yellow-div-3"></div>
+              <div class="faq-body">The Aster Project is a bold initiative aimed at advancing transformative solutions for services to youth in foster care in rural Northern California.</div>
+            </div>
+          </div>
+
+          <!-- repeat .faq-text per question -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

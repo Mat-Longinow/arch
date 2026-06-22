@@ -1,0 +1,42 @@
+<!-- 15 — Contact form + social links. Form card (.section-2 > .wrapper.center.form)
+     plus an "Around the web" social link list. The form is a Webflow form — submission
+     handling stays on the live Webflow page; page-guts carries the markup. Keep
+     data-wf-page-id / data-wf-element-id only if you know the live IDs, else let
+     Webflow regenerate. -->
+<div class="section-2">
+  <div class="wrapper center form">
+    <div class="wrapper-info contact">
+      <div class="div-block-18"><h2>Get in touch.</h2></div>
+      <div class="wrap-content">
+        <div class="_w-form">
+          <div class="w-form">
+            <form id="email-form" name="email-form" data-name="Email Form" method="get">
+              <input class="field w-input" maxlength="256" name="name" placeholder="Your Name" type="text" id="name">
+              <input class="field w-input" maxlength="256" name="name-2" placeholder="Your Email" type="text" id="name-2">
+              <textarea id="field" name="field" placeholder="Message" maxlength="5000" class="field w-input"></textarea>
+              <input type="submit" data-wait="Please wait..." class="button w-button" value="Submit">
+            </form>
+            <div class="w-form-done"><div>Thank you! Your submission has been received!</div></div>
+            <div class="w-form-fail"><div>Oops! Something went wrong while submitting the form.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional: "Around the web" social link list -->
+  <div class="wrapper center form base hide">
+    <div class="wrapper-info contact">
+      <div class="div-block-18"><h2>Around the web</h2></div>
+      <div>
+        <div class="wrap-content links">
+          <a href="#" class="_w-link social w-inline-block">
+            <h2 class="h2 mail">Email</h2>
+            <div class="line-hover"><div class="fill-hover"></div></div>
+          </a>
+          <!-- repeat per social channel -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
