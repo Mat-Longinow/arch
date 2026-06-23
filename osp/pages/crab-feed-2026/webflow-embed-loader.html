@@ -13,18 +13,14 @@
           loader re-creates each injected <script> into a fresh element. (This page is
           static today, but the rehydration is kept for parity + future-proofing.)
 
-     ⚠️ PROD_HOST is a PLACEHOLDER. One SAFE Place's live published domain is NOT yet
-        confirmed (Aster's archcollaborative.org does NOT apply here — different org).
-        CONFIRM the exact OSP published hostname with Mat and set it below before
-        go-live. Until confirmed, a wrong PROD_HOST only means the live site loads
-        preview/ guts — safe (preview renders the same content for a static page),
-        just not the intended prod gating.
+     PROD_HOST = "ospshasta.org" — confirmed by Mat 2026-06-23 (One SAFE Place's live
+        published domain). www.ospshasta.org is handled by the leading-www strip below.
      ============================================================================ -->
 <div id="lc-block-crab-feed-2026" class="lc-embed"></div>
 <script>
 (function () {
   var TARGET    = "lc-block-crab-feed-2026";
-  var PROD_HOST = "onesafeplace.org"; // ⚠️ PLACEHOLDER — CONFIRM the real OSP domain with Mat before go-live
+  var PROD_HOST = "ospshasta.org"; // confirmed by Mat 2026-06-23 (www handled by the strip below)
   var REPO_BASE = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/crab-feed-2026/";
 
   var host   = location.hostname.replace(/^www\./, "");
