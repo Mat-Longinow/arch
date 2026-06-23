@@ -1,10 +1,10 @@
 {
   "collection": "team",
-  "fields": ["name", "title", "image", "preview"],
-  "_notes": "Our own Git-backed CMS for the Aster 'Our Team' section. 'image' = filename in ./assets/ (render builds the jsDelivr URL). 'preview': true = visible only on the preview URL; false (or omit) = live in production. See ../README.md.",
+  "fields": ["name", "credential", "title", "image", "preview"],
+  "_notes": "Our own Git-backed CMS for the Aster 'Our Team' section. Card = name (heading-46) + credential (text-block-24-copy, blue, e.g. MPA/Ph. D/MA) + title (text-block-42, purple). 'image' = filename in ./assets/. 'preview': true = preview URL only; false/omit = live in production. See ../README.md.",
   "items": [
-    { "name": "Mary Williams",   "title": "Director of Regional Initiatives", "image": "mary-williams.png", "preview": false },
-    { "name": "Fredrick Boholst", "title": "Director of Innovative Research",  "image": "dr-b.png",         "preview": false },
-    { "name": "Sarah Peery",      "title": "Chief of Communications and Program Administration", "image": "sarah-peery.png", "preview": false }
+    { "name": "Mary Williams",   "credential": "MPA",   "title": "Director of Regional Initiatives", "image": "mary-williams.png", "preview": false },
+    { "name": "Fredrick Boholst", "credential": "Ph. D", "title": "Director of Innovative Research",  "image": "dr-b.png",         "preview": false },
+    { "name": "Sarah Peery",      "credential": "MA",    "title": "Chief of Communications and Program Administration", "image": "sarah-peery.png", "preview": false }
   ]
 }

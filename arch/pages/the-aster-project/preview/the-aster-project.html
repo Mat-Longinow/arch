@@ -135,7 +135,7 @@
                   visible.forEach(function (it) {
                     var listitem = document.createElement("div");
                     listitem.setAttribute("role", "listitem");
-                    listitem.className = "board-tem w-dyn-item";
+                    listitem.className = "board-tem removetag w-dyn-item";
                     var mem = document.createElement("div");
                     mem.className = "mem-item";
                     var img = document.createElement("img");
@@ -147,10 +147,10 @@
                     var h3 = document.createElement("h3");
                     h3.className = "heading-46";
                     h3.textContent = it.name || "";
-                    var title = document.createElement("div");
+                    var cred = document.createElement("div"); cred.className = "text-block-24-copy nopad"; cred.textContent = it.credential || ""; var title = document.createElement("div");
                     title.className = "text-block-42 nopad";
                     title.textContent = it.title || "";
-                    mem.appendChild(img); mem.appendChild(h3); mem.appendChild(title);
+                    mem.appendChild(img); mem.appendChild(h3); if (it.credential) mem.appendChild(cred); mem.appendChild(title);
                     listitem.appendChild(mem);
                     container.appendChild(listitem);
                   });
@@ -360,4 +360,30 @@
       </div>
     </div>
   </div>
+
+<!-- ASTER-FAQ accordion. Webflow's IX2 interactions don't run on injected guts,
+     so this replicates the click-to-expand: toggle the .faq-text-wrapper body
+     (+ its purple line) and flip the caret. Loader re-creates injected <script>s. -->
+<script>
+(function () {
+  var wraps = document.querySelectorAll('.faq-holder .faq-title-wrapper');
+  Array.prototype.forEach.call(wraps, function (t) {
+    t.style.cursor = 'pointer';
+    var body = t.nextElementSibling;      // .faq-text-wrapper
+    var caret = t.querySelector('img');   // .image-18
+    if (body) { body.style.display = 'none'; body.style.opacity = '0'; }   // start collapsed
+    if (caret) { caret.style.transition = 'transform .2s'; caret.style.transform = 'rotate(180deg)'; }
+    t.addEventListener('click', function () {
+      var open = body && body.style.display !== 'none';
+      if (body) {
+        body.style.display = open ? 'none' : 'block';
+        body.style.opacity = open ? '0' : '1';
+        if (!open) body.style.transform = 'none';
+      }
+      if (caret) caret.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+    });
+  });
+})();
+</script>
+
 </div>
