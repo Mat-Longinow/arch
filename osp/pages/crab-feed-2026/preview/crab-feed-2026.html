@@ -1,0 +1,168 @@
+<!--
+  PAGE: Crab Feed 2026 (One SAFE Place) — page-guts for the Webflow Hybrid loader.
+  ENV: preview  (loaded by every NON-production host: Webflow staging *.webflow.io, share links)
+  Built from _source/osp-export/crab-feed-2026.html. OSP reuses CLC's shared clc-mnhstr
+  design system, so brand color resolves automatically from the live OSP stylesheet —
+  nothing brand-colored is set here.
+
+  WHAT THIS PAGE IS: a post-event RECAP of the 39th Annual OSP Crab Feed (held
+  March 7, 2026 at the Shasta District Fairgrounds), pivoting to promote the 40th
+  Annual event on March 13, 2027 at the Shasta District Fair & Event Center.
+
+  IMAGES: self-hosted in this repo, served via jsDelivr (absolute URLs — required,
+  the guts are injected into the Webflow domain so relative paths would break).
+    - Page-specific assets → osp/pages/images/
+  Background images (banner backdrop, etc.) come from the live OSP stylesheet via
+  CSS classes — they resolve automatically on the live page, nothing to host here.
+
+  STATIC PAGE — no JSON-CMS, no env-gated content. preview/ and production/ guts are
+  identical except this ENV marker comment. The raffle-items page is separate and
+  out of scope.
+
+  CAVEAT — newsletter form: the export's Webflow newsletter form is kept verbatim for
+  fidelity, but Webflow.js binds forms at page load and will NOT re-init a form injected
+  after load, so the AJAX submit + success/fail states won't fire on the live injected
+  page (it degrades to a native GET). Same class of limitation as the Aster FAQ-accordion
+  lesson — wire our own handler later if OSP wants this form live here.
+-->
+<div class="services-main">
+  <div class="main-image _4 crab-feed-banner _2026">
+    <div class="black-overlay"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Crab-Feed-Banner-2026-text-only---nobg.png" loading="lazy" alt="One SAFE Place Crab Feed 2026" class="image-43">
+      <div class="space-block _2"></div>
+      <div class="page-padding">
+        <div class="container-large">
+          <div class="padding-vertical no-padding">
+            <div class="who-div">
+              <div class="div-block-18"></div>
+              <div class="div-block-19 crab-feed-banner"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="section-10">
+  <div class="div-block-92"></div>
+</section>
+<section class="hero-without-image">
+  <div class="container-8">
+    <h3 class="heading-26 crab-feed-hero-title">Thank You for an Amazing Night!<br></h3>
+  </div>
+  <div class="yellow-div-copy"></div>
+  <div class="container-8">
+    <div class="columns-7 w-row">
+      <div class="w-col w-col-6">
+        <p class="paragraph-14 crab-feed-tickets-paragraph">Thank you to everyone who joined us for the 39th Annual One SAFE Place Crab Feed on March 7, 2026 at the Shasta District Fairgrounds. This beloved North State tradition sold out once again, and we couldn&#x27;t have done it without our incredible community.<br><br><em>All proceeds benefit One SAFE Place and our mission to provide holistic, family-centered care for victims of trauma in our community.</em></p>
+        <a href="https://onesafeplace.ticketspice.com/2026-one-safe-place-crab-feed" target="_blank" class="button-link w-inline-block">
+          <div class="button learn-more nomintions-button purple-button">
+            <h4 class="h4-type button nominations-text purple-button">Get Your Tickets</h4>
+          </div>
+        </a>
+      </div>
+      <div class="column-13 nominations-section-image w-col w-col-6">
+        <div class="div-block-39 _2 nominations-section-image"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Copy-of-Thank-You---CF26.png" loading="lazy" sizes="(max-width: 479px) 96vw, (max-width: 618px) 97vw, (max-width: 767px) 600px, (max-width: 1279px) 48vw, 600px" srcset="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Copy-of-Thank-You---CF26-p-500.png 500w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Copy-of-Thank-You---CF26.png 600w" alt="" class="image-35"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="pilot crab-feed-sponsor-section _2026">
+  <div class="page-padding">
+    <div class="container-large">
+      <div class="vertical-page">
+        <div class="pilot-holder">
+          <div class="w-row">
+            <div id="crab-feed-2025-sponsor" class="w-col w-col-6">
+              <div class="div-block-39 _2 event-map"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Become-A-Sponsor_1.png" loading="lazy" sizes="(max-width: 479px) 96vw, (max-width: 767px) 97vw, (max-width: 1279px) 48vw, 49vw" srcset="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Become-A-Sponsor_1-p-500.png 500w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Become-A-Sponsor_1-p-800.png 800w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Become-A-Sponsor_1.png 1000w" alt="" class="image-35"></div>
+            </div>
+            <div class="column-13 w-col w-col-6">
+              <h3 class="heading-26 crab-feed-sponsor-section-title _2026">Become A Sponsor for 2027<br></h3>
+              <div class="yellow-div"></div>
+              <div class="text2 crab-feed-sponsor-section-text _2026">Sponsor opportunities will be available for our 40th Annual One SAFE Place Crab Feed soon!<br>‍<br>This is your chance to support a vital local cause: funding programs and services that help those affected by violence and abuse. <br><br>Join us as a sponsor and be a force for change.</div>
+              <a href="#" class="button-link crab-feed-sponsor-link w-inline-block">
+                <div class="button learn-more crab-feed-sponsor-button disabled">
+                  <h4 class="h4-type button crab-feed-button-text crab-feed-sponsor-button-text disabled">Info Coming Soon</h4>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="team-circles">
+  <div class="container-7">
+    <h2 class="centered-heading">Thank You to Our 2026 Sponsors!</h2>
+    <div class="yellow-div-copy"></div>
+    <div class="container-8"></div>
+    <div class="container-8"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Crab-Feed-Sponors---3.4.26.png" loading="lazy" sizes="(max-width: 800px) 100vw, 800px" srcset="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Crab-Feed-Sponors---3.4.26-p-500.png 500w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Crab-Feed-Sponors---3.4.26.png 800w" alt="" class="image-44"></div>
+  </div>
+</section>
+<div class="pilot crab-feed-when-and-where">
+  <div class="page-padding-3">
+    <div class="container-large-3">
+      <div class="vertical-page-4">
+        <div class="pilot-holder">
+          <div class="w-row">
+            <div class="column-14 w-col w-col-6">
+              <div class="div-block-102 _2 event-map">
+                <div style="padding-top:56.17021276595745%" class="w-video w-embed"><iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FSQ-P4k39ibk%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DSQ-P4k39ibk&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FSQ-P4k39ibk%2Fhqdefault.jpg&type=text%2Fhtml&schema=youtube" width="940" height="528" scrolling="no" allowfullscreen="" title="One SAFE Place 39th Annual Crab Feed"></iframe></div>
+              </div>
+            </div>
+            <div id="crab-feed-2025-directions" class="column-13 w-col w-col-6">
+              <h3 class="heading-61 crab-feed-waw-title">2026 Highlights<br></h3>
+              <div class="yellow-div-2"></div>
+              <div class="text2">As the doors opened and the crowd streamed in, it was evident how passionate the community desires to assist OSP in aiding those who need and seek support. We were inspired in moments shared by each attendee during the event— moments such as the crab conga line and excitement seeing bidders compete for the amazing auction items. But the most remarkable aspect of the evening was the overwhelming generosity displayed by each and every attendee. Together, we raised an incredible amount of over $292,000!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pilot crab-feed-when-and-where _2026">
+  <div class="page-padding">
+    <div class="container-large">
+      <div class="vertical-page">
+        <div class="pilot-holder">
+          <div class="w-row">
+            <div class="w-col w-col-6">
+              <h3 class="heading-26 crab-feed-waw-title _2026">When &amp; Where<br></h3>
+              <div class="yellow-div"></div>
+              <div class="text2 crab-feed-2026 purple"><strong>When:</strong> March 13th, 2027<br>‍<br><strong>Where:</strong> Shasta District Fair &amp; Event Center<br>              1890 Briggs St<br>              Anderson, CA 96007</div>
+            </div>
+            <div id="crab-feed-2025-directions" class="column-13 w-col w-col-6">
+              <div class="div-block-39 _2 event-map crab-feed-2026">
+                <div class="html-embed w-embed w-iframe"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3035.9580487294875!2d-122.3115066877611!3d40.454065471314486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54d2c17d000b9d33%3A0x670919dcd4ddd66a!2sShasta%20District%20Fair%20%26%20Event%20Center!5e0!3m2!1sen!2sus!4v1701720988616!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="newsletter" class="newsletter">
+  <div class="page-padding full">
+    <div class="container-large full">
+      <div class="vertical-page full center">
+        <div class="main-div _2">
+          <div class="h4-mission services">
+            <h3 class="h4-type _1">Sign Up for THE One Safe Place Newsletter</h3>
+            <div class="yellow-div _2"></div>
+          </div>
+          <div class="form-block-2 w-form">
+            <form id="wf-form-Sign-up-Newsletter" name="wf-form-Sign-up-Newsletter" data-name="Sign up Newsletter" method="get" class="form" data-wf-page-id="6737a82d498521facec47bcf" data-wf-element-id="c5d5697b-90f9-b45e-96cb-880f552df39a"><input class="text-field w-input" maxlength="256" name="Email" data-name="Email" placeholder="Your Email" type="email" id="Email-3" required=""><input type="submit" data-wait="Please wait..." class="submit-button w-button" value="Subscribe"></form>
+            <div class="w-form-done">
+              <div>Thank you! Your submission has been received!</div>
+            </div>
+            <div class="w-form-fail">
+              <div>Oops! Something went wrong while submitting the form.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
