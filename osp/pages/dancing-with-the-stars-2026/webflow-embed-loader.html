@@ -13,16 +13,15 @@
           the loader re-creates each injected <script> into a fresh element. This is
           what makes the CMS stars-render script actually run after injection.
 
-     ⚠️ PROD_HOST is a BEST GUESS (onesafeplace.org). CONFIRM with Mat before go-live
-        and update the constant if the live OSP domain differs. Until confirmed, a
-        wrong PROD_HOST only means the live site would load preview/ guts — safe
-        (preview renders a superset), just not the intended prod gating.
+     PROD_HOST confirmed by Mat 2026-06-23: ospshasta.org (the One SAFE Place live
+        domain). www. is stripped before the compare, so www.ospshasta.org also routes
+        to production. A wrong PROD_HOST would only load preview/ guts — safe.
      ============================================================================ -->
 <div id="lc-block-dwts-2026" class="lc-embed"></div>
 <script>
 (function () {
   var TARGET    = "lc-block-dwts-2026";
-  var PROD_HOST = "onesafeplace.org"; // ⚠️ CONFIRM with Mat before go-live
+  var PROD_HOST = "ospshasta.org"; // confirmed by Mat 2026-06-23 (www. stripped below)
   var REPO_BASE = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/dancing-with-the-stars-2026/";
 
   var host   = location.hostname.replace(/^www\./, "");
