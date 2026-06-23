@@ -1,0 +1,313 @@
+<!--
+  PAGE: The Aster Project (Arch Collaborative) — page-guts for the Webflow Hybrid loader.
+  First Arch hybrid conversion. Built from _source/arch-export/the-aster-project.html.
+  Brand color (Arch :root vars: --primary-blue / --primary-purple / --primary-orange)
+  resolves automatically from the live Arch site — nothing brand-colored is set here.
+
+  IMAGES: self-hosted in this repo, served via jsDelivr (absolute URLs — required,
+  the guts are injected into the Webflow domain so relative paths would break).
+    - Page-specific assets → arch/pages/images/   (aster-flowers, hero logo)
+    - Shared/recurring assets → arch/images/       (up-arrow FAQ chevron)
+
+  NEW since the export:
+    - "Yearly Report" button added to the top mission section (search YEARLY-REPORT).
+      href is a PLACEHOLDER until Mat sends the PDF — search "TODO(Mat)".
+
+  OPEN DECISION — "Our Team" grid (search TEAM-GRID-DECISION):
+    The export's team section is a Webflow CMS collection list (w-dyn-list) that is
+    currently EMPTY ("No items found"), plus a hidden static board-member fallback.
+    Snapshotted AS-IS here (zero visible change vs. live, since the CMS list renders
+    nothing today). If Arch later populates that CMS collection, this static snapshot
+    won't auto-pick it up — needs Mat's call (snapshot vs. leave CMS native) before
+    the Webflow embed goes live.
+
+  Nav bar + footer are intentionally OMITTED — they stay native in the Webflow shell.
+-->
+
+<div class="hero">
+  <div class="wrapper-title">
+    <div class="wrapper-title overlay">
+      <div class="container-large">
+        <div class="div-block-28 logo our-story-logo"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/pages/images/Dark_Background_Logo-removebg-preview-1.png" loading="lazy" sizes="(max-width: 722px) 100vw, 722px" srcset="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/pages/images/Dark_Background_Logo-removebg-preview-1-p-500.png 500w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/pages/images/Dark_Background_Logo-removebg-preview-1.png 722w" alt="" class="image-10"></div>
+      </div>
+    </div>
+  </div>
+  <div class="mission-who">
+    <div class="page-padding-2">
+      <div class="container-large-2">
+        <div class="vertical-page">
+          <div id="our-mission" class="mission">
+            <div class="main-div mission _3">
+              <div class="h4-mission center">
+                <h4 class="h4-type-copy blue our-story-title">The Aster Project</h4>
+                <div class="yellow-div-longer"></div>
+              </div>
+              <div class="w-row">
+                <div class="column-14 w-col w-col-6">
+                  <div class="text2 our-story-text">The Aster Project was developed in response to an urgent insurance crisis threatening services to foster youth across the State of California. In short, the Nonprofit Insurance Alliance (NIAC), which provides liability insurance to most of California’s FFAs, is no longer renewing policies. Without insurance, these agencies cannot operate, and the potential closure of FFAs could have devastating consequences. The Aster Project is designed to understand the impacts of the crisis in the rural North State and to develop sustainable, research-driven solutions to this and other significant systemic barriers impacting provision of child welfare and behavioral health services to youth in foster care</div>
+                </div>
+                <div class="column-13 w-col w-col-6">
+                  <div class="div-block-39 _2"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/pages/images/aster-flowers.jpg" loading="lazy" sizes="100vw" srcset="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/pages/images/aster-flowers-p-500.jpg 500w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/pages/images/aster-flowers.jpg 800w" alt=""></div>
+                </div>
+              </div>
+              <!-- YEARLY-REPORT button — centered under the mission row.
+                   TODO(Mat): replace PDF_URL_HERE with the real Yearly Report PDF URL.
+                   Plan: host the PDF in this repo (arch/files/aster-yearly-report.pdf)
+                   and serve via jsDelivr:
+                   https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/files/aster-yearly-report.pdf -->
+              <div style="text-align:center; margin-top:24px;">
+                <a href="PDF_URL_HERE" target="_blank" rel="noopener" class="button-link-34 white-button left double-button w-inline-block">
+                  <h4 class="h4-type button-3 _5">Yearly Report</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-padding">
+    <div class="our-team full aster-sections">
+      <div class="careers-text _2 aster-proejct-text-setion">
+        <h3 class="heading-10-copy aster-section-subtitle">What Is The Goal</h3>
+        <div class="yellow-div _2-copy aster-project-subtitle-line"></div>
+        <div class="text-block-41 aster-project-text-section">The project is intended to provide county and state stakeholders with data-driven insights to ensure that proposed solutions are regionally driven, united, and well-informed. We aim to accomplish this through data collection and analysis, coordinated communication, proactive planning and regional collaboration.<br></div>
+      </div>
+      <div class="careers-text _2 aster-proejct-text-setion">
+        <h3 class="heading-10-copy aster-section-subtitle"><strong>What Is The Geographic Focus Area</strong></h3>
+        <div class="yellow-div _2-copy aster-project-subtitle-line"></div>
+        <div class="text-block-41 aster-project-text-section">The initial research and planning year will focus primarily on understanding challenges in five rural Northern California counties: Modoc, Shasta, Siskiyou, Tehama, and Trinity.<br></div>
+      </div>
+      <div class="careers-text _2 aster-proejct-text-setion">
+        <h3 class="heading-10-copy aster-section-subtitle">Who Is Doing The Work</h3>
+        <div class="yellow-div _2-copy aster-project-subtitle-line"></div>
+        <div class="text-block-41 aster-project-text-section">The Aster Project is led by Arch Collaborative in close partnership with North State Together and Shasta County Office of Education. This project is funded in part by the McConnell Foundation, Redding, California. The McConnell Foundation is a private, nonprofit organization whose mission is to help build better communities through philanthropy.<br></div>
+      </div>
+    </div>
+  </div>
+  <!-- TEAM-GRID-DECISION: snapshotted AS-IS from the export. CMS list is empty today;
+       hidden static board fallback retained. Pending Mat's call (snapshot vs. native CMS). -->
+  <div class="team">
+    <div class="page-padding-4">
+      <div class="container-large-4">
+        <div class="vertical-page-3">
+          <div class="div-block-96">
+            <div class="our-team full">
+              <h3 class="heading-10">Our Team</h3>
+              <div class="yellow-div-3 _2"></div>
+            </div>
+            <div class="board-wrapper">
+              <div class="w-dyn-list">
+                <div role="list" class="collection-list-3 w-dyn-items">
+                  <div role="listitem" class="board-tem removetag w-dyn-item">
+                    <div class="mem-item"><img loading="lazy" src="" alt="" class="image-12 w-dyn-bind-empty">
+                      <h3 class="heading-46 w-dyn-bind-empty"></h3>
+                      <div class="text-block-24-copy nopad w-dyn-bind-empty"></div>
+                      <div class="text-block-42 nopad w-dyn-bind-empty"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-dyn-empty">
+                  <div>No items found.</div>
+                </div>
+              </div>
+            </div>
+            <div class="holder hide">
+              <div id="w-node-_700b2dd3-6617-f9fc-6ccb-98763d8e003d-c5ce2412" class="names-images">
+                <div class="div-block-33"></div>
+                <div class="names">
+                  <h4 class="names">Dean Germano</h4>
+                  <div class="yellow-div-3 grey"></div>
+                </div>
+                <div class="div-block-34">
+                  <div class="text-block-8">Chairman of the Board</div>
+                </div>
+              </div>
+              <div class="names-images">
+                <div class="div-block-33 _2"></div>
+                <div class="names">
+                  <h4 class="names">Bill Schueller</h4>
+                  <div class="yellow-div-3 grey"></div>
+                </div>
+                <div class="div-block-34">
+                  <div class="text-block-8">Board Vice-Chair</div>
+                </div>
+              </div>
+              <div class="names-images">
+                <div class="div-block-33 _3"></div>
+                <div class="names">
+                  <h4 class="names"> Stephanie Bridgett</h4>
+                  <div class="yellow-div-3 grey"></div>
+                </div>
+                <div class="div-block-34">
+                  <div class="text-block-8">Board Secretary</div>
+                </div>
+              </div>
+              <div class="names-images">
+                <div class="div-block-33 _4"></div>
+                <div class="names">
+                  <h4 class="names">Erin Resner</h4>
+                  <div class="yellow-div-3 grey"></div>
+                </div>
+                <div class="div-block-34">
+                  <div class="text-block-8">Board Treasurer</div>
+                </div>
+              </div>
+            </div>
+            <div class="holder _2 hide">
+              <div class="names-images">
+                <div class="div-block-33 _5"></div>
+                <div class="names">
+                  <h4 class="names">Judy Flores</h4>
+                  <div class="yellow-div-3 grey"></div>
+                </div>
+                <div class="div-block-34">
+                  <div class="text-block-8">Board Member</div>
+                </div>
+              </div>
+              <div class="names-images">
+                <div class="div-block-33 _6"></div>
+                <div class="names">
+                  <h4 class="names">Michael Johnson</h4>
+                  <div class="yellow-div-3 grey"></div>
+                </div>
+                <div class="div-block-34">
+                  <div class="text-block-8">Board Member</div>
+                </div>
+              </div>
+              <div id="w-node-_700b2dd3-6617-f9fc-6ccb-98763d8e0074-c5ce2412" class="names-images">
+                <div class="div-block-33 _7"></div>
+                <div class="names">
+                  <h4 class="names">Kimberly L. Johnson</h4>
+                  <div class="yellow-div-3 grey"></div>
+                </div>
+                <div class="div-block-34">
+                  <div class="text-block-8">Executive Director, <br>non-voting board member</div>
+                </div>
+              </div>
+              <div class="names-images">
+                <div class="div-block-33 _8"></div>
+                <div class="names">
+                  <h4 class="names">Miguel Rodriguez</h4>
+                  <div class="yellow-div-3 grey"></div>
+                </div>
+                <div class="div-block-34">
+                  <div class="text-block-8">Board Member</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-padding">
+    <div class="our-team full aster-sections">
+      <h3 class="heading-10-copy"><strong>Why “Aster”</strong></h3>
+      <div class="yellow-div _2-copy"></div>
+      <div class="careers-text _2">
+        <div class="text-block-41">The Aster Project draws inspiration from the aster flower, a symbol of resilience and renewal. Just as the aster returns abundantly after a wildfire, we aim to promote growth and healing in our community&#x27;s children and youth, encouraging them to thrive with renewed strength and hope in the face of adversity.</div>
+      </div>
+    </div>
+  </div>
+  <div class="faq">
+    <div class="page-padding-5">
+      <div class="container-large-5">
+        <div class="vertical-page-3">
+          <div class="faq-holder">
+            <div class="faq-text">
+              <div data-w-id="08de2f7b-b0a0-0ee6-3039-55f0d0fb4b56" class="faq-title-wrapper">
+                <h3 class="faq-h1">What is the Aster Project?</h3><img style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0)" loading="lazy" alt="" src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/images/up-arrow.svg" class="image-18">
+              </div>
+              <div style="display:none;-webkit-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="faq-text-wrapper">
+                <div class="yellow-div-3"></div>
+                <div class="faq-body">The Aster Project is a bold initiative aimed at advancing transformative solutions for services to youth in foster care in rural Northern California. Developed in response to the urgent foster agency insurance crisis, the project is designed to understand the impacts of this situation and to develop sustainable, research-driven solutions to this and other significant systemic barriers impacting provision of child welfare and behavioral health services to youth in foster care. The initial research and planning year will focus primarily on understanding challenges in five rural Northern California counties served by theMcConnell Foundation: Modoc, Shasta, Siskiyou, Tehama, and Trinity.</div>
+              </div>
+            </div>
+            <div class="faq-text hide">
+              <div data-w-id="08de2f7b-b0a0-0ee6-3039-55f0d0fb4b65" class="faq-title-wrapper">
+                <h3 class="faq-h1">Who is involved?</h3><img style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0)" loading="lazy" alt="" src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/images/up-arrow.svg" class="image-18">
+              </div>
+              <div style="display:none;-webkit-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="faq-text-wrapper">
+                <div class="yellow-div-3"></div>
+                <div class="faq-body">The project is facilitated by Arch Collaborative in close collaboration with North StateTogether and Shasta County Office of Education. Arch Collaborative has a strong history of leading collaborative regional efforts, including our recent rural placement pilot. The project will also engage key partners in local government, education, community-based organizations, and other agencies.</div>
+              </div>
+            </div>
+            <div class="faq-text">
+              <div data-w-id="08de2f7b-b0a0-0ee6-3039-55f0d0fb4b6e" class="faq-title-wrapper">
+                <h3 class="faq-h1">Where did the funding come from?</h3><img style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0)" loading="lazy" alt="" src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/images/up-arrow.svg" class="image-18">
+              </div>
+              <div style="display:none;-webkit-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="faq-text-wrapper">
+                <div class="yellow-div-3"></div>
+                <div class="faq-body">This project is made possible through partnership with the McConnell Foundation.</div>
+              </div>
+            </div>
+            <div class="faq-text">
+              <div data-w-id="08de2f7b-b0a0-0ee6-3039-55f0d0fb4b7a" class="faq-title-wrapper">
+                <h3 class="faq-h1">What is the ultimate goal of the Project?</h3><img style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0)" loading="lazy" alt="" src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/images/up-arrow.svg" class="image-18">
+              </div>
+              <div style="display:none;-webkit-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="faq-text-wrapper">
+                <div class="yellow-div-3"></div>
+                <div class="faq-body">While addressing the FFA Insurance Crisis is the priority, ultimately the Aster Project aims to address the broader implications of statewide legislation on rural counties which impact the provision of critical services to foster youth. State legislation must be informed by on-the-ground realities to ensure sustainable outcomes for rural counties. Through data collection, research, and relational connectivity in the primary counties, the most significant challenges will be identified and become the focus for development of solutions.</div>
+              </div>
+            </div>
+            <div class="faq-text">
+              <div data-w-id="08de2f7b-b0a0-0ee6-3039-55f0d0fb4b83" class="faq-title-wrapper">
+                <h3 class="faq-h1">What outcomes will result from the Project?</h3><img style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0)" loading="lazy" alt="" src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/images/up-arrow.svg" class="image-18">
+              </div>
+              <div style="display:none;-webkit-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="faq-text-wrapper">
+                <div class="yellow-div-3"></div>
+                <div class="faq-body">The initial year of this project will prioritize exploration of research-driven, tailored solutions resulting in the development of a regional strategic framework to ensure rural counties are equipped to adapt and thrive amidst state-wide changes and anticipated upcoming challenges impacting services to foster youth. At the end of this research and planning year, we will also develop a subsequent implementation plan if funding is made available.</div>
+              </div>
+            </div>
+            <div class="faq-text hide">
+              <div data-w-id="08de2f7b-b0a0-0ee6-3039-55f0d0fb4b8c" class="faq-title-wrapper">
+                <h3 class="faq-h1">What is the Foster Family Agency Insurance Crisis?</h3><img style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0)" loading="lazy" alt="" src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/images/up-arrow.svg" class="image-18">
+              </div>
+              <div style="display:none;-webkit-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="faq-text-wrapper">
+                <div class="yellow-div-3"></div>
+                <div class="faq-body">Currently, the foster care system in California is at a crossroads as insurance coverage has been disrupted for foster family agencies (FFAs) across the state. Due to legislation expanding liability for entities such as FFAs and resulting costly litigation trends, theNonprofits Insurance Alliance of California (NIAC)--the largest insurance provider of FFAs in California representing 90% of FFAs--is withdrawing all coverage for FFAs.</div>
+              </div>
+            </div>
+            <div class="faq-text">
+              <div data-w-id="08de2f7b-b0a0-0ee6-3039-55f0d0fb4b95" class="faq-title-wrapper">
+                <h3 class="faq-h1">What is the impact of the crisis?</h3><img style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0)" loading="lazy" alt="" src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/images/up-arrow.svg" class="image-18">
+              </div>
+              <div style="display:none;-webkit-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="faq-text-wrapper">
+                <div class="yellow-div-3"></div>
+                <div class="faq-body">Many agencies are being forced to choose between closing their doors or paying exorbitant premiums that have increased by as much as four to eight times the prior costs. If unaddressed, this crisis will lead to widespread foster family losses, severely limiting safe and licensed placement options for foster youth. NIAC-insured entities represent an estimated 9,600 children in foster care across the state.</div>
+              </div>
+            </div>
+            <div class="faq-text">
+              <div data-w-id="08de2f7b-b0a0-0ee6-3039-55f0d0fb4b9e" class="faq-title-wrapper">
+                <h3 class="faq-h1">What solutions have been pursued?</h3><img style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0)" loading="lazy" alt="" src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/images/up-arrow.svg" class="image-18">
+              </div>
+              <div style="display:none;-webkit-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="faq-text-wrapper">
+                <div class="yellow-div-3"></div>
+                <div class="faq-body">The State of California has largely left it to the counties to identify and implement solutions to this issue. Some larger urban centers are offering increased rates to their FFA providers to support the increased insurance costs. Smaller rural counties lack the resources to provide this solution.</div>
+              </div>
+            </div>
+            <div class="faq-text">
+              <div data-w-id="08de2f7b-b0a0-0ee6-3039-55f0d0fb4baa" class="faq-title-wrapper">
+                <h3 class="faq-h1">How will the Aster Project address this challenge?</h3><img style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0)" loading="lazy" alt="" src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/images/up-arrow.svg" class="image-18">
+              </div>
+              <div style="display:none;-webkit-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="faq-text-wrapper">
+                <div class="yellow-div-3"></div>
+                <div class="faq-body">The project will provide counties and state-wide stakeholders with data-driven insights to ensure that proposed solutions are regionally driven, united, and well-informed. We aim to accomplish this through data collection and analysis, coordinated communication, proactive planning and regional collaboration.</div>
+              </div>
+            </div>
+            <div class="faq-text hide">
+              <div data-w-id="08de2f7b-b0a0-0ee6-3039-55f0d0fb4bb3" class="faq-title-wrapper">
+                <h3 class="faq-h1">Why is it called &quot;Aster Project&quot;?</h3><img style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(180deg) skew(0, 0)" loading="lazy" alt="" src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/images/up-arrow.svg" class="image-18">
+              </div>
+              <div style="display:none;-webkit-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -30px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="faq-text-wrapper">
+                <div class="yellow-div-3"></div>
+                <div class="faq-body">The Aster Project draws inspiration from the aster flower, a symbol of resilience and renewal. Just as the aster blooms after a wildfire, we aim to foster growth and healing in our community&#x27;s children and youth, encouraging them to thrive with renewed strength and hope in the face of adversity.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
