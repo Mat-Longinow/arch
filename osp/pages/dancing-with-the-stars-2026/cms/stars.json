@@ -1,0 +1,15 @@
+{
+  "collection": "stars",
+  "fields": ["name", "role", "image", "bio", "section", "preview"],
+  "_notes": "Our own Git-backed CMS for OSP's Dancing with the Stars 2026 page. ONE collection ('DWTS Stars' in Webflow) drives THREE on-page sections via the 'section' field: '2026-cast', '2026-staff', '2025-cast' (the 'Thank You To Our 2025 Cast' archive block). Card = photo (image-12 board-image) + name (text-block-24-copy nopad) + a popup with a larger photo (image-40) + bio (cfr-staff-bio-text w-richtext). 'image' = filename in ./assets/ (render builds the jsDelivr URL); a full http(s) URL is accepted verbatim. 'preview': true = preview URL only; false/omit = live in production. 'role' is optional (e.g. dancer pro / committee title). See ../README.md and ../../../../HYBRID-CMS.md.",
+  "_data_gap": "The Webflow static export renders dynamic CMS lists as EMPTY templates (w-dyn-bind-empty) — the actual 2026 dancer/staff roster is NOT in the export. Populate 'items' from the live OSP Webflow CMS (dwts-stars collection) or from a roster Mat provides. Until populated, production renders an empty grid; the render script's w-dyn-empty fallback ('No items found.') shows. This is expected for a freshly-scaffolded page.",
+  "_example": {
+    "name": "Jane Dancer",
+    "role": "2026 Star",
+    "image": "jane-dancer.jpg",
+    "bio": "<p>Short bio in HTML; rendered into the richtext bio block.</p>",
+    "section": "2026-cast",
+    "preview": true
+  },
+  "items": []
+}
