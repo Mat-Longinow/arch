@@ -54,8 +54,8 @@
                    Links to the externally-hosted PrintingCenterUSA digital flipbook
                    ("Aster Project, Year One"). External link, no repo hosting needed. -->
               <div style="text-align:center; margin-top:24px;">
-                <a href="https://portal.printingcenterusa.com/flipbook_share.php?code=986090&amp;title=Aster%20Project,%20Year%20One&amp;desc=From%20Crisis%20to%20Understanding:%20A%20year%20of%20listening,%20learning,%20and%20building%20with%20rural%20Northern%20California%20counties." target="_blank" rel="noopener" class="button-link-34 white-button left double-button w-inline-block">
-                  <h4 class="h4-type button-3 _5">Yearly Report</h4>
+                <a href="https://portal.printingcenterusa.com/flipbook_share.php?code=986090&amp;title=Aster%20Project,%20Year%20One&amp;desc=From%20Crisis%20to%20Understanding:%20A%20year%20of%20listening,%20learning,%20and%20building%20with%20rural%20Northern%20California%20counties." target="_blank" rel="noopener" class="button-link-34 left-button bhcip-read-more w-inline-block">
+                  <h4 class="h4-type button-3 _5 bchip-read-more">Yearly Report</h4>
                 </a>
               </div>
             </div>
@@ -95,20 +95,72 @@
               <div class="yellow-div-3 _2"></div>
             </div>
             <div class="board-wrapper">
-              <div class="w-dyn-list">
-                <div role="list" class="collection-list-3 w-dyn-items">
-                  <div role="listitem" class="board-tem removetag w-dyn-item">
-                    <div class="mem-item"><img loading="lazy" src="" alt="" class="image-12 w-dyn-bind-empty">
-                      <h3 class="heading-46 w-dyn-bind-empty"></h3>
-                      <div class="text-block-24-copy nopad w-dyn-bind-empty"></div>
-                      <div class="text-block-42 nopad w-dyn-bind-empty"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="w-dyn-empty">
-                  <div>No items found.</div>
-                </div>
-              </div>
+              <!-- LC Git-backed CMS — the visible "Our Team" grid is rendered from
+                   cms/team.json by the ASTER-TEAM-CMS script below, replacing Webflow's
+                   (empty) CMS collection list. data-env gates per-environment visibility:
+                   preview renders ALL items; production renders only preview!==true.
+                   The hidden static board fallback further below is the original Webflow
+                   snapshot, retained but unused. Full architecture + how-to-edit: ../README.md. -->
+              <div id="lc-aster-team" role="list" class="collection-list-3 w-dyn-items" data-env="preview"></div>
+              <!-- ASTER-TEAM-CMS render script. The Webflow loader re-creates injected
+                   <script> tags (innerHTML doesn't execute them). Fetches team.json,
+                   filters by data-env, renders Arch team cards, SVG-avatar onerror fallback. -->
+              <script>
+              (function () {
+                var CMS_JSON   = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/pages/the-aster-project/cms/team.json";
+                var ASSET_BASE = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/arch/pages/the-aster-project/cms/assets/";
+                var container  = document.getElementById("lc-aster-team");
+                if (!container) return;
+                var ENV = container.getAttribute("data-env") || "production";
+
+                function resolveImage(img) {
+                  if (!img) return "";
+                  return /^https?:\/\//.test(img) ? img : ASSET_BASE + img;
+                }
+                function avatarFallback(name) {
+                  var initials = (name || "").trim().split(/\s+/)
+                    .map(function (w) { return w.charAt(0); }).join("").slice(0, 2).toUpperCase();
+                  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">'
+                    + '<rect width="300" height="300" fill="#e9e6df"/>'
+                    + '<text x="150" y="150" dy="0.35em" text-anchor="middle" '
+                    + 'font-family="Arial,Helvetica,sans-serif" font-size="110" fill="#6b6b6b">'
+                    + initials + '</text></svg>';
+                  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+                }
+                function render(items) {
+                  var visible = items.filter(function (it) {
+                    return ENV === "preview" ? true : it.preview !== true;
+                  });
+                  container.innerHTML = "";
+                  visible.forEach(function (it) {
+                    var listitem = document.createElement("div");
+                    listitem.setAttribute("role", "listitem");
+                    listitem.className = "board-tem w-dyn-item";
+                    var mem = document.createElement("div");
+                    mem.className = "mem-item";
+                    var img = document.createElement("img");
+                    img.loading = "lazy";
+                    img.className = "image-12";
+                    img.alt = it.name || "";
+                    img.src = resolveImage(it.image);
+                    img.onerror = function () { this.onerror = null; this.src = avatarFallback(it.name); };
+                    var h3 = document.createElement("h3");
+                    h3.className = "heading-46";
+                    h3.textContent = it.name || "";
+                    var title = document.createElement("div");
+                    title.className = "text-block-24-copy nopad";
+                    title.textContent = it.title || "";
+                    mem.appendChild(img); mem.appendChild(h3); mem.appendChild(title);
+                    listitem.appendChild(mem);
+                    container.appendChild(listitem);
+                  });
+                }
+                fetch(CMS_JSON, { cache: "no-store" })
+                  .then(function (r) { return r.json(); })
+                  .then(function (data) { render((data && data.items) || []); })
+                  .catch(function (e) { console.error("LC Aster team CMS load failed:", e); });
+              })();
+              </script>
             </div>
             <div class="holder hide">
               <div id="w-node-_700b2dd3-6617-f9fc-6ccb-98763d8e003d-c5ce2412" class="names-images">

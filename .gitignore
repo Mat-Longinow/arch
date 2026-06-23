@@ -1,3 +1,5 @@
 .DS_Store
 _source/
 .idea/
+# Local styled previews — view-only, never shipped (see playbook → "Preview convention")
+*.preview.html

@@ -16,5 +16,10 @@ loader; the real page content lives here as `<org>/pages/<page>.html` and ships 
 A page's content is fetched at load time from:
 `https://raw.githubusercontent.com/Mat-Longinow/arch/main/<org>/pages/<page>.html`
 
-Full spec: Longinow Creative notes →
+Simple pages are a single `<org>/pages/<page>.html`. Pages that need a data collection
+and/or staged preview-before-live use the **JSON-CMS + preview/production** folder model
+(`<org>/pages/<page>/{production,preview,cms}/`) — see **`HYBRID-CMS.md`** for that
+architecture. First page on it: `arch/pages/the-aster-project/`.
+
+Full base spec: Longinow Creative notes →
 `work/longinow-creative/playbooks/webflow-hybrid-autonomous-updates.md`

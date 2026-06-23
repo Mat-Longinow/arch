@@ -1,0 +1,10 @@
+{
+  "collection": "team",
+  "fields": ["name", "title", "image", "preview"],
+  "_notes": "Our own Git-backed CMS for the Aster 'Our Team' section. 'image' = filename in ./assets/ (render builds the jsDelivr URL). 'preview': true = visible only on the preview URL; false (or omit) = live in production. See ../README.md.",
+  "items": [
+    { "name": "Mary Williams",   "title": "Director of Regional Initiatives", "image": "mary-williams.png", "preview": false },
+    { "name": "Fredrick Boholst", "title": "Director of Innovative Research",  "image": "dr-b.png",         "preview": false },
+    { "name": "Sarah Peery",      "title": "Chief of Communications and Program Administration", "image": "sarah-peery.png", "preview": false }
+  ]
+}
