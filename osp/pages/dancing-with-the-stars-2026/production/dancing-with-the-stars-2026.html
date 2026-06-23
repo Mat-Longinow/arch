@@ -1,0 +1,428 @@
+<!--
+  PAGE: Dancing With The Stars 2026 (One SAFE Place) — page-guts for the Webflow Hybrid loader.
+  ENV: production  (loaded by the LIVE custom domain only — see webflow-embed-loader.html)
+  Built from _source/osp-export/dancing-with-the-stars.html. OSP reuses CLC's shared
+  clc-mnhstr design system, so brand color resolves automatically from the live OSP
+  stylesheet — nothing brand-colored is set here.
+
+  WHAT THIS PAGE IS: the 17th Annual "Dancing with the Shasta Stars" event page —
+  Saturday, October 17, 2026 at the Cascade Theatre, Redding, benefiting One SAFE Place.
+  Cast/staff rosters + a 2025 archive are driven by our own JSON-CMS (see below).
+
+  IMAGES: self-hosted in this repo, served via jsDelivr (absolute URLs — required,
+  the guts are injected into the Webflow domain so relative paths would break).
+    - Page-specific assets → osp/pages/images/      (DWTSS-Sponsor-Posts, cascade1200px, x.svg)
+    - Sponsor guide PDF     → osp/pages/documents/   (compressed_DWTSS-Sponsor-Guide---2026---5.5.26.pdf)
+  Background images (hero banner backdrop, etc.) come from the live OSP stylesheet via
+  CSS classes — they resolve automatically on the live page, nothing to host here.
+
+  JSON-CMS — the "stars" collection (cms/stars.json) drives THREE on-page sections,
+  exactly like Aster's team grid, but filtered by a `section` field:
+    - data-section="2026-cast"  → "Meet Our 2026 Cast"
+    - data-section="2026-staff" → "Meet Our 2026 Staff"
+    - data-section="2025-cast"  → "Thank You To Our 2025 Cast" (archive)
+  ONE render script (DWTS-STARS-CMS, at the bottom) handles all three containers,
+  filters by data-env + data-section, builds cards reusing the live Webflow classes,
+  and wires its own "Learn More" popup (Webflow IX2 won't run on injected guts).
+  Roster DATA is not yet populated — see cms/stars.json `_data_gap` + ../README.md.
+
+  CAVEAT — IX2 + the newsletter form: Webflow's interactions/form bindings don't run on
+  injected guts. The star-bio popup is reconstructed in the CMS render script below; the
+  newsletter form is kept verbatim for fidelity but degrades to a native GET on the live
+  injected page (same limitation noted on the Crab Feed + Aster builds).
+
+  Nav bars + footers + cookie banner + sticky crisis buttons are intentionally OMITTED —
+  they stay native in the Webflow shell.
+-->
+
+<div class="services-main">
+  <div class="main-image _4 dancing-with-the-stars-main-image _2025">
+    <div class="black-overlay no-padding">
+      <div class="space-block _2"></div>
+      <div class="page-padding">
+        <div class="container-large">
+          <div class="padding-vertical no-padding">
+            <div class="who-div">
+              <div class="div-block-18"></div>
+              <div class="div-block-19"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pilot dwtss-2205-save-the-date">
+  <div class="page-padding">
+    <div class="container-large">
+      <div class="vertical-page">
+        <div class="pilot-holder">
+          <h3 class="heading-26 dwtss-2025-save-the-date">One Night. Eight Stars. One Cause.<br></h3>
+          <div class="yellow-div"></div>
+          <div class="columns-7 w-row">
+            <div class="w-col w-col-6">
+              <div class="text2 dwtss-2025-save-the-date">Dancing with the Shasta Stars returns for its 17th annual evening of show-stopping entertainment!<br><br>Dancing with the Shasta Stars is a Broadway-style production on Saturday, October 17 at the Cascade Theatre in Redding, presented by Obsidian IT and benefiting One SAFE Place.<br><br>Eight community leaders take the stage alongside professional dancers to raise funds for survivors of domestic violence, sexual assault, and trafficking right here in Shasta County.</div>
+              <div class="div-block-93 nominations-button dwtss-2026">
+                <div class="div-block-94">
+                  <a href="#" class="button-link w-inline-block">
+                    <div class="button learn-more nomintions-button purple-button disabled">
+                      <h4 class="h4-type button nominations-text purple-button">Tickets CominG Soon</h4>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="column-13 nominations-section-image w-col w-col-6">
+              <div class="div-block-39 _2 nominations-section-image"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/DWTSS-Sponsor-Posts.png" loading="lazy" sizes="100vw" srcset="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/DWTSS-Sponsor-Posts-p-500.png 500w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/DWTSS-Sponsor-Posts.png 800w" alt="" class="image-39"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="services-holder">
+  <div class="page-padding">
+    <div class="container-large">
+      <div class="vertical-page">
+        <div class="careers-text _2">
+          <div id="Forensic-Interview" class="div-block-38 white _3">
+            <h3 class="heading-24"><strong class="bold-text">Meet Our 2026 Cast</strong></h3>
+            <div class="yellow-div"></div>
+          </div>
+          <!-- LC Git-backed CMS — section "2026-cast". Rendered from cms/stars.json by the
+               DWTS-STARS-CMS script at the bottom (replaces Webflow's empty dwts-stars list).
+               data-env gates visibility: preview renders ALL items; production renders only
+               items where preview!==true. data-section selects which rows land here. -->
+          <div class="board-wrapper dtws-stars">
+            <div class="lc-dwts-stars collection-list-3 dwts-stars w-dyn-items" role="list" data-env="production" data-section="2026-cast"></div>
+            <div class="w-dyn-empty lc-dwts-empty" style="display:none;">
+              <div>Our 2026 cast will be announced soon — check back!</div>
+            </div>
+          </div>
+          <div id="Forensic-Interview" class="div-block-38 white _3">
+            <h3 class="heading-24"><strong class="bold-text">Meet Our 2026 Staff</strong></h3>
+            <div class="yellow-div"></div>
+          </div>
+          <div class="board-wrapper dtws-stars mc-section">
+            <div class="lc-dwts-stars collection-list-3 dwts-stars w-dyn-items" role="list" data-env="production" data-section="2026-staff"></div>
+            <div class="w-dyn-empty lc-dwts-empty" style="display:none;">
+              <div>Staff for 2026 will be announced soon.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pilot dwtss-2205-save-the-date">
+  <div class="page-padding">
+    <div class="container-large">
+      <div class="vertical-page">
+        <div class="pilot-holder">
+          <h3 class="heading-26 dwtss-2025-save-the-date">Sponsorship Opportunities<br></h3>
+          <div class="yellow-div"></div>
+          <div class="columns-7 w-row">
+            <div class="w-col w-col-6">
+              <div class="text2 dwtss-2025-save-the-date">Dancing with the Shasta Stars returns for its 17th annual evening of show-stopping entertainment, and we invite you to be part of the excitement! This beloved event offers a fantastic chance to promote your brand while contributing to a noble cause.<br><br>Secure your spot today!</div>
+              <div class="div-block-93 nominations-button dwtss-2026">
+                <div class="div-block-94">
+                  <a href="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/documents/compressed_DWTSS-Sponsor-Guide---2026---5.5.26.pdf" target="_blank" rel="noopener" class="button-link w-inline-block">
+                    <div class="button learn-more nomintions-button purple-button">
+                      <h4 class="h4-type button nominations-text purple-button">Learn More</h4>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="column-13 nominations-section-image w-col w-col-6">
+              <div class="div-block-39 _2 nominations-section-image"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/cascade1200px.jpg" loading="lazy" sizes="100vw" srcset="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/cascade1200px-p-500.jpg 500w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/cascade1200px-p-800.jpg 800w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/cascade1200px-p-1080.jpg 1080w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/cascade1200px.jpg 1200w" alt="" class="image-38"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pilot dwtss-noinations-section">
+  <div class="page-padding">
+    <div class="container-large">
+      <div class="vertical-page">
+        <div class="pilot-holder">
+          <div class="w-row">
+            <div class="w-col w-col-6">
+              <h3 class="heading-26 dwtss-2025-save-the-date nominations-text">Nominate Our Next Stars<br></h3>
+              <div class="yellow-div"></div>
+              <div class="text2 dwtss-2025-save-the-date nominations-text">Nominations for Dancing with the Stars Shasta County 2026 are now closed! Thank you to everyone who submitted a nomination. <br><br>Our 2026 cast will be announced in June — stay tuned to find out which community leaders and local stars will be lacing up their dance shoes and competing for the coveted mirror ball trophy, all while raising funds for One SAFE Place&#x27;s life-changing work in Shasta County!<br></div>
+              <div class="div-block-93 nominations-button">
+                <div class="div-block-94">
+                  <a href="#" target="_blank" class="button-link w-inline-block">
+                    <div class="button learn-more nomintions-button disabled">
+                      <h4 class="h4-type button nominations-text">Nominations Closed</h4>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="column-13 nominations-section-image w-col w-col-6">
+              <div class="div-block-39 _2 nominations-section-image"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/DWTSS-Sponsor-Posts.png" loading="lazy" sizes="100vw" srcset="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/DWTSS-Sponsor-Posts-p-500.png 500w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/DWTSS-Sponsor-Posts.png 800w" alt="" class="image-39"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pilot dwtss-about">
+  <div class="page-padding">
+    <div class="container-large">
+      <div class="vertical-page">
+        <div class="pilot-holder">
+          <div class="w-row">
+            <div class="w-col w-col-6">
+              <h3 class="heading-26 dwtss-about">About<br></h3>
+              <div class="yellow-div"></div>
+              <div class="text2 dwtss-about">Fundraisers like Dancing with the Shasta Stars enable One SAFE Place (OSP) to increase community awareness about abuse and expand services for Shasta County&#x27;s most vulnerable residents. Each ticket purchased significantly impacts the lives of those OSP serves, helping to break the cycle of abuse and move our community towards a safer future.</div>
+            </div>
+            <div class="column-13 w-col w-col-6">
+              <div class="div-block-39 _2">
+                <div style="padding-top:56.17021276595745%" class="w-embed-youtubevideo"><iframe src="https://www.youtube.com/embed/eHWbOmXoac4?rel=0&amp;controls=1&amp;autoplay=0&amp;mute=0&amp;start=0" frameborder="0" style="position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:auto" allow="autoplay; encrypted-media" allowfullscreen="" title="One SAFE Place Legacy"></iframe></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pilot dwtss-2025-when-and-where">
+  <div class="page-padding">
+    <div class="container-large">
+      <div class="vertical-page">
+        <div class="pilot-holder">
+          <div class="w-row">
+            <div class="w-col w-col-6">
+              <div class="div-block-39 _2">
+                <div class="html-embed w-embed w-iframe"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3030.1731145845292!2d-122.39223062398074!3d40.5819340714134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54d2ece15fd88415%3A0xc0532504ff555b0!2sCascade%20Theatre!5e0!3m2!1sen!2sus!4v1694822343113!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+              </div>
+            </div>
+            <div class="column-13 w-col w-col-6">
+              <h3 class="heading-26">When &amp; Where<br></h3>
+              <div class="yellow-div"></div>
+              <div class="text2"><strong>When:</strong> October 17, 2026<br>‍<br><strong>Where:</strong> Cascade Theatre, 1731 Market St, Redding, CA 96001</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="services-holder">
+  <div class="page-padding">
+    <div class="container-large">
+      <div class="vertical-page">
+        <div class="careers-text _2">
+          <div id="Forensic-Interview" class="div-block-38 white _3">
+            <h3 class="heading-24"><strong class="bold-text">Thank You To Our 2025 Cast</strong></h3>
+            <div class="yellow-div"></div>
+          </div>
+          <!-- LC Git-backed CMS — section "2025-cast" (the archive block). -->
+          <div class="board-wrapper dtws-stars">
+            <div class="lc-dwts-stars collection-list-3 dwts-stars w-dyn-items" role="list" data-env="production" data-section="2025-cast"></div>
+            <div class="w-dyn-empty lc-dwts-empty" style="display:none;">
+              <div>2025 cast archive coming soon.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="newsletter" class="newsletter">
+  <div class="page-padding full">
+    <div class="container-large full">
+      <div class="vertical-page full center">
+        <div class="main-div _2">
+          <div class="h4-mission services">
+            <h3 class="h4-type _1">Sign Up for THE One Safe Place Newsletter</h3>
+            <div class="yellow-div _2"></div>
+          </div>
+          <div class="form-block-2 w-form">
+            <form id="wf-form-Sign-up-Newsletter" name="wf-form-Sign-up-Newsletter" data-name="Sign up Newsletter" method="get" class="form" data-wf-page-id="65c65382ae090881e22afdfa" data-wf-element-id="c5d5697b-90f9-b45e-96cb-880f552df39a"><input class="text-field w-input" maxlength="256" name="Email" data-name="Email" placeholder="Your Email" type="email" id="Email-3" required=""><input type="submit" data-wait="Please wait..." class="submit-button w-button" value="Subscribe"></form>
+            <div class="w-form-done">
+              <div>Thank you! Your submission has been received!</div>
+            </div>
+            <div class="w-form-fail">
+              <div>Oops! Something went wrong while submitting the form.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================================
+     DWTS-STARS-CMS render script (adapted from Aster's ASTER-TEAM-CMS).
+     The Webflow loader re-creates injected <script> tags (innerHTML doesn't execute
+     them), so this runs after injection. It:
+       1. fetches cms/stars.json
+       2. for EACH .lc-dwts-stars container: reads data-env + data-section, filters
+          items (section match; production hides preview:true rows), renders cards
+          reusing the live Webflow classes so they inherit OSP styling
+       3. SVG-avatar onerror fallback for missing photos
+       4. wires its own "Learn More" → popup-board interaction (Webflow IX2 won't run
+          on injected guts), as a self-contained centered modal that does NOT depend on
+          the live CSS hiding the popup. RECONSTRUCTION — eyeball at go-live.
+     ============================================================================ -->
+<script>
+(function () {
+  var CMS_JSON   = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/dancing-with-the-stars-2026/cms/stars.json";
+  var ASSET_BASE = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/dancing-with-the-stars-2026/cms/assets/";
+  var X_ICON     = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/x.svg";
+  var containers = document.querySelectorAll(".lc-dwts-stars");
+  if (!containers.length) return;
+
+  function resolveImage(img) {
+    if (!img) return "";
+    return /^https?:\/\//.test(img) ? img : ASSET_BASE + img;
+  }
+  function avatarFallback(name) {
+    var initials = (name || "").trim().split(/\s+/)
+      .map(function (w) { return w.charAt(0); }).join("").slice(0, 2).toUpperCase();
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">'
+      + '<rect width="400" height="400" fill="#e9e6df"/>'
+      + '<text x="200" y="200" dy="0.35em" text-anchor="middle" '
+      + 'font-family="Arial,Helvetica,sans-serif" font-size="150" fill="#6b6b6b">'
+      + initials + '</text></svg>';
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  }
+
+  // ---- self-contained popup machinery (one shared overlay) -------------------
+  var POPUP_STYLE_ID = "lc-dwts-popup-style";
+  if (!document.getElementById(POPUP_STYLE_ID)) {
+    var st = document.createElement("style");
+    st.id = POPUP_STYLE_ID;
+    st.textContent =
+      ".lc-dwts-stars .popup-board{display:none;}" +
+      ".lc-dwts-stars .popup-board.lc-open{display:block;position:fixed;inset:0;z-index:10000;" +
+        "overflow:auto;background:rgba(15,42,69,.78);}" +
+      ".lc-dwts-stars .popup-board.lc-open .about-mem-wrapper-2{position:relative;margin:5vh auto;" +
+        "max-width:680px;width:92%;background:#fff;border-radius:8px;padding:32px;" +
+        "box-shadow:0 24px 80px rgba(0,0,0,.4);}" +
+      ".lc-dwts-stars .popup-board .close-button{position:absolute;top:14px;right:14px;cursor:pointer;}" +
+      ".lc-dwts-stars .popup-board .image-40{max-width:240px;height:auto;border-radius:6px;}";
+    document.head.appendChild(st);
+  }
+  function closeAll() {
+    document.querySelectorAll(".lc-dwts-stars .popup-board.lc-open")
+      .forEach(function (p) { p.classList.remove("lc-open"); });
+    document.body.style.overflow = "";
+  }
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeAll(); });
+
+  function renderItem(it) {
+    var listitem = document.createElement("div");
+    listitem.setAttribute("role", "listitem");
+    listitem.className = "board-tem removetag w-dyn-item";
+
+    var mem = document.createElement("div");
+    mem.className = "mem-item dwts-star";
+
+    var img = document.createElement("img");
+    img.loading = "lazy"; img.className = "image-12 board-image";
+    img.alt = it.name || ""; img.src = resolveImage(it.image);
+    img.onerror = function () { this.onerror = null; this.src = avatarFallback(it.name); };
+
+    var nameEl = document.createElement("div");
+    nameEl.className = "text-block-24-copy nopad";
+    nameEl.textContent = it.name || "";
+
+    var btn = document.createElement("a");
+    btn.href = "#"; btn.className = "button-link w-inline-block";
+    btn.innerHTML = '<div class="button learn-more"><h4 class="h4-type button">Learn More</h4></div>';
+
+    // ---- popup ----
+    var popup = document.createElement("div");
+    popup.className = "popup-board cfr-staff";
+    var wrap = document.createElement("div");
+    wrap.className = "about-mem-wrapper-2 cfr-staff";
+
+    var bigImg = document.createElement("img");
+    bigImg.loading = "lazy"; bigImg.className = "image-40";
+    bigImg.alt = it.name || ""; bigImg.src = resolveImage(it.image);
+    bigImg.onerror = function () { this.onerror = null; this.src = avatarFallback(it.name); };
+
+    var heading = document.createElement("h2");
+    heading.className = "heading-62 dwtss";
+    heading.textContent = it.name || "";
+
+    var divider = document.createElement("div");
+    divider.className = "div-block-108 dwtss";
+
+    var bioEl = document.createElement("div");
+    bioEl.className = "cfr-staff-bio-text w-richtext";
+    if (it.role) {
+      var roleEl = document.createElement("p");
+      roleEl.style.fontWeight = "600";
+      roleEl.textContent = it.role;
+      bioEl.appendChild(roleEl);
+    }
+    if (it.bio) {
+      var bioBody = document.createElement("div");
+      bioBody.innerHTML = it.bio;   // bio is HTML/richtext from the CMS
+      bioEl.appendChild(bioBody);
+    }
+
+    var closeBtn = document.createElement("div");
+    closeBtn.className = "close-button";
+    closeBtn.innerHTML = '<img loading="lazy" alt="Close" src="' + X_ICON + '" class="image-41">';
+    closeBtn.addEventListener("click", function (e) { e.stopPropagation(); closeAll(); });
+
+    wrap.appendChild(bigImg);
+    wrap.appendChild(heading);
+    wrap.appendChild(divider);
+    wrap.appendChild(bioEl);
+    wrap.appendChild(closeBtn);
+    popup.appendChild(wrap);
+
+    // open on card "Learn More"; close on backdrop click
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      closeAll();
+      popup.classList.add("lc-open");
+      document.body.style.overflow = "hidden";
+    });
+    popup.addEventListener("click", function (e) { if (e.target === popup) closeAll(); });
+
+    mem.appendChild(img);
+    mem.appendChild(nameEl);
+    mem.appendChild(btn);
+    mem.appendChild(popup);
+    listitem.appendChild(mem);
+    return listitem;
+  }
+
+  function renderInto(container, items) {
+    var ENV     = container.getAttribute("data-env") || "production";
+    var SECTION = container.getAttribute("data-section") || "";
+    var visible = items.filter(function (it) {
+      if (SECTION && it.section !== SECTION) return false;
+      return ENV === "preview" ? true : it.preview !== true;
+    });
+    container.innerHTML = "";
+    visible.forEach(function (it) { container.appendChild(renderItem(it)); });
+    // toggle the sibling .lc-dwts-empty fallback
+    var empty = container.parentNode && container.parentNode.querySelector(".lc-dwts-empty");
+    if (empty) empty.style.display = visible.length ? "none" : "block";
+  }
+
+  fetch(CMS_JSON, { cache: "no-store" })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var items = (data && data.items) || [];
+      containers.forEach(function (c) { renderInto(c, items); });
+    })
+    .catch(function (e) { console.error("LC DWTS stars CMS load failed:", e); });
+})();
+</script>
