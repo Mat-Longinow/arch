@@ -28,10 +28,11 @@
   (Webflow IX2 won't run on injected guts).
   Roster DATA is not yet populated — see cms/stars.json `_data_gap` + ../README.md.
 
-  CAVEAT — IX2 + the newsletter form: Webflow's interactions/form bindings don't run on
-  injected guts. The star-bio popup is reconstructed in the CMS render script below; the
-  newsletter form is kept verbatim for fidelity but degrades to a native GET on the live
-  injected page (same limitation noted on the Crab Feed + Aster builds).
+  CAVEAT — IX2: Webflow's interactions/form bindings don't run on injected guts. The
+  star-bio popup is reconstructed in the CMS render script below (same IX2 limitation
+  noted on the Crab Feed + Aster builds). The newsletter signup is intentionally OMITTED
+  from these guts — it must live as a native Webflow element in the shell (Webflow's form
+  handler only runs on native page elements, not injected content).
 
   Nav bars + footers + cookie banner + sticky crisis buttons are intentionally OMITTED —
   they stay native in the Webflow shell.
@@ -233,29 +234,6 @@
             <div class="lc-dwts-stars collection-list-3 dwts-stars w-dyn-items" role="list" data-env="preview" data-section="2025-cast"></div>
             <div class="w-dyn-empty lc-dwts-empty" style="display:none;">
               <div>2025 cast archive coming soon.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="newsletter" class="newsletter">
-  <div class="page-padding full">
-    <div class="container-large full">
-      <div class="vertical-page full center">
-        <div class="main-div _2">
-          <div class="h4-mission services">
-            <h3 class="h4-type _1">Sign Up for THE One Safe Place Newsletter</h3>
-            <div class="yellow-div _2"></div>
-          </div>
-          <div class="form-block-2 w-form">
-            <form id="wf-form-Sign-up-Newsletter" name="wf-form-Sign-up-Newsletter" data-name="Sign up Newsletter" method="get" class="form" data-wf-page-id="65c65382ae090881e22afdfa" data-wf-element-id="c5d5697b-90f9-b45e-96cb-880f552df39a"><input class="text-field w-input" maxlength="256" name="Email" data-name="Email" placeholder="Your Email" type="email" id="Email-3" required=""><input type="submit" data-wait="Please wait..." class="submit-button w-button" value="Subscribe"></form>
-            <div class="w-form-done">
-              <div>Thank you! Your submission has been received!</div>
-            </div>
-            <div class="w-form-fail">
-              <div>Oops! Something went wrong while submitting the form.</div>
             </div>
           </div>
         </div>
