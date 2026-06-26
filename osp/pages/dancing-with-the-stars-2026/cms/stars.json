@@ -1,15 +1,138 @@
 {
   "collection": "stars",
   "fields": ["name", "role", "image", "bio", "section", "preview"],
-  "_notes": "Our own Git-backed CMS for OSP's Dancing with the Stars 2026 page. ONE collection ('DWTS Stars' in Webflow) drives THREE on-page sections via the 'section' field: '2026-cast', '2026-staff', '2025-cast' (the 'Thank You To Our 2025 Cast' archive block). Card = photo (image-12 board-image) + name (text-block-24-copy nopad) + a popup with a larger photo (image-40) + bio (cfr-staff-bio-text w-richtext). 'image' = filename in ./assets/ (render builds the jsDelivr URL); a full http(s) URL is accepted verbatim. 'preview': true = preview URL only; false/omit = live in production. 'role' is optional (e.g. dancer pro / committee title). See ../README.md and ../../../../HYBRID-CMS.md.",
-  "_data_gap": "The Webflow static export renders dynamic CMS lists as EMPTY templates (w-dyn-bind-empty) — the actual 2026 dancer/staff roster is NOT in the export. Populate 'items' from the live OSP Webflow CMS (dwts-stars collection) or from a roster Mat provides. Until populated, production renders an empty grid; the render script's w-dyn-empty fallback ('No items found.') shows. This is expected for a freshly-scaffolded page.",
-  "_example": {
-    "name": "Jane Dancer",
-    "role": "2026 Star",
-    "image": "jane-dancer.jpg",
-    "bio": "<p>Short bio in HTML; rendered into the richtext bio block.</p>",
-    "section": "2026-cast",
-    "preview": true
-  },
-  "items": []
+  "_notes": "Our own Git-backed CMS for OSP's Dancing with the Stars 2026 page. ONE collection ('Dancing With The Stars Stars' in Webflow, id 66b90685bd1fb0490773a1e3 on site 64dc6469dc8981cbbbb73864) drives THREE on-page sections via the 'section' field: '2026-cast', '2026-staff', '2025-cast' (the 'Thank You To Our 2025 Cast' archive block). Card = photo (image-12 board-image) + name (text-block-24-copy nopad) + a 'Learn More' popup with a larger photo (image-40) + bio (cfr-staff-bio-text w-richtext). 'image' = filename in ./assets/ OR a full http(s) URL (accepted verbatim); we use the live Webflow CDN URLs. 'preview': true = preview URL only; false/omit = live in production. 'role' is optional. See ../README.md and ../../../../HYBRID-CMS.md.",
+  "_provenance": "Baked 2026-06-26 by Studio Lead from the live OSP 'Dancing With The Stars Stars' Webflow CMS via the Data API. 2026-cast = the 8 dancers (year 2026, role Dancer), ordered by order-number 1-8. 2026-staff = Tara Faires (Artistic Director) + Blake+Erica (MCs). 2025-cast = the 8-member 2025 archive (year 2025). 2024 dancers were skipped (not on this page). The hybrid render has no native vote/support button, so each dancer's donorperfect 'Support Dancer' link (and each 2025 archive member's YouTube performance link) is folded into the 'bio' popup to preserve the fundraising/watch CTA.",
+  "_preview_state": "Mirrors Webflow draft/publish state as of 2026-06-26: only Molly Redmon + both staff are PUBLISHED in Webflow; the other 7 2026 dancers are still Webflow DRAFTS, so they carry preview:true here (visible on the preview URL, hidden in production) until Arch publishes them / Mat says go live. Flip preview:false to take each live.",
+  "items": [
+    {
+      "name": "Asher Vance",
+      "role": "2026 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6c3f79be97f3a4876180_Asher%20Vance%201.png",
+      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/asher-vance\" target=\"_blank\" rel=\"noopener\">💜 Support Asher</a></p>",
+      "section": "2026-cast",
+      "preview": true
+    },
+    {
+      "name": "Kacee Gibbs",
+      "role": "2026 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6dd5b5e3ec39d69591cc_Kacee%20Gibbs%201.png",
+      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/kacee-gibbs\" target=\"_blank\" rel=\"noopener\">💜 Support Kacee</a></p>",
+      "section": "2026-cast",
+      "preview": true
+    },
+    {
+      "name": "Tyler Rowley",
+      "role": "2026 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6d3cfc61e29b751cc682_Tyler%20Rowley%201.png",
+      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/tyler-rowley\" target=\"_blank\" rel=\"noopener\">💜 Support Tyler</a></p>",
+      "section": "2026-cast",
+      "preview": true
+    },
+    {
+      "name": "Farnaz Chegini",
+      "role": "2026 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6df2d873de8117468c3e_Farnaz%20Chegini%201.png",
+      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/farnaz-chegini\" target=\"_blank\" rel=\"noopener\">💜 Support Farnaz</a></p>",
+      "section": "2026-cast",
+      "preview": true
+    },
+    {
+      "name": "Josh Hoines",
+      "role": "2026 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6d929f8cb5a0a70f30d5_Josh%20Hoines%201.png",
+      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/josh-hoines\" target=\"_blank\" rel=\"noopener\">💜 Support Josh</a></p>",
+      "section": "2026-cast",
+      "preview": true
+    },
+    {
+      "name": "Lidia Manzo",
+      "role": "2026 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6e1fd1cec4e6ec8459ca_Lidia%20Manzo%201.png",
+      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/lidia-manzo\" target=\"_blank\" rel=\"noopener\">💜 Support Lidia</a></p>",
+      "section": "2026-cast",
+      "preview": true
+    },
+    {
+      "name": "Jay Sumerlin",
+      "role": "2026 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6dae6307560de6587c50_Jay%20Sumerlin%201.png",
+      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/jay-sumerlin\" target=\"_blank\" rel=\"noopener\">💜 Support Jay</a></p>",
+      "section": "2026-cast",
+      "preview": true
+    },
+    {
+      "name": "Molly Redmon",
+      "role": "2026 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6e3dc85b7657ba8830aa_Molly%20Redmon%201.png",
+      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/molly-redmon\" target=\"_blank\" rel=\"noopener\">💜 Support Molly</a></p>",
+      "section": "2026-cast"
+    },
+    {
+      "name": "Tara Faires",
+      "role": "Artistic Director",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6ea548d2e62e9efc6aad_Tara%20Faires.png",
+      "section": "2026-staff"
+    },
+    {
+      "name": "Blake + Erica",
+      "role": "Hosts (MCs)",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6e6ce48006834c449c5c_MC%27s.png",
+      "section": "2026-staff"
+    },
+    {
+      "name": "Erica + Blake",
+      "role": "2025 Hosts (MCs)",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/688553140572ae9a7e2783f7_Erica%20%2B%20Blake%20(MCs).png",
+      "section": "2025-cast"
+    },
+    {
+      "name": "Tara Faires + Bobby Milhouse",
+      "role": "2025 Artistic Director + Choreographer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/688552e947c702a9a3d64dd4_Tara%20%2B%20Bobby%20(Artistic%20Director%20%2B%20Choreographer).png",
+      "section": "2025-cast"
+    },
+    {
+      "name": "Christina Prosperi",
+      "role": "2025 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6848afe4250571d7393cd26d_Christina%20%2B%20Nick.png",
+      "bio": "<p><a href=\"https://www.youtube.com/watch?v=yTTsD4JCTnY\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
+      "section": "2025-cast"
+    },
+    {
+      "name": "Dr. Steve Loncosky",
+      "role": "2025 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6848afc90b7529fd1fa79ae8_Dr.%20Steve%20%2B%20Rachelle.png",
+      "bio": "<p><a href=\"https://www.youtube.com/watch?v=qBWzSVIzTBo\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
+      "section": "2025-cast"
+    },
+    {
+      "name": "Eva Jimenez",
+      "role": "2025 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6848afa7e8c31a9612431e4d_Eva%20%2B%20Hagen.png",
+      "bio": "<p><a href=\"https://www.youtube.com/watch?v=fyHj4LM_ZSQ\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
+      "section": "2025-cast"
+    },
+    {
+      "name": "Dr. Jesse Curran",
+      "role": "2025 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/68488c481f3fff600e31cd63_Dr.%20Jesse%20%2B%20Kristen.png",
+      "bio": "<p><a href=\"https://www.youtube.com/watch?v=gixzhKf7Nzk\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
+      "section": "2025-cast"
+    },
+    {
+      "name": "Jennifer Coy",
+      "role": "2025 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/68488c20ad9b39556cd084cd_Jennifer%20%2B%20Luke.png",
+      "bio": "<p><a href=\"https://www.youtube.com/watch?v=IWUwyzazEPU\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
+      "section": "2025-cast"
+    },
+    {
+      "name": "Jason Odell",
+      "role": "2025 Dancer",
+      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/68488bfd0abbe31cfbfc497f_Jason%20%2B%20Mindy.png",
+      "bio": "<p><a href=\"https://www.youtube.com/watch?v=hmttSwxRoYk\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
+      "section": "2025-cast"
+    }
+  ]
 }
