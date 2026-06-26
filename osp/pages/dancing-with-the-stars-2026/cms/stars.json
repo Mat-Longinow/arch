@@ -5,10 +5,11 @@
     "role",
     "image",
     "bio",
+    "support_url",
     "section",
     "preview"
   ],
-  "_notes": "Our own Git-backed CMS for OSP's Dancing with the Stars 2026 page. ONE collection ('Dancing With The Stars Stars' in Webflow, id 66b90685bd1fb0490773a1e3 on site 64dc6469dc8981cbbbb73864) drives THREE on-page sections via the 'section' field: '2026-cast', '2026-staff', '2025-cast' (the 'Thank You To Our 2025 Cast' archive block). Card = photo (image-12 board-image) + name (text-block-24-copy nopad) + a 'Learn More' popup with a larger photo (image-40) + bio (cfr-staff-bio-text w-richtext). 'image' = filename in ./assets/ served locally from ./assets/ (a full http(s) URL is still accepted verbatim as a fallback). 'preview': true = preview URL only; false/omit = live in production. 'role' is optional. See ../README.md and ../../../../HYBRID-CMS.md.",
+  "_notes": "Our own Git-backed CMS for OSP's Dancing with the Stars 2026 page. ONE collection ('Dancing With The Stars Stars' in Webflow, id 66b90685bd1fb0490773a1e3 on site 64dc6469dc8981cbbbb73864) drives THREE on-page sections via the 'section' field: '2026-cast', '2026-staff', '2025-cast' (the 'Thank You To Our 2025 Cast' archive block). Card = photo (image-12 board-image) + name (text-block-24-copy nopad) + a CTA button. 2026 dancers carry a 'support_url' -> the card button is a direct 'Support Dancer' donation link (DonorPerfect, opens in a new tab). Staff / past cast have no 'support_url' -> the button is 'Learn More', opening a self-contained popup with a larger photo (image-40) + role. 'image' = filename in ./assets/ served locally (a full http(s) URL is accepted verbatim as a fallback). 'preview': true = preview URL only; false/omit = live in production. 'role' is optional. See ../README.md and ../../../../HYBRID-CMS.md.",
   "_provenance": "Reconciled 2026-06-26 by Studio Lead against Mat's full live-page HTML export (_source/dwtss-source.html). Roster confirmed identical to the Webflow Data-API pull: 8x 2026-cast dancers, 2x 2026-staff (Tara Faires=Artistic Director, Blake+Erica=MCs), 8x 2025-cast archive. All 18 photos downloaded to ./assets/ and served locally (2025 archive images pre-sized 1080->600px). Correction from the HTML: 4 of the 2025 cards (Jason Odell, Dr. Jesse Curran, Eva Jimenez, Christina Prosperi) carried real fundraiser-event bios on the live page that the Data-API pull had dropped; those richtext bios are restored here ahead of each card's YouTube watch link. 2026 dancers keep their donorperfect 'Support' link folded into the bio (no native button in the hybrid render).",
   "_preview_state": "Mat decision 2026-06-26: all 8 2026 dancers + 2 staff go LIVE (preview flags removed from every row). The 'Thank You To Our 2025 Cast' archive block is KEPT. No card-level support/vote button (popup 'Learn More' is sufficient).",
   "items": [
@@ -16,56 +17,56 @@
       "name": "Asher Vance",
       "role": "2026 Dancer",
       "image": "asher-vance.png",
-      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/asher-vance\" target=\"_blank\" rel=\"noopener\">💜 Support Asher</a></p>",
+      "support_url": "https://form-renderer-app.donorperfect.io/give/one-safe-place/asher-vance",
       "section": "2026-cast"
     },
     {
       "name": "Kacee Gibbs",
       "role": "2026 Dancer",
       "image": "kacee-gibbs.png",
-      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/kacee-gibbs\" target=\"_blank\" rel=\"noopener\">💜 Support Kacee</a></p>",
+      "support_url": "https://form-renderer-app.donorperfect.io/give/one-safe-place/kacee-gibbs",
       "section": "2026-cast"
     },
     {
       "name": "Tyler Rowley",
       "role": "2026 Dancer",
       "image": "tyler-rowley.png",
-      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/tyler-rowley\" target=\"_blank\" rel=\"noopener\">💜 Support Tyler</a></p>",
+      "support_url": "https://form-renderer-app.donorperfect.io/give/one-safe-place/tyler-rowley",
       "section": "2026-cast"
     },
     {
       "name": "Farnaz Chegini",
       "role": "2026 Dancer",
       "image": "farnaz-chegini.png",
-      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/farnaz-chegini\" target=\"_blank\" rel=\"noopener\">💜 Support Farnaz</a></p>",
+      "support_url": "https://form-renderer-app.donorperfect.io/give/one-safe-place/farnaz-chegini",
       "section": "2026-cast"
     },
     {
       "name": "Josh Hoines",
       "role": "2026 Dancer",
       "image": "josh-hoines.png",
-      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/josh-hoines\" target=\"_blank\" rel=\"noopener\">💜 Support Josh</a></p>",
+      "support_url": "https://form-renderer-app.donorperfect.io/give/one-safe-place/josh-hoines",
       "section": "2026-cast"
     },
     {
       "name": "Lidia Manzo",
       "role": "2026 Dancer",
       "image": "lidia-manzo.png",
-      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/lidia-manzo\" target=\"_blank\" rel=\"noopener\">💜 Support Lidia</a></p>",
+      "support_url": "https://form-renderer-app.donorperfect.io/give/one-safe-place/lidia-manzo",
       "section": "2026-cast"
     },
     {
       "name": "Jay Sumerlin",
       "role": "2026 Dancer",
       "image": "jay-sumerlin.png",
-      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/jay-sumerlin\" target=\"_blank\" rel=\"noopener\">💜 Support Jay</a></p>",
+      "support_url": "https://form-renderer-app.donorperfect.io/give/one-safe-place/jay-sumerlin",
       "section": "2026-cast"
     },
     {
       "name": "Molly Redmon",
       "role": "2026 Dancer",
       "image": "molly-redmon.png",
-      "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/molly-redmon\" target=\"_blank\" rel=\"noopener\">💜 Support Molly</a></p>",
+      "support_url": "https://form-renderer-app.donorperfect.io/give/one-safe-place/molly-redmon",
       "section": "2026-cast"
     },
     {

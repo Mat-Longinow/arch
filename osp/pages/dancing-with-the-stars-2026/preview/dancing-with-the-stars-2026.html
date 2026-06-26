@@ -23,7 +23,9 @@
     - data-section="2025-cast"  → "Thank You To Our 2025 Cast" (archive)
   ONE render script (DWTS-STARS-CMS, at the bottom) handles all three containers,
   filters by data-env + data-section, builds cards reusing the live Webflow classes,
-  and wires its own "Learn More" popup (Webflow IX2 won't run on injected guts).
+  and wires per-card CTAs: 2026 dancers (with a support_url) get a direct "Support
+  Dancer" donation link (new tab); staff / past cast keep the "Learn More" bio popup
+  (Webflow IX2 won't run on injected guts).
   Roster DATA is not yet populated — see cms/stars.json `_data_gap` + ../README.md.
 
   CAVEAT — IX2 + the newsletter form: Webflow's interactions/form bindings don't run on
@@ -271,9 +273,10 @@
           items (section match; production hides preview:true rows), renders cards
           reusing the live Webflow classes so they inherit OSP styling
        3. SVG-avatar onerror fallback for missing photos
-       4. wires its own "Learn More" → popup-board interaction (Webflow IX2 won't run
-          on injected guts), as a self-contained centered modal that does NOT depend on
-          the live CSS hiding the popup. RECONSTRUCTION — eyeball at go-live.
+       4. per-card CTA: 2026 dancers (support_url present) get a direct "Support Dancer"
+          donation link opening in a new tab; staff / past cast (no support_url) keep the
+          "Learn More" → popup-board interaction (Webflow IX2 won't run on injected guts),
+          a self-contained centered modal independent of the live CSS. RECONSTRUCTION.
      ============================================================================ -->
 <script>
 (function () {
@@ -339,7 +342,23 @@
     nameEl.textContent = it.name || "";
 
     var btn = document.createElement("a");
-    btn.href = "#"; btn.className = "button-link w-inline-block";
+    btn.className = "button-link w-inline-block";
+
+    // 2026 dancers carry a support_url -> the card CTA IS a direct donation link
+    // (opens in a new tab). Staff / past cast (no support_url) keep the bio popup.
+    if (it.support_url) {
+      btn.href = it.support_url;
+      btn.target = "_blank";
+      btn.rel = "noopener";
+      btn.innerHTML = '<div class="button learn-more"><h4 class="h4-type button">Support Dancer</h4></div>';
+      mem.appendChild(img);
+      mem.appendChild(nameEl);
+      mem.appendChild(btn);
+      listitem.appendChild(mem);
+      return listitem;
+    }
+
+    btn.href = "#";
     btn.innerHTML = '<div class="button learn-more"><h4 class="h4-type button">Learn More</h4></div>';
 
     // ---- popup ----
