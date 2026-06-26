@@ -107,8 +107,18 @@ them in sync except the `data-env` marker), commit + push. Live within ~5 min.
 1. Drop the photo (pre-sized, public-safe) into `cms/assets/`.
 2. Add/edit the entry in `cms/stars.json` (`name`, `section`, `image`, `bio`, optional
    `role` / `preview`).
-3. Commit + push. The live render picks up `stars.json` automatically (no guts edit
-   needed for a pure roster change — the script reads the JSON at load time).
+3. Commit + push. The render reads `cms/stars.json` at load time (no guts edit needed for
+   a pure roster change).
+4. ⚠️ **PURGE jsDelivr after every push** — the render fetches `stars.json` from
+   `cdn.jsdelivr.net/gh/…@main/…/cms/stars.json`. The script's `cache:"no-store"` only
+   bypasses the BROWSER cache; jsDelivr's edge CDN caches `@main` for up to ~7 days, so a
+   fresh push is NOT served until you purge. Symptom of skipping this: new data silently
+   missing — e.g. dancers reverting to the "Learn More" fallback because the cached JSON
+   lacks `support_url`. Fix (one GET each, no auth):
+   `curl https://purge.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/dancing-with-the-stars-2026/cms/stars.json`
+   and purge the two guts files the same way if you edited them
+   (`…/production/dancing-with-the-stars-2026.html`, `…/preview/…html`). Verify with
+   `curl <cdn url> | grep support_url`. Hit this 2026-06-26 — see ../../../../playbooks note.
 
 **Preview locally without pushing:** double-click `preview/…preview.html` (or the
 production one). Self-contained, gitignored, renders fully styled offline using the local
