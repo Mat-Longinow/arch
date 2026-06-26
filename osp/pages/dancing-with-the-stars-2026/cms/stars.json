@@ -1,137 +1,137 @@
 {
   "collection": "stars",
-  "fields": ["name", "role", "image", "bio", "section", "preview"],
-  "_notes": "Our own Git-backed CMS for OSP's Dancing with the Stars 2026 page. ONE collection ('Dancing With The Stars Stars' in Webflow, id 66b90685bd1fb0490773a1e3 on site 64dc6469dc8981cbbbb73864) drives THREE on-page sections via the 'section' field: '2026-cast', '2026-staff', '2025-cast' (the 'Thank You To Our 2025 Cast' archive block). Card = photo (image-12 board-image) + name (text-block-24-copy nopad) + a 'Learn More' popup with a larger photo (image-40) + bio (cfr-staff-bio-text w-richtext). 'image' = filename in ./assets/ OR a full http(s) URL (accepted verbatim); we use the live Webflow CDN URLs. 'preview': true = preview URL only; false/omit = live in production. 'role' is optional. See ../README.md and ../../../../HYBRID-CMS.md.",
-  "_provenance": "Baked 2026-06-26 by Studio Lead from the live OSP 'Dancing With The Stars Stars' Webflow CMS via the Data API. 2026-cast = the 8 dancers (year 2026, role Dancer), ordered by order-number 1-8. 2026-staff = Tara Faires (Artistic Director) + Blake+Erica (MCs). 2025-cast = the 8-member 2025 archive (year 2025). 2024 dancers were skipped (not on this page). The hybrid render has no native vote/support button, so each dancer's donorperfect 'Support Dancer' link (and each 2025 archive member's YouTube performance link) is folded into the 'bio' popup to preserve the fundraising/watch CTA.",
-  "_preview_state": "Mirrors Webflow draft/publish state as of 2026-06-26: only Molly Redmon + both staff are PUBLISHED in Webflow; the other 7 2026 dancers are still Webflow DRAFTS, so they carry preview:true here (visible on the preview URL, hidden in production) until Arch publishes them / Mat says go live. Flip preview:false to take each live.",
+  "fields": [
+    "name",
+    "role",
+    "image",
+    "bio",
+    "section",
+    "preview"
+  ],
+  "_notes": "Our own Git-backed CMS for OSP's Dancing with the Stars 2026 page. ONE collection ('Dancing With The Stars Stars' in Webflow, id 66b90685bd1fb0490773a1e3 on site 64dc6469dc8981cbbbb73864) drives THREE on-page sections via the 'section' field: '2026-cast', '2026-staff', '2025-cast' (the 'Thank You To Our 2025 Cast' archive block). Card = photo (image-12 board-image) + name (text-block-24-copy nopad) + a 'Learn More' popup with a larger photo (image-40) + bio (cfr-staff-bio-text w-richtext). 'image' = filename in ./assets/ served locally from ./assets/ (a full http(s) URL is still accepted verbatim as a fallback). 'preview': true = preview URL only; false/omit = live in production. 'role' is optional. See ../README.md and ../../../../HYBRID-CMS.md.",
+  "_provenance": "Reconciled 2026-06-26 by Studio Lead against Mat's full live-page HTML export (_source/dwtss-source.html). Roster confirmed identical to the Webflow Data-API pull: 8x 2026-cast dancers, 2x 2026-staff (Tara Faires=Artistic Director, Blake+Erica=MCs), 8x 2025-cast archive. All 18 photos downloaded to ./assets/ and served locally (2025 archive images pre-sized 1080->600px). Correction from the HTML: 4 of the 2025 cards (Jason Odell, Dr. Jesse Curran, Eva Jimenez, Christina Prosperi) carried real fundraiser-event bios on the live page that the Data-API pull had dropped; those richtext bios are restored here ahead of each card's YouTube watch link. 2026 dancers keep their donorperfect 'Support' link folded into the bio (no native button in the hybrid render).",
+  "_preview_state": "Mat decision 2026-06-26: all 8 2026 dancers + 2 staff go LIVE (preview flags removed from every row). The 'Thank You To Our 2025 Cast' archive block is KEPT. No card-level support/vote button (popup 'Learn More' is sufficient).",
   "items": [
     {
       "name": "Asher Vance",
       "role": "2026 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6c3f79be97f3a4876180_Asher%20Vance%201.png",
+      "image": "asher-vance.png",
       "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/asher-vance\" target=\"_blank\" rel=\"noopener\">💜 Support Asher</a></p>",
-      "section": "2026-cast",
-      "preview": true
+      "section": "2026-cast"
     },
     {
       "name": "Kacee Gibbs",
       "role": "2026 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6dd5b5e3ec39d69591cc_Kacee%20Gibbs%201.png",
+      "image": "kacee-gibbs.png",
       "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/kacee-gibbs\" target=\"_blank\" rel=\"noopener\">💜 Support Kacee</a></p>",
-      "section": "2026-cast",
-      "preview": true
+      "section": "2026-cast"
     },
     {
       "name": "Tyler Rowley",
       "role": "2026 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6d3cfc61e29b751cc682_Tyler%20Rowley%201.png",
+      "image": "tyler-rowley.png",
       "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/tyler-rowley\" target=\"_blank\" rel=\"noopener\">💜 Support Tyler</a></p>",
-      "section": "2026-cast",
-      "preview": true
+      "section": "2026-cast"
     },
     {
       "name": "Farnaz Chegini",
       "role": "2026 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6df2d873de8117468c3e_Farnaz%20Chegini%201.png",
+      "image": "farnaz-chegini.png",
       "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/farnaz-chegini\" target=\"_blank\" rel=\"noopener\">💜 Support Farnaz</a></p>",
-      "section": "2026-cast",
-      "preview": true
+      "section": "2026-cast"
     },
     {
       "name": "Josh Hoines",
       "role": "2026 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6d929f8cb5a0a70f30d5_Josh%20Hoines%201.png",
+      "image": "josh-hoines.png",
       "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/josh-hoines\" target=\"_blank\" rel=\"noopener\">💜 Support Josh</a></p>",
-      "section": "2026-cast",
-      "preview": true
+      "section": "2026-cast"
     },
     {
       "name": "Lidia Manzo",
       "role": "2026 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6e1fd1cec4e6ec8459ca_Lidia%20Manzo%201.png",
+      "image": "lidia-manzo.png",
       "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/lidia-manzo\" target=\"_blank\" rel=\"noopener\">💜 Support Lidia</a></p>",
-      "section": "2026-cast",
-      "preview": true
+      "section": "2026-cast"
     },
     {
       "name": "Jay Sumerlin",
       "role": "2026 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6dae6307560de6587c50_Jay%20Sumerlin%201.png",
+      "image": "jay-sumerlin.png",
       "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/jay-sumerlin\" target=\"_blank\" rel=\"noopener\">💜 Support Jay</a></p>",
-      "section": "2026-cast",
-      "preview": true
+      "section": "2026-cast"
     },
     {
       "name": "Molly Redmon",
       "role": "2026 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6e3dc85b7657ba8830aa_Molly%20Redmon%201.png",
+      "image": "molly-redmon.png",
       "bio": "<p><a href=\"https://form-renderer-app.donorperfect.io/give/one-safe-place/molly-redmon\" target=\"_blank\" rel=\"noopener\">💜 Support Molly</a></p>",
       "section": "2026-cast"
     },
     {
       "name": "Tara Faires",
       "role": "Artistic Director",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6ea548d2e62e9efc6aad_Tara%20Faires.png",
+      "image": "tara-faires.png",
       "section": "2026-staff"
     },
     {
       "name": "Blake + Erica",
       "role": "Hosts (MCs)",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6a0f6e6ce48006834c449c5c_MC%27s.png",
+      "image": "blake-erica.png",
       "section": "2026-staff"
     },
     {
       "name": "Erica + Blake",
       "role": "2025 Hosts (MCs)",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/688553140572ae9a7e2783f7_Erica%20%2B%20Blake%20(MCs).png",
+      "image": "erica-blake.png",
       "section": "2025-cast"
     },
     {
       "name": "Tara Faires + Bobby Milhouse",
       "role": "2025 Artistic Director + Choreographer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/688552e947c702a9a3d64dd4_Tara%20%2B%20Bobby%20(Artistic%20Director%20%2B%20Choreographer).png",
+      "image": "tara-faires-bobby-milhouse.png",
       "section": "2025-cast"
     },
     {
       "name": "Christina Prosperi",
       "role": "2025 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6848afe4250571d7393cd26d_Christina%20%2B%20Nick.png",
-      "bio": "<p><a href=\"https://www.youtube.com/watch?v=yTTsD4JCTnY\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
+      "image": "christina-prosperi.png",
+      "bio": "<p><strong>Free Community Rides for One Safe Place</strong></p><p>Pedal with purpose to support survivors of domestic violence and help build a safer, more supportive community. Come out <strong><em>Saturday, September 6th at 9am or 11am</em></strong>.<br>More information can be found <a href=\"https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73864/68e68f5dcf807ba0e503f074_trueride.jpg\">here</a>.</p><p>‍</p><p><strong>Fundraiser Sunday Football Takeover</strong></p><p>Come out to Black Diamond, <strong><em>Sunday, October 5th 10am - 3pm</em></strong> for some Sunday Football, drinks and snacks all while supporting a wonderful cause. All bartender tips benefit One Safe Place.</p><p><a href=\"https://www.youtube.com/watch?v=yTTsD4JCTnY\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
       "section": "2025-cast"
     },
     {
       "name": "Dr. Steve Loncosky",
       "role": "2025 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6848afc90b7529fd1fa79ae8_Dr.%20Steve%20%2B%20Rachelle.png",
+      "image": "dr-steve-loncosky.png",
       "bio": "<p><a href=\"https://www.youtube.com/watch?v=qBWzSVIzTBo\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
       "section": "2025-cast"
     },
     {
       "name": "Eva Jimenez",
       "role": "2025 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/6848afa7e8c31a9612431e4d_Eva%20%2B%20Hagen.png",
-      "bio": "<p><a href=\"https://www.youtube.com/watch?v=fyHj4LM_ZSQ\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
+      "image": "eva-jimenez.png",
+      "bio": "<p><strong>Eva's Eras Fundraiser</strong></p><p>Raise a glass for a life-changing cause at Vintage! 🥂 Join us <strong><em>Thursday, September 25th from 5–8 PM</em></strong> at the Vintage Public House, here in Redding, to support Dancing with the Shasta Stars and One Safe Place Transitional Housing.ㅤ🍸 Try a new specialty drink: Eva’s Eras. Every sip helps provide survivors a safe place to heal, rebuild, and breathe. Come for the drinks, stay for the impact.<br><br><strong>Orange Theory BLACKLIGHT FUNDRAISER CLASS 🧡🖤</strong></p><p>Join us <strong><em>Friday, September 26TH at 5:30 PM</em></strong> for a special blacklight class supporting one of our very own members, Eva, as she raises money while competing in Dancing with the Shasta Stars! ✨💃All proceeds will benefit One Safe Place, supporting transitional housing for survivors of domestic abuse. A $25 donation is required to attend class - which is followed by our TORTURE THE TRAINER!! At $2 per burpee, buy burpees and assign them to your favorite coach(es) to make THEM get their burn on! 🔥🔥</p><p><a href=\"https://www.youtube.com/watch?v=fyHj4LM_ZSQ\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
       "section": "2025-cast"
     },
     {
       "name": "Dr. Jesse Curran",
       "role": "2025 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/68488c481f3fff600e31cd63_Dr.%20Jesse%20%2B%20Kristen.png",
-      "bio": "<p><a href=\"https://www.youtube.com/watch?v=gixzhKf7Nzk\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
+      "image": "dr-jesse-curran.png",
+      "bio": "<p><strong>Pickleball Tournament</strong></p><p>Join the fun by singing up for the Pickleball for a Purpose Tournament. Sign up as a mixed doubles team by donating $100 and support a great cause while having the time of your life. The tournament will be <strong><em>Saturday, September 13th at 8am at Enterprise Park</em></strong>.<br>More information <a href=\"https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73864/68e68f58b90af65e24e869bb_Pickleball%20Tournament%20Flyer%20(1).png\">here</a>.</p><p><a href=\"https://www.youtube.com/watch?v=gixzhKf7Nzk\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
       "section": "2025-cast"
     },
     {
       "name": "Jennifer Coy",
       "role": "2025 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/68488c20ad9b39556cd084cd_Jennifer%20%2B%20Luke.png",
+      "image": "jennifer-coy.png",
       "bio": "<p><a href=\"https://www.youtube.com/watch?v=IWUwyzazEPU\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
       "section": "2025-cast"
     },
     {
       "name": "Jason Odell",
       "role": "2025 Dancer",
-      "image": "https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73869/68488bfd0abbe31cfbfc497f_Jason%20%2B%20Mindy.png",
-      "bio": "<p><a href=\"https://www.youtube.com/watch?v=hmttSwxRoYk\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
+      "image": "jason-odell.png",
+      "bio": "<p><strong>Dinner on the Bridge</strong></p><p>Come out for a delicious dinner on the beautiful and iconic Diestelhorst Bridge, <strong><em>Saturday, September 20th at 6pm</em></strong>, all while supporting a significant cause.<br>More information can be found <a href=\"https://www.odellcraftbbqpreorder.com/?location=11f07e1716afc4678ee03cecef6dbae2\">here</a>.<br><br>‍</p><p><a href=\"https://www.youtube.com/watch?v=hmttSwxRoYk\" target=\"_blank\" rel=\"noopener\">▶ Watch the 2025 performance</a></p>",
       "section": "2025-cast"
     }
   ]
