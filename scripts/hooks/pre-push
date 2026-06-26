@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# pre-push hook — auto-purge jsDelivr @main cache for the files being pushed.
+#
+# Installed into .git/hooks/pre-push by scripts/install-hooks.sh. Fires on EVERY
+# push (bare `git push`, ship.sh, or an agent's `git -C ... push`), so a stale
+# jsDelivr edge cache can never silently keep old content live (see
+# scripts/jsdelivr-purge.sh for the full why).
+#
+# It runs BEFORE git contacts the remote, so it backgrounds a short-delayed purge:
+# sleep a few seconds to let the push land on GitHub, then purge each changed file.
+# Never blocks or fails the push (always exits 0). Logs to .git/jsdelivr-purge.log.
+set -uo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)" || exit 0
+ZERO="0000000000000000000000000000000000000000"
+
+local_sha="" remote_sha=""
+while read -r _lref lsha _rref rsha; do
+  [ -n "${lsha:-}" ] && [ "$lsha" != "$ZERO" ] && local_sha="$lsha"
+  [ -n "${rsha:-}" ] && remote_sha="$rsha"
+done
+
+[ -z "$local_sha" ] && exit 0
+if [ -n "$remote_sha" ] && [ "$remote_sha" != "$ZERO" ]; then
+  RANGE="${remote_sha}..${local_sha}"
+else
+  RANGE="${local_sha}~1..${local_sha}"   # new branch — fall back to its tip commit
+fi
+FILES="$(git -C "$REPO_ROOT" diff --name-only "$RANGE" 2>/dev/null)"
+[ -z "${FILES// /}" ] && exit 0
+
+(
+  sleep 8   # let the push land on GitHub before asking jsDelivr to re-fetch
+  while IFS= read -r f; do
+    [ -z "$f" ] && continue
+    case "$f" in
+      _source/*|*.preview.html|.gitignore|*.md|.idea/*|scripts/*) continue ;;
+    esac
+    code="$(curl -fsS "https://purge.jsdelivr.net/gh/Mat-Longinow/arch@main/${f}" -o /dev/null -w "%{http_code}" 2>/dev/null)" || code="ERR"
+    printf '%s  HTTP %s  %s\n' "$(date '+%Y-%m-%dT%H:%M:%S')" "$code" "$f" >> "$REPO_ROOT/.git/jsdelivr-purge.log" 2>/dev/null
+  done <<EOF
+$FILES
+EOF
+) >/dev/null 2>&1 &
+
+exit 0
