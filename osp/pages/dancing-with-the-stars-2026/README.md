@@ -109,16 +109,16 @@ them in sync except the `data-env` marker), commit + push. Live within ~5 min.
    `role` / `preview`).
 3. Commit + push. The render reads `cms/stars.json` at load time (no guts edit needed for
    a pure roster change).
-4. ⚠️ **PURGE jsDelivr after every push** — the render fetches `stars.json` from
-   `cdn.jsdelivr.net/gh/…@main/…/cms/stars.json`. The script's `cache:"no-store"` only
-   bypasses the BROWSER cache; jsDelivr's edge CDN caches `@main` for up to ~7 days, so a
-   fresh push is NOT served until you purge. Symptom of skipping this: new data silently
-   missing — e.g. dancers reverting to the "Learn More" fallback because the cached JSON
-   lacks `support_url`. Fix (one GET each, no auth):
-   `curl https://purge.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/dancing-with-the-stars-2026/cms/stars.json`
-   and purge the two guts files the same way if you edited them
-   (`…/production/dancing-with-the-stars-2026.html`, `…/preview/…html`). Verify with
-   `curl <cdn url> | grep support_url`. Hit this 2026-06-26 — see ../../../../playbooks note.
+4. ✅ **jsDelivr purge is now AUTOMATIC on push** (hardened 2026-06-26). The render fetches
+   `stars.json` from `cdn.jsdelivr.net/gh/…@main/…/cms/stars.json`, and jsDelivr's edge CDN
+   caches `@main` up to ~7 days (the script's `cache:"no-store"` only bypasses the BROWSER
+   cache, not jsDelivr's edge) — so a push is NOT served until purged. Skipping this once
+   regressed the dancer cards to "Learn More" (cached JSON lacked `support_url`). A repo
+   `pre-push` hook now purges every changed served-file automatically on each push, so you
+   normally do nothing. Prefer `scripts/ship.sh "msg"` to commit+push+purge in one. Manual
+   purge if ever needed: `scripts/jsdelivr-purge.sh [path…]`. Verify:
+   `curl <cdn url> | grep support_url` or `tail ../../../../.git/jsdelivr-purge.log`. Full
+   note: repo `scripts/jsdelivr-purge.sh` header + the playbook.
 
 **Preview locally without pushing:** double-click `preview/…preview.html` (or the
 production one). Self-contained, gitignored, renders fully styled offline using the local
