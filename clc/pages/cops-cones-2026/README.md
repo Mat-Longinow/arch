@@ -20,7 +20,30 @@ Sections (top → bottom): hero → double-pane intro (copy + 2026 hero image + 
 agencies) → Newsletter signup. A post-event **recap photo grid** is present but commented
 out — re-enable it after the 2026 event with the day-of photos.
 
-**Static page — no JSON-CMS.**
+**Sponsors + Partners are a Git-backed JSON-CMS** (see below); the rest of the page is static.
+
+## 🗂️ JSON-CMS — Sponsors & Partners grids
+
+The two logo grids render from JSON, not hardcoded markup (mirrors the Aster "Our Team" CMS):
+
+```
+cms/
+├── sponsors.json   ← 10 sponsor logos (order = display order)
+├── partners.json   ← 4 law-enforcement partner agencies
+└── assets/         ← the 14 logo files (sp-*.png/jpg sponsors, pt-*.png/jpg partners)
+```
+
+Each guts file has a container (`#lc-cops-sponsors` / `#lc-cops-partners`, class `team-grid`)
+plus an injected render script that fetches the JSON via jsDelivr and builds
+`.team-card > img.team-member-image` cards. **Env-gating:** the container's `data-env`
+controls visibility — `preview` renders ALL items, `production` renders only items with
+`preview !== true`. (production guts = `data-env="production"`, preview guts = `data-env="preview"`.)
+
+**To change the roster:** edit `cms/sponsors.json` / `cms/partners.json` (add/remove/reorder
+items, set `preview: true` to stage a logo on preview-only), drop any new logo in `cms/assets/`,
+commit + push. **No markup edits.** Logos were pulled from the live 2025 page per Mat and
+carried forward; `sp-sponsor-02` and `sp-sponsor-06` are unlabeled (need ID), and the full
+2026 roster is pending CLC confirmation.
 
 ## 📂 Folder layout
 
@@ -34,7 +57,8 @@ cops-cones-2026/
 ```
 
 Page-specific images live one level up in `../images/` (shared by CLC page convention),
-served via jsDelivr. There is **no `cms/`** — this page has no data collection.
+served via jsDelivr. The sponsor/partner logos live separately in `cms/assets/` (see the
+JSON-CMS section above).
 
 The **only** difference between `preview/cops-cones-2026.html` and
 `production/cops-cones-2026.html` is the ENV marker comment at the top. For a static page
