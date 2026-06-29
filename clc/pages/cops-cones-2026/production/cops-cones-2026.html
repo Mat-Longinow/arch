@@ -9,9 +9,11 @@
   local law-enforcement agencies with the community over ice cream. August 30, 2026,
   1–4 PM at Turtle Bay (relocated from The Park this year).
 
-  IMAGES: self-hosted in this repo, served via jsDelivr (absolute URLs — required,
-  the guts are injected into the Webflow domain so relative paths would break):
-  https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/clc/pages/images/<file>
+  IMAGES: self-hosted in this repo, served straight from raw.githubusercontent.com — NOT
+  jsDelivr (deliberate: jsDelivr's @main edge cache is ~7 days and lags updates; raw GitHub
+  reflects a push within seconds–minutes). Absolute URLs required — the guts are injected
+  into the Webflow domain so relative paths would break:
+  https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/<file>
 
   OPEN ITEM (non-blocking): sponsor + partner logo grids carry the 2025 roster as a
   placeholder per Mat (RPD/APD/SCSO/DA) — swap when the 2026 lineup is confirmed.
@@ -56,7 +58,7 @@
                 </div>
               </div>
               <div class="column _2 white w-col w-col-6">
-                <div class="div-block-39 _2"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/clc/pages/images/cops-cones-2026-hero.png" loading="lazy" alt="Cops &amp; Cones 2026" class="image-6"></div>
+                <div class="div-block-39 _2"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/cops-cones-2026-hero.png" loading="lazy" alt="Cops &amp; Cones 2026" class="image-6"></div>
               </div>
             </div>
           </div>
@@ -114,8 +116,8 @@
     <div id="lc-cops-sponsors" role="list" class="team-grid w-dyn-items" data-env="production"></div>
     <script>
     (function () {
-      var CMS_JSON   = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/clc/pages/cops-cones-2026/cms/sponsors.json";
-      var ASSET_BASE = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/clc/pages/cops-cones-2026/cms/assets/";
+      var CMS_JSON   = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/cops-cones-2026/cms/sponsors.json";
+      var ASSET_BASE = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/cops-cones-2026/cms/assets/";
       var container  = document.getElementById("lc-cops-sponsors");
       if (!container) return;
       var ENV = container.getAttribute("data-env") || "production";
@@ -151,8 +153,8 @@
     <div id="lc-cops-partners" role="list" class="team-grid w-dyn-items" data-env="production"></div>
     <script>
     (function () {
-      var CMS_JSON   = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/clc/pages/cops-cones-2026/cms/partners.json";
-      var ASSET_BASE = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/clc/pages/cops-cones-2026/cms/assets/";
+      var CMS_JSON   = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/cops-cones-2026/cms/partners.json";
+      var ASSET_BASE = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/cops-cones-2026/cms/assets/";
       var container  = document.getElementById("lc-cops-partners");
       if (!container) return;
       var ENV = container.getAttribute("data-env") || "production";

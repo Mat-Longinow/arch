@@ -35,7 +35,7 @@ cms/
 ```
 
 Each guts file has a container (`#lc-cops-sponsors` / `#lc-cops-partners`, class `team-grid`)
-plus an injected render script that fetches the JSON via jsDelivr and builds
+plus an injected render script that fetches the JSON from raw.githubusercontent.com and builds
 `.team-card > img.team-member-image` cards. **Env-gating:** the container's `data-env`
 controls visibility — `preview` renders ALL items, `production` renders only items with
 `preview !== true`. (production guts = `data-env="production"`, preview guts = `data-env="preview"`.)
@@ -58,8 +58,9 @@ cops-cones-2026/
 ```
 
 Page-specific images live one level up in `../images/` (shared by CLC page convention),
-served via jsDelivr. The sponsor/partner logos live separately in `cms/assets/` (see the
-JSON-CMS section above).
+served straight from raw.githubusercontent.com (NOT jsDelivr — see the "No CDN cache" note
+below). The sponsor/partner logos live separately in `cms/assets/` (see the JSON-CMS
+section above).
 
 The **only** difference between `preview/cops-cones-2026.html` and
 `production/cops-cones-2026.html` is the ENV marker comment at the top. For a static page
@@ -80,11 +81,22 @@ hostname with Mat and set it in `webflow-embed-loader.html` before go-live.
 
 ## 🖼️ Images
 
-Self-hosted in `../images/` and referenced by **absolute jsDelivr URL** (required — the
-guts are injected into the Webflow domain, so relative paths would break):
-`https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/clc/pages/images/<file>`.
+Self-hosted in `../images/` and referenced by **absolute raw.githubusercontent.com URL**
+(required — the guts are injected into the Webflow domain, so relative paths would break):
+`https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/<file>`.
 
-Hosted here: `cops-cones-2026-hero.png` (1920×1080, the 2026 intro graphic Mat supplied).
+### 🚫 No CDN cache (deliberate, Mat 2026-06-29)
+
+This page serves **everything** — guts, hero image, CMS JSON, and all logo assets — directly
+from `raw.githubusercontent.com`, **not jsDelivr**. Reason: jsDelivr's `@main` edge cache has
+a ~7-day TTL and lagged badly on updates (a corrected hero image kept serving stale for many
+minutes even after a manual purge). raw.githubusercontent.com carries only a 5-minute
+`Cache-Control` and GitHub invalidates it on push, so edits show up in seconds–minutes. The
+render scripts also `fetch(..., {cache:"no-store"})`. **Do not reintroduce jsDelivr URLs on
+this page.** (Trade-off: raw GitHub isn't a purpose-built CDN, but for a low-traffic event
+page the freshness win is worth it.)
+
+Hosted here: `cops-cones-2026-hero.png` (600×600, the 2026 intro graphic from the live page).
 The hero **backdrop** and other decorative backgrounds are CSS-driven from CLC's live
 `clc-mnhstr` stylesheet — they resolve automatically on the live page, nothing to host.
 
@@ -125,7 +137,7 @@ Go-live is a deliberate, gated step:
    `webflow-embed-loader.html`.
 2. In Webflow Designer, replace the Cops & Cones page body with an HTML Embed containing
    the loader from `webflow-embed-loader.html`. **This is the only Designer step, ever.**
-3. Push the repo (guts + images). Verify the raw + jsDelivr URLs return 200, the live page
+3. Push the repo (guts + images). Verify the raw.githubusercontent.com URLs return 200, the live page
    renders the injected content, inherits CLC styling, the hero image loads, the map embeds,
    and the Facebook RSVP link opens the 2026 event.
 4. From then on, every change is an autonomous `git push` — no Designer.
