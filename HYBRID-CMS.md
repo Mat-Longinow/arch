@@ -12,6 +12,15 @@ Longinow Creative notes → `work/longinow-creative/playbooks/webflow-hybrid-aut
 The first page built on this architecture is `arch/pages/the-aster-project/` — see its
 own `README.md` for the page-specific guide.
 
+## ⛔ Standing content rules (read before editing any page)
+
+- **NEVER include the bottom "Sign Up for OUR Newsletter" section on the Cops & Cones
+  page** (`clc/pages/cops-cones-2026/`). Standing rule from Mat (2026-06-29). Two reasons:
+  (1) the Webflow newsletter form doesn't re-bind when injected after page load, so it
+  silently degrades to a bare GET; (2) Mat does not want it on that page regardless. If you
+  rebuild or re-snapshot that page from any source that contains the newsletter section,
+  strip it. The omission is intentional, not an oversight.
+
 ## 🗂️ Per-page folder layout
 
 A converted page that uses the CMS + env split is a **folder**, not a single file:

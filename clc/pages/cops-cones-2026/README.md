@@ -17,8 +17,9 @@ The Park Food Truck Hub this year).
 
 Sections (top → bottom): hero → double-pane intro (copy + 2026 hero image + FB RSVP link)
 → When & Where (Turtle Bay + Google Map) → Sponsors grid → Partners grid (law-enforcement
-agencies) → Newsletter signup. A post-event **recap photo grid** is present but commented
-out — re-enable it after the 2026 event with the day-of photos.
+agencies). A post-event **recap photo grid** is present but commented out — re-enable it
+after the 2026 event with the day-of photos. **There is NO newsletter section** — see the
+standing rule below.
 
 **Sponsors + Partners are a Git-backed JSON-CMS** (see below); the rest of the page is static.
 
@@ -87,13 +88,15 @@ Hosted here: `cops-cones-2026-hero.png` (1920×1080, the 2026 intro graphic Mat 
 The hero **backdrop** and other decorative backgrounds are CSS-driven from CLC's live
 `clc-mnhstr` stylesheet — they resolve automatically on the live page, nothing to host.
 
-## ⚠️ Known caveat — the newsletter form
+## ⛔ STANDING RULE — never include the bottom Newsletter section
 
-The export's Webflow newsletter form is kept **verbatim** for fidelity. But Webflow.js
-binds forms at page load and will **not** re-initialize a form injected *after* load, so
-on the live injected page the AJAX submit + success/fail states won't fire (it degrades to
-a native GET to the same URL). If CLC wants this signup working on the hybrid page, wire a
-small custom handler — or drop the section and point signups at CLC's native newsletter page.
+**NEVER add the "Sign Up for OUR Newsletter" section to this page.** Standing rule from Mat
+(2026-06-29). It has been deliberately removed from both `production/` and `preview/` guts.
+Two reasons: (1) the Webflow newsletter form does not re-bind when injected after page load
+— Webflow.js binds forms at page load and won't re-initialize an injected one, so it
+degrades to a bare GET; (2) Mat does not want it on this page regardless. If you ever rebuild
+or re-snapshot this page from a source that contains the newsletter block, **strip it** — the
+omission is intentional. Repo-wide mirror of this rule lives in `../../../HYBRID-CMS.md`.
 
 ## 📝 Open content items (non-blocking)
 
