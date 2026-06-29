@@ -17,7 +17,7 @@ the **Shasta District Fair & Event Center, 1890 Briggs St, Anderson, CA 96007**.
 
 Sections (top → bottom): banner → "Thank You for an Amazing Night!" + Get-Your-Tickets
 CTA → Become A Sponsor for 2027 → 2026 Sponsors thank-you → 2026 Highlights (YouTube)
-→ When & Where (2027 + Google Map) → Newsletter signup.
+→ When & Where (2027 + Google Map). **No newsletter section** — see the standing rule below.
 
 **Static page — no JSON-CMS.** The Crab Feed raffle-items page is a *separate* page and
 is out of scope here.
@@ -34,7 +34,8 @@ crab-feed-2026/
 ```
 
 Page-specific images live one level up in `../images/` (shared by OSP page convention),
-served via jsDelivr. There is **no `cms/`** — this page has no data collection.
+served straight from raw.githubusercontent.com (NOT jsDelivr — see the "No CDN cache" note
+below). There is **no `cms/`** — this page has no data collection.
 
 The **only** difference between `preview/crab-feed-2026.html` and
 `production/crab-feed-2026.html` is the ENV marker comment at the top. For a static page
@@ -55,9 +56,9 @@ published OSP hostname with Mat and set it in `webflow-embed-loader.html` before
 
 ## 🖼️ Images
 
-Self-hosted in `../images/` and referenced by **absolute jsDelivr URL** (required — the
-guts are injected into the Webflow domain, so relative paths would break):
-`https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/<file>`.
+Self-hosted in `../images/` and referenced by **absolute raw.githubusercontent.com URL**
+(required — the guts are injected into the Webflow domain, so relative paths would break):
+`https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/<file>`.
 
 Hosted here: `Crab-Feed-Banner-2026-text-only---nobg.png`, `Copy-of-Thank-You---CF26.png`
 (+ `-p-500`), `Become-A-Sponsor_1.png` (+ `-p-500`, `-p-800`), `Crab-Feed-Sponors---3.4.26.png`
@@ -65,14 +66,24 @@ Hosted here: `Crab-Feed-Banner-2026-text-only---nobg.png`, `Copy-of-Thank-You---
 OSP's live `clc-mnhstr` stylesheet — they resolve automatically on the live page, nothing
 to host.
 
-## ⚠️ Known caveat — the newsletter form
+### 🚫 No CDN cache (deliberate, Mat 2026-06-29)
 
-The export's Webflow newsletter form is kept **verbatim** for fidelity. But Webflow.js
-binds forms at page load and will **not** re-initialize a form injected *after* load, so
-on the live injected page the AJAX submit + success/fail states won't fire (it degrades to
-a native GET to the same URL). Same class of limitation as the Aster FAQ-accordion lesson.
-If OSP wants this signup working on the hybrid page, wire a small custom handler — or drop
-the section and point newsletter signups at OSP's native newsletter page.
+This page serves **everything** — guts, images — directly from `raw.githubusercontent.com`,
+**not jsDelivr**. Reason: jsDelivr's `@main` edge cache has a ~7-day TTL and lagged badly on
+updates. raw.githubusercontent.com carries only a 5-minute `Cache-Control` and GitHub
+invalidates it on push, so edits show up in seconds–minutes. **Do not reintroduce jsDelivr
+URLs on this page.** (Repo-wide rule — see `../../../HYBRID-CMS.md`.)
+
+## ⛔ STANDING RULE — never include the bottom Newsletter section
+
+**NEVER add the "Sign Up for … Newsletter" section to this page.** Repo-wide standing rule
+from Mat (2026-06-29). It has been deliberately removed from both `production/` and `preview/`
+guts. Two reasons: (1) the Webflow newsletter form does not re-bind when injected after page
+load — Webflow.js binds forms at page load and won't re-initialize an injected one, so it
+degrades to a bare GET; (2) Mat does not want it on these pages regardless. If you ever
+rebuild or re-snapshot this page from a source (e.g. a `-current.html` export) that contains
+the newsletter block, **strip it** — the omission is intentional. Repo-wide mirror lives in
+`../../../HYBRID-CMS.md`.
 
 ## ✍️ How to edit
 
@@ -95,7 +106,7 @@ as Aster):
    `webflow-embed-loader.html`.
 2. In Webflow Designer, replace the Crab Feed 2026 page body with an HTML Embed containing
    the loader from `webflow-embed-loader.html`. **This is the only Designer step, ever.**
-3. Push the repo (guts + images). Verify the raw + jsDelivr URLs return 200, the live page
+3. Push the repo (guts + images). Verify the raw.githubusercontent.com URLs return 200, the live page
    renders the injected content, inherits OSP styling, images load, and the ticket button
    opens the TicketSpice page.
 4. From then on, every change is an autonomous `git push` — no Designer.

@@ -14,12 +14,21 @@ own `README.md` for the page-specific guide.
 
 ## ⛔ Standing content rules (read before editing any page)
 
-- **NEVER include the bottom "Sign Up for OUR Newsletter" section on the Cops & Cones
-  page** (`clc/pages/cops-cones-2026/`). Standing rule from Mat (2026-06-29). Two reasons:
-  (1) the Webflow newsletter form doesn't re-bind when injected after page load, so it
-  silently degrades to a bare GET; (2) Mat does not want it on that page regardless. If you
-  rebuild or re-snapshot that page from any source that contains the newsletter section,
-  strip it. The omission is intentional, not an oversight.
+- **NEVER include the bottom "Sign Up for … Newsletter" section on ANY hybrid page.**
+  Repo-wide standing rule from Mat (2026-06-29) — applies to every converted page (Cops &
+  Cones `clc/pages/cops-cones-2026/`, Crab Feed `osp/pages/crab-feed-2026/`, and all future
+  ones). Two reasons: (1) the Webflow newsletter form doesn't re-bind when injected after
+  page load, so it silently degrades to a bare GET; (2) Mat does not want it on these pages
+  regardless. If you rebuild or re-snapshot a page from any source (e.g. a `-current.html`
+  export) that contains the newsletter section, **strip it**. The omission is intentional,
+  not an oversight.
+
+- **Serve assets from `raw.githubusercontent.com`, NOT jsDelivr, on these pages.** Mat
+  directive (2026-06-29). jsDelivr's `@main` edge cache (~7-day TTL) lags content/image
+  updates badly; raw GitHub carries only a 5-min `Cache-Control` that GitHub invalidates on
+  push, so edits go live in seconds–minutes. Use
+  `https://raw.githubusercontent.com/Mat-Longinow/arch/main/<path>` for guts fetches, images,
+  and CMS JSON/assets. Do not reintroduce `cdn.jsdelivr.net` URLs on converted pages.
 
 ## 🗂️ Per-page folder layout
 

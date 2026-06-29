@@ -9,8 +9,10 @@
   March 7, 2026 at the Shasta District Fairgrounds), pivoting to promote the 40th
   Annual event on March 13, 2027 at the Shasta District Fair & Event Center.
 
-  IMAGES: self-hosted in this repo, served via jsDelivr (absolute URLs — required,
-  the guts are injected into the Webflow domain so relative paths would break).
+  IMAGES: self-hosted in this repo, served straight from raw.githubusercontent.com — NOT
+  jsDelivr (deliberate: jsDelivr's @main edge cache is ~7 days and lags updates; raw GitHub
+  reflects a push within seconds–minutes). Absolute URLs required — the guts are injected
+  into the Webflow domain so relative paths would break.
     - Page-specific assets → osp/pages/images/
   Background images (banner backdrop, etc.) come from the live OSP stylesheet via
   CSS classes — they resolve automatically on the live page, nothing to host here.
@@ -19,15 +21,12 @@
   identical except this ENV marker comment. The raffle-items page is separate and
   out of scope.
 
-  CAVEAT — newsletter form: the export's Webflow newsletter form is kept verbatim for
-  fidelity, but Webflow.js binds forms at page load and will NOT re-init a form injected
-  after load, so the AJAX submit + success/fail states won't fire on the live injected
-  page (it degrades to a native GET). Same class of limitation as the Aster FAQ-accordion
-  lesson — wire our own handler later if OSP wants this form live here.
+  NEWSLETTER: deliberately omitted (repo-wide standing rule, Mat 2026-06-29) — see the
+  ⛔ marker where the section used to be, plus ../../../HYBRID-CMS.md and README.md.
 -->
 <div class="services-main">
   <div class="main-image _4 crab-feed-banner _2026">
-    <div class="black-overlay"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Crab-Feed-Banner-2026-text-only---nobg.png" loading="lazy" alt="One SAFE Place Crab Feed 2026" class="image-43">
+    <div class="black-overlay"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/Crab-Feed-Banner-2026-text-only---nobg.png" loading="lazy" alt="One SAFE Place Crab Feed 2026" class="image-43">
       <div class="space-block _2"></div>
       <div class="page-padding">
         <div class="container-large">
@@ -61,7 +60,7 @@
         </a>
       </div>
       <div class="column-13 nominations-section-image w-col w-col-6">
-        <div class="div-block-39 _2 nominations-section-image"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Copy-of-Thank-You---CF26.png" loading="lazy" sizes="(max-width: 479px) 96vw, (max-width: 618px) 97vw, (max-width: 767px) 600px, (max-width: 1279px) 48vw, 600px" srcset="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Copy-of-Thank-You---CF26-p-500.png 500w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Copy-of-Thank-You---CF26.png 600w" alt="" class="image-35"></div>
+        <div class="div-block-39 _2 nominations-section-image"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/Copy-of-Thank-You---CF26.png" loading="lazy" sizes="(max-width: 479px) 96vw, (max-width: 618px) 97vw, (max-width: 767px) 600px, (max-width: 1279px) 48vw, 600px" srcset="https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/Copy-of-Thank-You---CF26-p-500.png 500w, https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/Copy-of-Thank-You---CF26.png 600w" alt="" class="image-35"></div>
       </div>
     </div>
   </div>
@@ -73,7 +72,7 @@
         <div class="pilot-holder">
           <div class="w-row">
             <div id="crab-feed-2025-sponsor" class="w-col w-col-6">
-              <div class="div-block-39 _2 event-map"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Become-A-Sponsor_1.png" loading="lazy" sizes="(max-width: 479px) 96vw, (max-width: 767px) 97vw, (max-width: 1279px) 48vw, 49vw" srcset="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Become-A-Sponsor_1-p-500.png 500w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Become-A-Sponsor_1-p-800.png 800w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Become-A-Sponsor_1.png 1000w" alt="" class="image-35"></div>
+              <div class="div-block-39 _2 event-map"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/Become-A-Sponsor_1.png" loading="lazy" sizes="(max-width: 479px) 96vw, (max-width: 767px) 97vw, (max-width: 1279px) 48vw, 49vw" srcset="https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/Become-A-Sponsor_1-p-500.png 500w, https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/Become-A-Sponsor_1-p-800.png 800w, https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/Become-A-Sponsor_1.png 1000w" alt="" class="image-35"></div>
             </div>
             <div class="column-13 w-col w-col-6">
               <h3 class="heading-26 crab-feed-sponsor-section-title _2026">Become A Sponsor for 2027<br></h3>
@@ -96,7 +95,7 @@
     <h2 class="centered-heading">Thank You to Our 2026 Sponsors!</h2>
     <div class="yellow-div-copy"></div>
     <div class="container-8"></div>
-    <div class="container-8"><img src="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Crab-Feed-Sponors---3.4.26.png" loading="lazy" sizes="(max-width: 800px) 100vw, 800px" srcset="https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Crab-Feed-Sponors---3.4.26-p-500.png 500w, https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/pages/images/Crab-Feed-Sponors---3.4.26.png 800w" alt="" class="image-44"></div>
+    <div class="container-8"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/Crab-Feed-Sponors---3.4.26.png" loading="lazy" sizes="(max-width: 800px) 100vw, 800px" srcset="https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/Crab-Feed-Sponors---3.4.26-p-500.png 500w, https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/Crab-Feed-Sponors---3.4.26.png 800w" alt="" class="image-44"></div>
   </div>
 </section>
 <div class="pilot crab-feed-when-and-where">
@@ -143,26 +142,9 @@
     </div>
   </div>
 </div>
-<div id="newsletter" class="newsletter">
-  <div class="page-padding full">
-    <div class="container-large full">
-      <div class="vertical-page full center">
-        <div class="main-div _2">
-          <div class="h4-mission services">
-            <h3 class="h4-type _1">Sign Up for THE One Safe Place Newsletter</h3>
-            <div class="yellow-div _2"></div>
-          </div>
-          <div class="form-block-2 w-form">
-            <form id="wf-form-Sign-up-Newsletter" name="wf-form-Sign-up-Newsletter" data-name="Sign up Newsletter" method="get" class="form" data-wf-page-id="6737a82d498521facec47bcf" data-wf-element-id="c5d5697b-90f9-b45e-96cb-880f552df39a"><input class="text-field w-input" maxlength="256" name="Email" data-name="Email" placeholder="Your Email" type="email" id="Email-3" required=""><input type="submit" data-wait="Please wait..." class="submit-button w-button" value="Subscribe"></form>
-            <div class="w-form-done">
-              <div>Thank you! Your submission has been received!</div>
-            </div>
-            <div class="w-form-fail">
-              <div>Oops! Something went wrong while submitting the form.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- ⛔ NEWSLETTER SECTION — DELIBERATELY OMITTED. REPO-WIDE STANDING RULE (Mat, 2026-06-29):
+     NEVER include the bottom "Sign Up for ... Newsletter" section on any hybrid page. The
+     Webflow newsletter form does not re-bind when injected after page load (degrades to a
+     bare GET), AND Mat does not want it on these pages. Do not re-add it. Rule lives in
+     ../../../HYBRID-CMS.md and this page's README.md. -->
+
