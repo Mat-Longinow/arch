@@ -1,0 +1,107 @@
+# Cops & Cones 2026 — Webflow Hybrid page (Children's Legacy Center)
+
+CLC's **Cops & Cones 2026** page, converted to the Webflow Hybrid model:
+Webflow holds a thin loader; the real page content lives here and ships by `git push`.
+This was the **proof-of-concept** for the entire hybrid workflow (first page built end-to-end).
+
+Repo-wide architecture (folder rules, routing, go-live process): see `../../../HYBRID-CMS.md`.
+Base model + image hosting + SEO tradeoffs: the Longinow Creative playbook
+`work/longinow-creative/playbooks/webflow-hybrid-autonomous-updates.md`.
+
+## 📄 What this page is
+
+A **pre-event promo**: it invites families to **Cops & Cones 2026** — a community event
+pairing local law-enforcement agencies with families over ice cream — and points them to
+the Facebook event to RSVP. **August 30, 2026, 1–4 PM at Turtle Bay** (relocated from
+The Park Food Truck Hub this year).
+
+Sections (top → bottom): hero → double-pane intro (copy + 2026 hero image + FB RSVP link)
+→ When & Where (Turtle Bay + Google Map) → Sponsors grid → Partners grid (law-enforcement
+agencies) → Newsletter signup. A post-event **recap photo grid** is present but commented
+out — re-enable it after the 2026 event with the day-of photos.
+
+**Static page — no JSON-CMS.**
+
+## 📂 Folder layout
+
+```
+cops-cones-2026/
+├── production/cops-cones-2026.html   ← guts the LIVE CLC custom domain loads
+├── preview/cops-cones-2026.html      ← guts every NON-production host loads
+├── webflow-embed-loader.html         ← the one-time Webflow Designer embed (reference copy)
+├── README.md                         ← this file
+└── */*.preview.html                  ← LOCAL styled previews (gitignored, never shipped)
+```
+
+Page-specific images live one level up in `../images/` (shared by CLC page convention),
+served via jsDelivr. There is **no `cms/`** — this page has no data collection.
+
+The **only** difference between `preview/cops-cones-2026.html` and
+`production/cops-cones-2026.html` is the ENV marker comment at the top. For a static page
+the two are otherwise identical; the split exists so future content changes can be staged
+on the preview host before flipping live.
+
+## 🔀 How a visitor's browser routes (preview vs production)
+
+The Webflow embed (`webflow-embed-loader.html`) reads `location.hostname`:
+
+- **Live CLC custom domain** (`PROD_HOST`) → fetches `production/cops-cones-2026.html`.
+- **Any other host** (Webflow staging `*.webflow.io`, preview/share links) → fetches
+  `preview/cops-cones-2026.html`.
+
+⚠️ **`PROD_HOST` is an unconfirmed placeholder (`childrenslegacycenter.org`).** OSP's and
+Arch's domains do **not** apply — CLC is a different org. Confirm the exact published CLC
+hostname with Mat and set it in `webflow-embed-loader.html` before go-live.
+
+## 🖼️ Images
+
+Self-hosted in `../images/` and referenced by **absolute jsDelivr URL** (required — the
+guts are injected into the Webflow domain, so relative paths would break):
+`https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/clc/pages/images/<file>`.
+
+Hosted here: `cops-cones-2026-hero.png` (1920×1080, the 2026 intro graphic Mat supplied).
+The hero **backdrop** and other decorative backgrounds are CSS-driven from CLC's live
+`clc-mnhstr` stylesheet — they resolve automatically on the live page, nothing to host.
+
+## ⚠️ Known caveat — the newsletter form
+
+The export's Webflow newsletter form is kept **verbatim** for fidelity. But Webflow.js
+binds forms at page load and will **not** re-initialize a form injected *after* load, so
+on the live injected page the AJAX submit + success/fail states won't fire (it degrades to
+a native GET to the same URL). If CLC wants this signup working on the hybrid page, wire a
+small custom handler — or drop the section and point signups at CLC's native newsletter page.
+
+## 📝 Open content items (non-blocking)
+
+- **Sponsor grid** — carries the 2025 roster as a placeholder per Mat; swap when the 2026
+  sponsor lineup is confirmed.
+- **Partner grid** — 2025 agencies were RPD, APD, SCSO, DA; confirm the 2026 set.
+- **Recap photo grid** — commented out; re-enable post-event with day-of photos.
+
+## ✍️ How to edit
+
+Change copy / the date / the FB link / sponsor logos: edit **both**
+`preview/cops-cones-2026.html` and `production/cops-cones-2026.html` (keep them in sync
+except the ENV marker), re-build the `.preview.html` companions if you want to eyeball
+offline, then commit + push. Live within ~5 min.
+
+**Preview locally without pushing:** double-click `production/cops-cones-2026.preview.html`
+(or the preview one). Self-contained, gitignored, renders fully styled offline using the
+local CLC export CSS + the repo-hosted hero image. Webflow JS interactions and the
+newsletter form aren't wired in the static preview; CSS background images need a connection.
+
+## 🚦 Go-live cutover (HOLD until Mat green-lights)
+
+Go-live is a deliberate, gated step:
+
+1. Confirm `PROD_HOST` (the real CLC published domain) with Mat; set it in
+   `webflow-embed-loader.html`.
+2. In Webflow Designer, replace the Cops & Cones page body with an HTML Embed containing
+   the loader from `webflow-embed-loader.html`. **This is the only Designer step, ever.**
+3. Push the repo (guts + images). Verify the raw + jsDelivr URLs return 200, the live page
+   renders the injected content, inherits CLC styling, the hero image loads, the map embeds,
+   and the Facebook RSVP link opens the 2026 event.
+4. From then on, every change is an autonomous `git push` — no Designer.
+
+**Promoting preview content to production** = copy the approved `preview/` guts into
+`production/`, **preserving production's ENV marker**, then push.
