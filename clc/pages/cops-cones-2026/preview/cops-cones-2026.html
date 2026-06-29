@@ -103,30 +103,79 @@
 </section>
 -->
 
-<!-- 5. SPONSORS GRID
-     TODO(Mat): roster below is carried over from 2025 as a placeholder.
-     Confirm the 2026 sponsor list with CLC before this goes live. -->
+<!-- 5. SPONSORS GRID — Git-backed JSON-CMS (cms/sponsors.json). Renders .team-card images,
+     env-gated: preview shows ALL items, production shows preview!==true. Edit the roster in
+     cms/sponsors.json + drop logos in cms/assets/ — no markup changes needed. See README.
+     Logos carried from the 2025 page (per Mat); swap as the 2026 roster firms up. -->
 <section class="team-circles cac-sponsors">
   <div class="container-7">
     <h2 class="centered-heading cops-cones">Thank You to Our 2026 Sponsors!</h2>
     <div class="yellow-div-copy"></div>
-    <div class="team-grid">
-      <div class="team-card"><img loading="lazy" src="#TODO-SPONSOR-LOGO" alt="" class="team-member-image"></div>
-      <!-- repeat .team-card per confirmed 2026 sponsor logo -->
-    </div>
+    <div id="lc-cops-sponsors" role="list" class="team-grid w-dyn-items" data-env="preview"></div>
+    <script>
+    (function () {
+      var CMS_JSON   = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/clc/pages/cops-cones-2026/cms/sponsors.json";
+      var ASSET_BASE = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/clc/pages/cops-cones-2026/cms/assets/";
+      var container  = document.getElementById("lc-cops-sponsors");
+      if (!container) return;
+      var ENV = container.getAttribute("data-env") || "production";
+      function resolveImage(img) { return !img ? "" : (/^https?:\/\//.test(img) ? img : ASSET_BASE + img); }
+      function render(items) {
+        var visible = items.filter(function (it) { return ENV === "preview" ? true : it.preview !== true; });
+        container.innerHTML = "";
+        visible.forEach(function (it) {
+          var card = document.createElement("div");
+          card.setAttribute("role", "listitem");
+          card.className = "team-card";
+          var img = document.createElement("img");
+          img.loading = "lazy"; img.className = "team-member-image";
+          img.alt = it.name || ""; img.src = resolveImage(it.image);
+          card.appendChild(img); container.appendChild(card);
+        });
+      }
+      fetch(CMS_JSON, { cache: "no-store" })
+        .then(function (r) { return r.json(); })
+        .then(function (data) { render((data && data.items) || []); })
+        .catch(function (e) { console.error("LC Cops & Cones sponsors CMS load failed:", e); });
+    })();
+    </script>
   </div>
 </section>
 
-<!-- 6. PARTNERS GRID (law-enforcement agencies)
-     TODO(Mat): confirm the 2026 partner agencies. 2025 were RPD, APD, SCSO, DA. -->
+<!-- 6. PARTNERS GRID (law-enforcement agencies) — Git-backed JSON-CMS (cms/partners.json).
+     Same render pattern as sponsors. Edit cms/partners.json + cms/assets/ to change agencies. -->
 <section class="team-circles">
   <div class="container-7">
     <h2 class="centered-heading cops-cones">Thank You to Our 2026 Partners!</h2>
     <div class="yellow-div-copy"></div>
-    <div class="team-grid">
-      <div class="team-card"><img loading="lazy" src="#TODO-PARTNER-LOGO" alt="" class="team-member-image"></div>
-      <!-- repeat .team-card per confirmed 2026 partner agency logo -->
-    </div>
+    <div id="lc-cops-partners" role="list" class="team-grid w-dyn-items" data-env="preview"></div>
+    <script>
+    (function () {
+      var CMS_JSON   = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/clc/pages/cops-cones-2026/cms/partners.json";
+      var ASSET_BASE = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/clc/pages/cops-cones-2026/cms/assets/";
+      var container  = document.getElementById("lc-cops-partners");
+      if (!container) return;
+      var ENV = container.getAttribute("data-env") || "production";
+      function resolveImage(img) { return !img ? "" : (/^https?:\/\//.test(img) ? img : ASSET_BASE + img); }
+      function render(items) {
+        var visible = items.filter(function (it) { return ENV === "preview" ? true : it.preview !== true; });
+        container.innerHTML = "";
+        visible.forEach(function (it) {
+          var card = document.createElement("div");
+          card.setAttribute("role", "listitem");
+          card.className = "team-card";
+          var img = document.createElement("img");
+          img.loading = "lazy"; img.className = "team-member-image";
+          img.alt = it.name || ""; img.src = resolveImage(it.image);
+          card.appendChild(img); container.appendChild(card);
+        });
+      }
+      fetch(CMS_JSON, { cache: "no-store" })
+        .then(function (r) { return r.json(); })
+        .then(function (data) { render((data && data.items) || []); })
+        .catch(function (e) { console.error("LC Cops & Cones partners CMS load failed:", e); });
+    })();
+    </script>
   </div>
 </section>
 

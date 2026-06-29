@@ -1,0 +1,11 @@
+{
+  "collection": "partners",
+  "fields": ["name", "image", "preview"],
+  "_notes": "Git-backed CMS for the Cops & Cones 'Partners' grid (law-enforcement agencies). Each item renders a .team-card > img.team-member-image, mirroring the live Webflow grid. 'image' = filename in ./assets/. 'preview': true = show on preview hosts only; false/omit = also live in production. Carried from the 2025 page (per Mat); order follows the intro copy (RPD, APD, SCSO, DA). See ../README.md.",
+  "items": [
+    { "name": "Redding Police Department",          "image": "pt-rpd.png",  "preview": false },
+    { "name": "Anderson Police Department",         "image": "pt-apd.jpg",  "preview": false },
+    { "name": "Shasta County Sheriff's Office",     "image": "pt-scso.png", "preview": false },
+    { "name": "Shasta County District Attorney",    "image": "pt-da.png",   "preview": false }
+  ]
+}
