@@ -1,17 +1,9 @@
 {
   "collection": "sponsors",
   "fields": ["name", "image", "preview"],
-  "_notes": "Git-backed CMS for the Cops & Cones 'Sponsors' grid. Each item renders a .team-card > img.team-member-image, mirroring the live Webflow grid. 'image' = filename in ./assets/. 'preview': true = show on preview hosts only; false/omit = also live in production. Logos carried from the 2025 page (per Mat) — swap/add as the 2026 roster firms up. Order matches the live page. See ../README.md.",
+  "_notes": "Git-backed CMS for the Cops & Cones 'Sponsors' grid. Each item renders a .team-card > img.team-member-image, mirroring the live Webflow grid. 'image' = filename in ./assets/. 'preview': true = show on preview hosts only; false/omit = also live in production. Pared down per Sarah 7/7/26 weekly: 2026 confirmed sponsors so far are 32 Below + BBSI only (the rest of the 2025 roster hadn't re-upped) — Sarah expects to add more as they confirm. The other 2025 logo files stay in ./assets/ (unused, not deleted) for quick re-add. See ../README.md.",
   "items": [
     { "name": "32 Below Ice Cream",                "image": "sp-32-below-ice-cream.png",       "preview": false },
-    { "name": "Sponsor (logo TBD-ID)",             "image": "sp-sponsor-02.png",               "preview": false },
-    { "name": "K2 Development Companies",          "image": "sp-k2-development.png",            "preview": false },
-    { "name": "Wagner",                            "image": "sp-wagner.png",                   "preview": false },
-    { "name": "Redding Electric Utility (REU)",    "image": "sp-redding-electric-utility.png", "preview": false },
-    { "name": "Sponsor (logo TBD-ID)",             "image": "sp-sponsor-06.png",               "preview": false },
-    { "name": "Win-River Resort & Casino",         "image": "sp-win-river-resort-casino.png",  "preview": false },
-    { "name": "Professional Exterminators of Redding", "image": "sp-professional-exterminators.png", "preview": false },
-    { "name": "BBSI",                              "image": "sp-bbsi.png",                     "preview": false },
-    { "name": "Tri Counties Bank",                 "image": "sp-tri-counties-bank.png",        "preview": false }
+    { "name": "BBSI",                              "image": "sp-bbsi.png",                     "preview": false }
   ]
 }

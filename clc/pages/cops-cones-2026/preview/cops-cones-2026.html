@@ -15,9 +15,10 @@
   into the Webflow domain so relative paths would break:
   https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/<file>
 
-  OPEN ITEM (non-blocking): sponsor + partner logo grids carry the 2025 roster as a
-  placeholder per Mat (RPD/APD/SCSO/DA) — swap when the 2026 lineup is confirmed.
-  Recap photo grid is omitted (commented) — it's a POST-event recap section.
+  Sponsor grid pared to 2026-confirmed sponsors per Sarah 7/7/26 weekly: 32 Below +
+  BBSI (more to be added as they confirm). Partner grid (RPD/APD/SCSO/DA) carried over
+  unchanged from 2025, confirmed still accurate. Recap photo grid is omitted (commented)
+  — it's a POST-event recap section.
 -->
 
 <!-- 1. HERO -->
@@ -105,10 +106,34 @@
 </section>
 -->
 
+<!-- 4.5 SPONSOR GUIDE CTA — links the Sponsor Guide PDF Sarah sent 7/7/26. Self-hosted
+     alongside this page's other assets (raw.githubusercontent.com, no jsDelivr — see the
+     "No CDN cache" note below). Button class ("button white bigger w-inline-block" +
+     "h4-type team") is the same CLC-native download-button pattern already live on
+     childrenslegacycenter.org/donor-resources — inherits CLC brand styling automatically. -->
+<div class="map cfr-what-to-expect">
+  <div class="page-padding cfr-what-to-expect">
+    <div class="container-large">
+      <div class="vertical-page">
+        <div class="map-text _2 cfr-what-to-expect less-padding-top" style="text-align:center;">
+          <h3 class="map-text cfr-what-to-expect less-padding-top">Interested in Sponsoring?</h3>
+          <div class="yellow-div" style="margin-left:auto;margin-right:auto;"></div>
+          <div class="map-body">Download our Sponsor Guide for the full lineup of 2026 sponsorship levels and benefits.</div>
+          <br>
+          <a href="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/documents/compressed_Cops-and-Cones-Sponsor-Guide---2026---7.7.26.pdf" target="_blank" rel="noopener" class="button white bigger w-inline-block">
+            <h4 class="h4-type team">Download Sponsor Guide</h4>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- 5. SPONSORS GRID — Git-backed JSON-CMS (cms/sponsors.json). Renders .team-card images,
      env-gated: preview shows ALL items, production shows preview!==true. Edit the roster in
      cms/sponsors.json + drop logos in cms/assets/ — no markup changes needed. See README.
-     Logos carried from the 2025 page (per Mat); swap as the 2026 roster firms up. -->
+     2026 confirmed sponsors (per Sarah 7/7/26): 32 Below + BBSI — more to be added as they
+     confirm. -->
 <section class="team-circles cac-sponsors">
   <div class="container-7">
     <h2 class="centered-heading cops-cones">Thank You to Our 2026 Sponsors!</h2>

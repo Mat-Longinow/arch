@@ -16,10 +16,24 @@ the Facebook event to RSVP. **August 30, 2026, 1–4 PM at Turtle Bay** (relocat
 The Park Food Truck Hub this year).
 
 Sections (top → bottom): hero → double-pane intro (copy + 2026 hero image + FB RSVP link)
-→ When & Where (Turtle Bay + Google Map) → Sponsors grid → Partners grid (law-enforcement
-agencies). A post-event **recap photo grid** is present but commented out — re-enable it
-after the 2026 event with the day-of photos. **There is NO newsletter section** — see the
-standing rule below.
+→ When & Where (Turtle Bay + Google Map) → **Sponsor Guide download CTA** → Sponsors grid
+→ Partners grid (law-enforcement agencies). A post-event **recap photo grid** is present
+but commented out — re-enable it after the 2026 event with the day-of photos. **There is
+NO newsletter section** — see the standing rule below.
+
+## 📄 Sponsor Guide download
+
+A "Interested in Sponsoring?" CTA sits right above the Sponsors grid, linking the PDF
+Sarah emailed 2026-07-07 ("Cops & Cones Sponsor Guide"). Hosted at
+`documents/compressed_Cops-and-Cones-Sponsor-Guide---2026---7.7.26.pdf` (raster-compressed
+from her ~11MB Canva export down to ~480KB via `pdftoppm` + Pillow — same reasoning as the
+"No CDN cache" rule below: keep this low-traffic event page fast). Served from
+raw.githubusercontent.com like everything else on this page — **not** jsDelivr, same
+reason as the images. Button uses the CLC-native `button white bigger w-inline-block` +
+`h4-type team` classes — the same download-button pattern already live on
+childrenslegacycenter.org/donor-resources, so it inherits CLC brand styling with zero new
+CSS. To swap the guide for an updated version: drop the new PDF in `documents/`, update
+the `href` in both `preview/` and `production/` guts, push.
 
 **Sponsors + Partners are a Git-backed JSON-CMS** (see below); the rest of the page is static.
 
@@ -42,9 +56,14 @@ controls visibility — `preview` renders ALL items, `production` renders only i
 
 **To change the roster:** edit `cms/sponsors.json` / `cms/partners.json` (add/remove/reorder
 items, set `preview: true` to stage a logo on preview-only), drop any new logo in `cms/assets/`,
-commit + push. **No markup edits.** Logos were pulled from the live 2025 page per Mat and
-carried forward; `sp-sponsor-02` and `sp-sponsor-06` are unlabeled (need ID), and the full
-2026 roster is pending CLC confirmation.
+commit + push. **No markup edits.**
+
+**Sponsors pared 2026-07-07 (Sarah weekly):** the grid carried the full 2025 roster as a
+placeholder; Sarah confirmed only **32 Below Ice Cream + BBSI** are locked in for 2026 so
+far and asked to pare the visible list down to just those two ("if we just want to pare
+down to those two that would be great") — more sponsors will be added to `sponsors.json`
+as they confirm. The other 2025 logo files stay in `cms/assets/` (unused, not deleted) for
+a quick re-add if any of them re-up. Partners were confirmed unchanged (RPD/APD/SCSO/DA).
 
 ## 📂 Folder layout
 
@@ -112,9 +131,10 @@ omission is intentional. Repo-wide mirror of this rule lives in `../../../HYBRID
 
 ## 📝 Open content items (non-blocking)
 
-- **Sponsor grid** — carries the 2025 roster as a placeholder per Mat; swap when the 2026
-  sponsor lineup is confirmed.
-- **Partner grid** — 2025 agencies were RPD, APD, SCSO, DA; confirm the 2026 set.
+- **Sponsor grid** — confirmed 2026-07-07: 32 Below + BBSI only for now; Sarah expects to
+  add more as they confirm.
+- **Partner grid** — confirmed 2026-07-07: 2025 agencies (RPD, APD, SCSO, DA) carry over
+  unchanged for 2026.
 - **Recap photo grid** — commented out; re-enable post-event with day-of photos.
 
 ## ✍️ How to edit
