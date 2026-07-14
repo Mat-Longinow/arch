@@ -1,0 +1,47 @@
+<!-- ============================================================================
+     DANCING WITH THE STARS 2026 — HUB — Webflow HTML Embed (the ONLY Designer step, ever).
+
+     Paste this ONCE into an HTML Embed that replaces the Stars Hub page body in the
+     Webflow Designer. After that, every content change ships by `git push` to the
+     page-guts files in this repo — no Designer, no permissions wall.
+
+     What it does:
+       1. ENV ROUTING — detects location.hostname. The live OSP custom domain loads the
+          production/ guts; any other host (Webflow staging *.webflow.io, preview/share
+          links) loads the preview/ guts. Lets us stage changes before go-live.
+       2. SCRIPT REHYDRATION — innerHTML does NOT execute injected <script> tags, so the
+          loader re-creates each injected <script> into a fresh element. (This page is
+          static today, but the rehydration is kept for parity + future-proofing.)
+
+     PROD_HOST = "ospshasta.org" — confirmed by Mat 2026-06-23 (One SAFE Place's live
+        published domain). www.ospshasta.org is handled by the leading-www strip below.
+     ============================================================================ -->
+<div id="lc-block-stars-hub" class="lc-embed"></div>
+<script>
+(function () {
+  var TARGET    = "lc-block-stars-hub";
+  var PROD_HOST = "ospshasta.org"; // confirmed by Mat 2026-06-23 (www handled by the strip below)
+  var REPO_BASE = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/stars-hub/";
+
+  var host   = location.hostname.replace(/^www\./, "");
+  var isProd = (host === PROD_HOST);
+  var SRC    = REPO_BASE + (isProd ? "production" : "preview") + "/stars-hub.html";
+
+  fetch(SRC, { cache: "no-store" })
+    .then(function (r) { return r.text(); })
+    .then(function (html) {
+      var target = document.getElementById(TARGET);
+      target.innerHTML = html;
+      // innerHTML doesn't run injected <script> — re-create each so any future script fires.
+      target.querySelectorAll("script").forEach(function (old) {
+        var s = document.createElement("script");
+        for (var i = 0; i < old.attributes.length; i++) {
+          s.setAttribute(old.attributes[i].name, old.attributes[i].value);
+        }
+        s.textContent = old.textContent;
+        old.parentNode.replaceChild(s, old);
+      });
+    })
+    .catch(function (e) { console.error("LC Stars Hub embed load failed:", e); });
+})();
+</script>

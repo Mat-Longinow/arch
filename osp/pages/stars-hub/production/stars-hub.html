@@ -1,9 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dancing with the Shasta Stars 2026 · Hub</title>
+<!--
+  PAGE: Dancing with the Shasta Stars 2026 — HUB — page-guts for the Webflow Hybrid loader.
+  ENV: production  (loaded by the LIVE custom domain only — see webflow-embed-loader.html)
+  Bespoke Longinow-built hub/landing page (NOT a Webflow export) for One SAFE Place's
+  17th Annual "Dancing with the Shasta Stars" (Sat Oct 17 2026, Cascade Theatre, Redding).
+  Self-contained: all CSS is inline in the <style> blocks below; no external/relative
+  assets, so it injects cleanly via the loader's innerHTML on the Webflow domain.
+
+  ARCHITECTURE: static page (no JSON-CMS) — mirrors crab-feed-2026/. The only difference
+  between preview/ and production/ is this ENV comment. Change page copy in BOTH files
+  (keep them in sync), commit + push; live within ~5 min. Repo-wide model: ../../../HYBRID-CMS.md
+-->
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600;700&display=swap');
 :root {
@@ -1387,8 +1394,7 @@ a:hover{text-decoration:underline;}
 
 
 </style>
-</head>
-<body>
+
 
 <!-- HERO -->
 <div class="hero">
@@ -3595,5 +3601,3 @@ document.querySelectorAll('a[href^="http"]').forEach(function(a){
 });
 </script>
 
-</body>
-</html>
