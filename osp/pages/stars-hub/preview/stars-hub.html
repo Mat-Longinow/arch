@@ -1393,6 +1393,14 @@ a:hover{text-decoration:underline;}
 
 
 
+/* JUDGES PANEL ─────────────────────────────────────────────────── */
+.judges-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--rule-line);border:1px solid var(--rule-line);margin-top:8px;}
+.judge-card{background:var(--paper-warm);padding:26px 30px;}
+.judge-role{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px;}
+.judge-name{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--ink);line-height:1.2;}
+.judge-affil{font-family:var(--serif);font-size:15px;color:var(--ink-mid);margin-top:4px;font-style:italic;}
+@media (max-width:600px){.judges-grid{grid-template-columns:1fr;}}
+
 </style>
 
 
@@ -1514,7 +1522,7 @@ a:hover{text-decoration:underline;}
         <div class="dtag dtag-e">Costumes</div>
         <div class="dc-when" data-isodate="2026-08-17">Week of August 17 to 21, 2026</div>
         <div class="dc-what">Costume Fittings</div>
-        <div class="dc-note">Every team gets a scheduled meeting. Come with your vision so we can order and build quickly. <a href="https://outlook.office.com/book/CostumeMeetingsDWTSS2026@childrenslegacycenter.org/?ismsaljsauthenabled" target="_blank" style="color:var(--gold);text-decoration:underline;font-weight:600;">Book Your Costume Appointment &rarr;</a></div>
+        <div class="dc-note">Every team gets a scheduled meeting. Book your time slot ASAP so we can order and build quickly. Come with your vision. <a href="https://bookings.cloud.microsoft/book/CostumeMeetingsDWTSS2026@childrenslegacycenter.org/s/hseU2bjjK0mz74GJJLsfEA2?ismsaljsauthenabled" target="_blank" style="color:var(--gold);text-decoration:underline;font-weight:600;">Book Your Costume Appointment &rarr;</a></div>
       </div>
       <div class="date-card">
         <div class="dtag">Ongoing</div>
@@ -1636,14 +1644,16 @@ a:hover{text-decoration:underline;}
       <div class="date-card"><div class="dtag">Launch</div><div class="dc-when" data-isodate="2026-05-21">Thursday, May 21, 2026</div><div class="dc-what">Cast Announced &amp; Fundraising Pages Live</div><div class="dc-note">One SAFE Place announces the full cast on social media. Your personal fundraising page goes live. Share it everywhere.</div></div>
       <div class="date-card"><div class="dtag">Rehearsals</div><div class="dc-when" data-isodate="2026-06-30">June 2026</div><div class="dc-what">Rehearsals Begin &amp; Strategy Session with Elizabeth</div><div class="dc-note">Spaces available June 1 via the booking tool. Schedule your June fundraising strategy session with Elizabeth Schroeder as soon as possible.</div></div>
       <div class="date-card dark"><div class="dtag dtag-e">Cast Meetup</div><div class="dc-when" data-isodate="2026-07-23">Thursday, July 23, 2026 &middot; 5:30 to 7:00 PM</div><div class="dc-what">First Cast Meetup</div><div class="dc-note">Vintage Public House, Redding. Our first full-cast gathering of the season. Bring your team.</div></div>
-      <div class="date-card"><div class="dtag">Production</div><div class="dc-when" data-isodate="2026-07-31">July 2026</div><div class="dc-what">Behind-the-Scenes Video Shoot</div><div class="dc-note">First BTS video shoot, scheduled individually per couple. Exact date confirmed by the events team.</div></div>
-      <div class="date-card"><div class="dtag">Production</div><div class="dc-when" data-isodate="2026-08-31">August 2026</div><div class="dc-what">Monthly Cast Meetup &amp; Costumes</div><div class="dc-note">Second BTS video shoot. Costumes purchased by August with the $350 allowance per couple. Second cast meetup.</div></div>
+      <div class="date-card"><div class="dtag">Production</div><div class="dc-when" data-isodate="2026-07-27">Week of July 27 to 31, 2026</div><div class="dc-what">BTS Video Shoots Begin with Benji Thompson</div><div class="dc-note">Benji Thompson of Alive Broadcasts starts popping into rehearsals to capture b-roll footage. He will use the rehearsal booking tool and drop into scheduled practices. Benji will let the events team know when he is coming, and Sarah will pass the heads up to your team before each shoot. Benji will not reach out to you directly.</div></div>
+      <div class="date-card"><div class="dtag">Production</div><div class="dc-when" data-isodate="2026-08-31">August 2026</div><div class="dc-what">BTS Video Shoots Continue</div><div class="dc-note">Benji continues dropping into rehearsals through August as needed until every couple is captured on camera. Same drop-in format, same heads up before each visit.</div></div>
+      <div class="date-card"><div class="dtag">Production</div><div class="dc-when" data-isodate="2026-08-31">August 2026</div><div class="dc-what">Second Cast Meetup &middot; Date TBD</div><div class="dc-note">Second full-cast gathering of the season. Date and location coming soon. Costumes purchased by August with the $350 allowance per couple.</div></div>
       <div class="date-card"><div class="dtag">Tickets</div><div class="dc-when" data-isodate="2026-08-15">Saturday, August 15, 2026</div><div class="dc-what">Cast Pre-Sale Tickets Open</div><div class="dc-note">Stars and cast get early access. Promo code: Cast2026. General public tickets open September 1.</div></div>
+      <div class="date-card"><div class="dtag">Production</div><div class="dc-when" data-isodate="2026-08-28">Thursday &amp; Friday, August 27 &amp; 28, 2026</div><div class="dc-what">Sit-Down Intro Videos with Benji <em>(Tentative)</em></div><div class="dc-note">Individual intro video filming for each star and pro dancer team. Different from Benji&apos;s rehearsal drop-ins. Dates are tentative. Booking link coming soon so you can select your time slot.</div></div>
       <div class="date-card"><div class="dtag">Tickets</div><div class="dc-when" data-isodate="2026-09-01">Tuesday, September 1, 2026</div><div class="dc-what">General Public Tickets On Sale</div><div class="dc-note">Cascade Theatre box office and online. Share the link with your network.</div></div>
       <div class="date-card"><div class="dtag">Production</div><div class="dc-when" data-isodate="2026-09-30">September 2026</div><div class="dc-what">Monthly Cast Meetup</div><div class="dc-note">Final monthly cast gathering before show month. Dates TBD.</div></div>
-      <div class="date-card dark"><div class="dtag dtag-e">Tech</div><div class="dc-when" data-isodate="2026-10-13">October 12 &amp; 13, 2026</div><div class="dc-what">Tech Rehearsals</div><div class="dc-note">2-hour blocks at the Cascade Theatre, assigned individually. Times confirmed by Tara Lihn Faires.</div></div>
-      <div class="date-card"><div class="dtag">Rehearsal</div><div class="dc-when" data-isodate="2026-10-16">Friday, October 16, 2026</div><div class="dc-what">Dress Rehearsal</div><div class="dc-note">Full dress rehearsal at the Cascade Theatre. All couples required.</div></div>
-      <div class="date-card dark"><div class="dtag dtag-e">Show Night</div><div class="dc-when" data-isodate="2026-10-17">Saturday, October 17, 2026 &middot; 6:00 PM</div><div class="dc-what">Dancing with the Shasta Stars 2026</div><div class="dc-note">Cascade Theatre, 1731 Market St., Redding, CA. Doors open at 5:30 PM. Call time TBD by Tara Lihn Faires.</div></div>
+      <div class="date-card dark"><div class="dtag dtag-e">Cascade Stage</div><div class="dc-when" data-isodate="2026-10-12">Monday, October 12, 2026 &middot; 8:00 AM to 8:00 PM</div><div class="dc-what">First Practice on the Cascade Stage with Tara</div><div class="dc-note">Your first time on the Cascade Theatre stage with Tara. Every couple (you and your pro dancer together) gets a 90-minute block between 8:00 AM and 8:00 PM. If you cannot make your Monday block, backup slots are available Tuesday, October 13 from 5:00 to 6:30 PM or 6:30 to 8:00 PM. Any Tuesday slots not used by stars go to alumni and then pros. <a href="https://bookings.cloud.microsoft/book/OnStageRehearsal@childrenslegacycenter.org/?ismsaljsauthenabled" target="_blank" style="color:var(--gold);text-decoration:underline;font-weight:600;">Book Your On-Stage Rehearsal Time &rarr;</a></div></div>
+      <div class="date-card dark"><div class="dtag dtag-e">Full Day</div><div class="dc-when" data-isodate="2026-10-16">Friday, October 16, 2026 &middot; 11:00 AM Call</div><div class="dc-what">Dress Rehearsal</div><div class="dc-note">Cascade Theatre. Call time is 11:00 AM for you and your pro dancer. Bring everything you need for the show and get settled in the green room. You and your dancer are together for the full day.<br><br><strong>12:00 to 4:00 PM</strong> &middot; 30-minute tech rehearsals per couple, in show order.<br><strong>4:00 to 5:00 PM</strong> &middot; Break.<br><strong>5:00 PM</strong> &middot; Full costume call. Pro Dance ensemble tech rehearsal.<br><strong>5:30 PM</strong> &middot; Alumni tech rehearsal.<br><strong>6:00 PM</strong> &middot; Full costume dress rehearsal with couples begins.<br><strong>9:00 to 10:00 PM</strong> &middot; Expected end.<br><br>Green room will be stocked with snacks and small bites throughout the afternoon. Dinner will be provided.</div></div>
+      <div class="date-card dark"><div class="dtag dtag-e">Show Night</div><div class="dc-when" data-isodate="2026-10-17">Saturday, October 17, 2026 &middot; Noon Call <em>(Tentative)</em></div><div class="dc-what">Dancing with the Shasta Stars 2026</div><div class="dc-note">Cascade Theatre, 1731 Market St., Redding, CA. Show day schedule is tentative and being finalized.<br><br><strong>10:00 AM</strong> &middot; Stage open for rehearsals.<br><strong>12:00 PM</strong> &middot; Call time (tentative).<br><strong>12:30 PM</strong> &middot; Hair and makeup begins for stars and dancers.<br><strong>4:30 PM</strong> &middot; Red carpet pre-party begins.<br><strong>5:00 PM</strong> &middot; Star red carpet arrivals begin.<br><strong>5:15 PM</strong> &middot; Doors open.<br><strong>6:00 PM</strong> &middot; Show begins.<br><br>Lunch, green room snacks, and dinner will be provided.</div></div>
     </div>
   </div>
 
@@ -1852,6 +1862,30 @@ a:hover{text-decoration:underline;}
     <div class="note note-teal" style="margin-top:8px;">
       <strong>Offline Donations &amp; Other Ways to Give</strong>
       <div class="note-body"><strong>Checks must be made out to One SAFE Place.</strong> Other payment options are available through your personal fundraising QR code. Any questions about payments or donations go straight to Elizabeth at e.schroeder@ospshasta.org or (530) 945-2476. She is the right person and she is happy to help.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="eye">Promote Your Fundraiser</span>
+    <div class="sec-title">Tell us what you&apos;re <em>up to.</em></div>
+    <div class="sec-intro">If you are hosting a fundraiser event, we want to promote it for you. Send us the details and we will add it to the website and share it across One SAFE Place channels.</div>
+
+    <div class="note note-teal">
+      <strong>What to Send</strong>
+      <div class="note-body">Send the following to Sarah at <a href="mailto:s.peery@archcollaborative.org">s.peery@archcollaborative.org</a> or (530) 917-5270:<br><br>
+        &#10003;&nbsp; Name or type of event<br>
+        &#10003;&nbsp; Date and time<br>
+        &#10003;&nbsp; Location<br>
+        &#10003;&nbsp; Ticket price or donation ask<br>
+        &#10003;&nbsp; Where to buy tickets or how to RSVP<br>
+        &#10003;&nbsp; A photo or graphic if you have one<br>
+        &#10003;&nbsp; Anything else that will help promote it
+      </div>
+    </div>
+
+    <div class="note note-dark" style="margin-top:8px;">
+      <strong>Weekly Fundraising Updates from Glori</strong>
+      <div class="note-body">Glori sends out weekly fundraising updates every Monday. Watch your inbox to see how the campaign is progressing, where you stack up against the rest of the cast, and what is coming next.</div>
     </div>
   </div>
 
@@ -2115,7 +2149,7 @@ a:hover{text-decoration:underline;}
         <div class="so-content">
           <div class="so-label">Closes the Evening</div>
           <div class="so-title">Awards Presentation</div>
-          <div class="so-note">Six awards presented. Mirror Ball Champion crowned. The community celebrates what everyone built together.</div>
+          <div class="so-note">Seven awards presented. Mirrorball Champion crowned. The community celebrates what everyone built together.</div>
         </div>
       </div>
     </div>
@@ -2520,7 +2554,7 @@ a:hover{text-decoration:underline;}
 
   <div class="note note-teal">
     <strong>Example Explanation</strong>
-    <div class="note-body">Dancing with the Shasta Stars is the 17th annual Broadway-style dance competition at the Cascade Theatre where six community members learn a routine with professional dancers and perform live to raise funds and awareness for the services of One SAFE Place, which supports survivors of domestic violence, sexual assault, and trafficking in Shasta County. Awards are presented for both dance performance and fundraising.</div>
+    <div class="note-body">Dancing with the Shasta Stars is the 17th annual Broadway-style dance competition at the Cascade Theatre where eight community members learn a routine with professional dancers and perform live to raise funds and awareness for the services of One SAFE Place, which supports survivors of domestic violence, sexual assault, and trafficking in Shasta County. Awards are presented for both dance performance and fundraising.</div>
   </div>
 </div>
 <hr class="rule">
@@ -2552,7 +2586,7 @@ a:hover{text-decoration:underline;}
     </div>
     <div class="vc">
       <div class="vc-t">Community at the Center</div>
-      <div class="vc-b">Six of our neighbors are on that stage. The warmth of a hometown production that happens to look like Broadway.</div>
+      <div class="vc-b">Eight of our neighbors are on that stage. The warmth of a hometown production that happens to look like Broadway.</div>
     </div>
     <div class="vc">
       <div class="vc-t">Purpose in the Subtext</div>
@@ -2841,7 +2875,7 @@ a:hover{text-decoration:underline;}
   <div class="ch-n"><div class="ch-num">08</div><div class="ch-tag">Stars &amp; Teams</div></div>
   <div class="ch-b">
     <div class="ch-title">For Stars &amp;<br><em>Their Teams</em></div>
-    <p class="ch-desc">You are one of six community stars lighting up the Cascade this October. Your "team" is the circle around you: friends, colleagues, neighbors, clients, anyone who will help you fundraise, spread the word, and buy tickets. This chapter is built for both of you.</p>
+    <p class="ch-desc">You are one of eight community stars lighting up the Cascade this October. Your "team" is the circle around you: friends, colleagues, neighbors, clients, anyone who will help you fundraise, spread the word, and buy tickets. This chapter is built for both of you.</p>
   </div>
 </div>
 <div class="pg">
@@ -2894,7 +2928,7 @@ a:hover{text-decoration:underline;}
   <h2>When friends ask, <em>here's how to answer</em></h2>
 
   <h3>"What is this thing?"</h3>
-  <p>Dancing with the Shasta Stars is a Broadway-style dance production at the Cascade Theatre where six local community members learn a dance routine, perform live, and raise funds for One SAFE Place. Last year it raised $184,000 and filled the theatre.</p>
+  <p>Dancing with the Shasta Stars is a Broadway-style dance production at the Cascade Theatre where eight local community members learn a dance routine, perform live, and raise funds for One SAFE Place. Last year it raised $184,000 and filled the theatre.</p>
 
   <h3>"Where does the money go?"</h3>
   <p>Every dollar goes to One SAFE Place, which runs emergency shelter, a 24/7 crisis hotline, legal services, transitional housing, and community prevention and education for survivors of domestic violence, sexual assault, and trafficking in Shasta County. Your donation funds real programs that are in operation right now.</p>
@@ -3066,7 +3100,7 @@ a:hover{text-decoration:underline;}
 
   <div class="note">
     <strong>Official "About" Paragraph</strong>
-    <div class="note-body">Dancing with the Shasta Stars 2026 is a Broadway-style dance production on Saturday, October 17 at the Cascade Theatre in Redding, California. Presented by Obsidian IT and hosted by One SAFE Place, the event features six community members performing alongside professional dancers to raise funds for One SAFE Place's life-saving programs supporting survivors of domestic violence, sexual assault, and trafficking. Now in its return to the Broadway Edition theme, the event raised $184,000 and filled the Cascade Theatre in 2025. Tickets are available through the Cascade Theatre box office at cascadetheatre.org. Sponsorship information is at ospshasta.org.</div>
+    <div class="note-body">Dancing with the Shasta Stars 2026 is a Broadway-style dance production on Saturday, October 17 at the Cascade Theatre in Redding, California. Presented by Obsidian IT and hosted by One SAFE Place, the event features eight community members performing alongside professional dancers to raise funds for One SAFE Place's life-saving programs supporting survivors of domestic violence, sexual assault, and trafficking. Now in its return to the Broadway Edition theme, the event raised $184,000 and filled the Cascade Theatre in 2025. Tickets are available through the Cascade Theatre box office at cascadetheatre.org. Sponsorship information is at ospshasta.org.</div>
   </div>
 
   <h2>Who speaks <em>to press</em></h2>
@@ -3223,6 +3257,34 @@ a:hover{text-decoration:underline;}
   </div>
 
   <div class="section">
+    <span class="eye">The Panel</span>
+    <div class="sec-title sec-title-teal">Meet the <em>2026 judges.</em></div>
+    <div class="sec-intro">This year's panel brings four distinct perspectives to every performance: someone who has been in the stars' shoes, someone who dances at the highest level, someone who has partnered a star as their pro, and someone whose star turn is still ahead of them. Each seat is intentional.</div>
+    <div class="judges-grid">
+      <div class="judge-card">
+        <div class="judge-role">Former Star</div>
+        <div class="judge-name">Cynthia Stephens</div>
+        <div class="judge-affil">2024 Mirrorball Champion &middot; Entrepreneur, Army Veteran, Philanthropist</div>
+      </div>
+      <div class="judge-card">
+        <div class="judge-role">Pro Dancer</div>
+        <div class="judge-name">Lisa Broere</div>
+        <div class="judge-affil">Founder &amp; Director, Commūne Dance Company</div>
+      </div>
+      <div class="judge-card">
+        <div class="judge-role">Former Pro Dancer</div>
+        <div class="judge-name">Luke Swanson</div>
+        <div class="judge-affil">2025 Show &middot; Arthur Murray Dance Co. Trained &middot; Registered Dental Hygienist</div>
+      </div>
+      <div class="judge-card">
+        <div class="judge-role">Nominee &amp; Future Star</div>
+        <div class="judge-name">Dr. Curtis Newcomb, OD</div>
+        <div class="judge-affil">Shasta Professional Eye Care</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
     <span class="eye">Who to Call</span>
     <div class="sec-title sec-title-teal">Your <em>contacts.</em></div>
     <div class="contacts-grid">
@@ -3342,6 +3404,14 @@ a:hover{text-decoration:underline;}
       <div class="note-body">Please make sure Tara is included on all team text threads. Send videos, rehearsal updates, and any behind-the-scenes moments as they happen. It helps her build the social content pipeline in real time and keep the creative direction connected across couples.</div>
     </div>
     <div class="note note-dark" style="margin-top:8px;">
+      <strong>BTS Video Shoots with Benji: Late July through August</strong>
+      <div class="note-body">Benji Thompson from Alive Broadcasts will start popping into rehearsals the week of July 27 and continue through August as needed until he catches every couple on camera. He has access to the rehearsal booking tool and will drop into scheduled practices. Benji will let the events team know when he is coming, and Sarah will pass the heads up to your team so you can confirm your location, time, and be video ready. Benji will not reach out to you directly. Dressing well and coming with clean hair goes a long way.</div>
+    </div>
+    <div class="note note-dark" style="margin-top:8px;">
+      <strong>Sit-Down Intro Videos with Benji: August 27 &amp; 28 (Tentative)</strong>
+      <div class="note-body">In addition to the rehearsal drop-ins, Benji will film individual sit-down intro videos with each star and pro dancer team on Thursday and Friday, August 27 and 28. Dates are tentative. Booking link coming soon so your team can select your time slot together.</div>
+    </div>
+    <div class="note note-dark" style="margin-top:8px;">
       <strong>Costume Meetings: Week of August 17 to 21</strong>
       <div class="note-body">Costume fittings run the week of August 17 to 21. Stars are scheduling the appointments through the booking link on the Stars tab. Please plan to attend your team&apos;s appointment with your star if you can. Your input matters and it is much easier to get the look right when the whole team is in the room.</div>
     </div>
@@ -3396,9 +3466,9 @@ a:hover{text-decoration:underline;}
       <div class="date-card"><div class="dtag">Rehearsals</div><div class="dc-when" data-isodate="2026-06-01">June 1, 2026</div><div class="dc-what">Rehearsal Spaces Open for Booking</div><div class="dc-note">Book through the rehearsal booking tool starting June 1. Coordinate with your star and choreographer on a regular schedule.</div></div>
       <div class="date-card"><div class="dtag">Production</div><div class="dc-when" data-isodate="2026-07-31">July 2026</div><div class="dc-what">Behind-the-Scenes Video Shoot</div><div class="dc-note">One per couple, scheduled individually. Exact date confirmed by events team.</div></div>
       <div class="date-card"><div class="dtag">Production</div><div class="dc-when" data-isodate="2026-08-31">August 2026</div><div class="dc-what">Second BTS Video Shoot</div><div class="dc-note">Second video shoot, scheduled individually.</div></div>
-      <div class="date-card dark"><div class="dtag dtag-e">Tech</div><div class="dc-when" data-isodate="2026-10-13">October 12 &amp; 13, 2026</div><div class="dc-what">Tech Rehearsals</div><div class="dc-note">2-hour blocks assigned individually at the Cascade Theatre. Exact times confirmed by Tara Lihn Faires.</div></div>
-      <div class="date-card"><div class="dtag">Rehearsal</div><div class="dc-when" data-isodate="2026-10-16">Friday, October 16, 2026</div><div class="dc-what">Dress Rehearsal</div><div class="dc-note">Full dress rehearsal at the Cascade Theatre. All couples required.</div></div>
-      <div class="date-card dark"><div class="dtag dtag-e">Show Night</div><div class="dc-when" data-isodate="2026-10-17">Saturday, October 17, 2026 &middot; 6:00 PM</div><div class="dc-what">Dancing with the Shasta Stars 2026</div><div class="dc-note">Cascade Theatre, 1731 Market St., Redding, CA. Call time to be confirmed by Tara Lihn Faires.</div></div>
+      <div class="date-card dark"><div class="dtag dtag-e">Cascade Stage</div><div class="dc-when" data-isodate="2026-10-12">Monday, October 12, 2026 &middot; 8:00 AM to 8:00 PM</div><div class="dc-what">First Practice on the Cascade Stage with Tara</div><div class="dc-note">Your first time on the Cascade Theatre stage with Tara. Your star schedules the 90-minute block between 8:00 AM and 8:00 PM Monday and you are on stage with them for the full block. Tuesday backup slots (5:00 to 6:30 PM or 6:30 to 8:00 PM) will be used for any couples that cannot make Monday, then alumni, then pros. <a href="https://bookings.cloud.microsoft/book/OnStageRehearsal@childrenslegacycenter.org/?ismsaljsauthenabled" target="_blank" style="color:var(--gold);text-decoration:underline;font-weight:600;">Book Your On-Stage Rehearsal Time &rarr;</a></div></div>
+      <div class="date-card dark"><div class="dtag dtag-e">Full Day</div><div class="dc-when" data-isodate="2026-10-16">Friday, October 16, 2026 &middot; 11:00 AM Call</div><div class="dc-what">Dress Rehearsal</div><div class="dc-note">Cascade Theatre. Call time is 11:00 AM with your star. You are together for the full day.<br><br><strong>12:00 to 4:00 PM</strong> &middot; 30-minute tech rehearsals per couple, in show order.<br><strong>4:00 to 5:00 PM</strong> &middot; Break.<br><strong>5:00 PM</strong> &middot; Full costume call. Pro Dance ensemble tech rehearsal.<br><strong>5:30 PM</strong> &middot; Alumni tech rehearsal.<br><strong>6:00 PM</strong> &middot; Full costume dress rehearsal with couples begins.<br><strong>9:00 to 10:00 PM</strong> &middot; Expected end.<br><br>Green room will be stocked with snacks and small bites throughout the afternoon. Dinner will be provided.</div></div>
+      <div class="date-card dark"><div class="dtag dtag-e">Show Night</div><div class="dc-when" data-isodate="2026-10-17">Saturday, October 17, 2026 &middot; Noon Call <em>(Tentative)</em></div><div class="dc-what">Dancing with the Shasta Stars 2026</div><div class="dc-note">Cascade Theatre, 1731 Market St., Redding, CA. Show day schedule is tentative and being finalized.<br><br><strong>10:00 AM</strong> &middot; Stage open for rehearsals.<br><strong>12:00 PM</strong> &middot; Call time (tentative).<br><strong>12:30 PM</strong> &middot; Hair and makeup begins for stars and dancers.<br><strong>4:30 PM</strong> &middot; Red carpet pre-party begins.<br><strong>5:00 PM</strong> &middot; Star red carpet arrivals begin.<br><strong>5:15 PM</strong> &middot; Doors open.<br><strong>6:00 PM</strong> &middot; Show begins.<br><br>Lunch, green room snacks, and dinner will be provided.</div></div>
     </div>
   </div>
 
@@ -3459,15 +3529,16 @@ a:hover{text-decoration:underline;}
     </div>
     <div class="sec-intro" style="margin-top:16px;">If you are a 2025 alumnus and want to participate, reach out to Sarah Peery at s.peery@archcollaborative.org.</div>
     <div class="dates-grid">
-      <div class="date-card"><div class="dtag">Alumni</div><div class="dc-when" data-isodate="2026-10-12">October 12, 2026</div><div class="dc-what">Alumni Tech Rehearsal</div><div class="dc-note">Morning time TBD. Cascade Theatre. Confirmed by Tara Lihn Faires.</div></div>
-      <div class="date-card dark"><div class="dtag dtag-e">Show Night</div><div class="dc-when" data-isodate="2026-10-17">Saturday, October 17, 2026</div><div class="dc-what">Alumni Opening Number</div><div class="dc-note">Alumni open the show. Call time confirmed closer to the event.</div></div>
+      <div class="date-card"><div class="dtag">Alumni</div><div class="dc-when" data-isodate="2026-10-12">Monday, October 12, 2026</div><div class="dc-what">Cascade Stage Tech</div><div class="dc-note">Alumni tech on the Cascade Theatre stage. If Tuesday backup slots are needed by stars, they take priority; otherwise alumni get first pick of the Tuesday 5:00 to 8:00 PM window. Time confirmed by Tara Lihn Faires.</div></div>
+      <div class="date-card"><div class="dtag">Rehearsal</div><div class="dc-when" data-isodate="2026-10-16">Friday, October 16, 2026 &middot; 5:30 PM Call</div><div class="dc-what">Dress Rehearsal</div><div class="dc-note">Cascade Theatre. Alumni call time is 5:30 PM. No costume needed for dress rehearsal, costume notes TBD. Pros tech at 5:00 PM, alumni tech at 5:30 PM, and stars begin their full dress rehearsal at 6:00 PM. Alumni are free to leave after your portion of the rehearsal.</div></div>
+      <div class="date-card dark"><div class="dtag dtag-e">Show Night</div><div class="dc-when" data-isodate="2026-10-17">Saturday, October 17, 2026 <em>(Tentative)</em></div><div class="dc-what">Alumni Opening Number</div><div class="dc-note">Alumni open the show. Cascade Theatre. Show day schedule is tentative and being finalized. Red carpet pre-party begins at 4:30 PM, star arrivals begin at 5:00 PM, doors open at 5:15 PM, show begins at 6:00 PM. Alumni call time to be confirmed. Lunch, green room snacks, and dinner will be provided.</div></div>
     </div>
   </div>
 
   <div class="section">
     <span class="eye">Past Stars</span>
     <div class="sec-title">The <em>alumni.</em></div>
-    <div class="sec-intro">Six stars who showed up fully for One SAFE Place and for the survivors we serve. That is the standard the 2026 cast is building on.</div>
+    <div class="sec-intro">Eight stars who showed up fully for One SAFE Place and for the survivors we serve. That is the standard the 2026 cast is building on.</div>
     <div class="note note-dark">
       <strong>2025 Mirrorball Champion</strong>
       <div class="note-body">Eva Jimenez took home the 2025 Mirrorball. The bar has been set. The 2026 cast knows what they are chasing.</div>
