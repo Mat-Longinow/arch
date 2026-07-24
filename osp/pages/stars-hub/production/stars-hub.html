@@ -1,10 +1,14 @@
 <!--
   PAGE: Dancing with the Shasta Stars 2026 — HUB — page-guts for the Webflow Hybrid loader.
   ENV: production  (loaded by the LIVE custom domain only — see webflow-embed-loader.html)
-  Bespoke Longinow-built hub/landing page (NOT a Webflow export) for One SAFE Place's
-  17th Annual "Dancing with the Shasta Stars" (Sat Oct 17 2026, Cascade Theatre, Redding).
-  Self-contained: all CSS is inline in the <style> blocks below; no external/relative
-  assets, so it injects cleanly via the loader's innerHTML on the Webflow domain.
+  SOURCE OF TRUTH: Sarah Peery's authored hub export, emailed 2026-07-23 ("New Hub",
+  dwtss_2026_hub (14).html). Adopted WHOLESALE 2026-07-23 — we no longer hand-merge her
+  changes into a Longinow base, because her sends are full rewrites (layout + design), not
+  deltas, and delta-merging silently dropped her star-nav redesign. On the next export:
+  re-run this same strip-and-drop-in, do NOT cherry-pick.
+  Only local carry-forward: Tori Boersma's alt email (communedancecompany@gmail.com).
+  Self-contained: all CSS inline below; no external/relative assets, so it injects cleanly
+  via the loader's innerHTML on the Webflow domain.
 
   ARCHITECTURE: static page (no JSON-CMS) — mirrors crab-feed-2026/. The only difference
   between preview/ and production/ is this ENV comment. Change page copy in BOTH files
@@ -338,15 +342,6 @@ a:hover{text-decoration:underline;}
   .footer{padding:40px 24px 36px;}
 }
 
-@media(max-width:600px){
-  .logo-bar{flex-direction:column;align-items:center;gap:20px;}
-  .logo-bar > img{height:auto!important;width:auto!important;max-width:84%!important;margin:0 auto;}
-  .logo-bar > div{margin-left:0!important;justify-content:center;}
-  .tab-bar::after{content:'';position:absolute;top:0;right:0;bottom:0;width:64px;background:linear-gradient(to right,rgba(26,21,18,0),var(--ink) 72%);pointer-events:none;z-index:5;}
-  .tab-bar::before{content:'\2192';position:absolute;top:50%;right:15px;transform:translateY(-50%);color:var(--gold-bright);font-size:20px;font-weight:600;pointer-events:none;z-index:6;animation:tabCueNudge 1.6s ease-in-out infinite;}
-}
-@keyframes tabCueNudge{0%,100%{transform:translateY(-50%) translateX(0);}50%{transform:translateY(-50%) translateX(5px);}}
-
 /* ── BRAND GUIDE EMBEDDED ── */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600;700&display=swap');
@@ -400,7 +395,7 @@ a:hover{text-decoration:underline;}
 .brand-guide-embed .cover{
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  min-height: 760px; /* was 100vh — vh loops against the auto-resizing iframe height */
+  min-height: 100vh;
   background: var(--paper);
 }
 
@@ -1393,6 +1388,35 @@ a:hover{text-decoration:underline;}
 
 
 
+
+/* COMPACT STAR CAST ─────────────────────────────────────────────── */
+.star-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;background:var(--rule-line);border:1px solid var(--rule-line);margin-top:8px;margin-bottom:20px;}
+.star-nav-btn{background:var(--paper-warm);padding:12px 16px;cursor:pointer;border:none;text-align:left;font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mid);transition:background .2s,color .2s;display:flex;align-items:baseline;gap:10px;}
+.star-nav-btn:hover{background:var(--paper);color:var(--ink);}
+.star-nav-btn.active{background:var(--ink);color:var(--cream);}
+.star-nav-num{font-family:var(--serif);font-size:14px;font-weight:400;letter-spacing:0;color:var(--gold-deep);flex-shrink:0;}
+.star-nav-btn.active .star-nav-num{color:var(--gold-warm);}
+.star-nav-name{font-family:var(--serif);font-size:15px;font-weight:400;letter-spacing:0;text-transform:none;color:inherit;}
+.star-panel{display:none;}
+.star-panel.active{display:block;}
+.star-panel-header{background:var(--ink);padding:28px 36px;margin-bottom:2px;display:flex;align-items:baseline;gap:20px;}
+.star-panel-num{font-family:var(--serif);font-size:34px;font-weight:400;color:var(--gold-warm);line-height:1;}
+.star-panel-name{font-family:var(--serif);font-size:32px;font-weight:400;color:var(--cream);line-height:1.1;}
+.star-panel-fields{background:var(--paper-warm);padding:22px 36px;}
+.spf-row{display:flex;padding:10px 0;border-bottom:1px solid var(--rule-line);gap:16px;align-items:baseline;}
+.spf-row:last-child{border-bottom:none;}
+.spf-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-deep);flex-shrink:0;min-width:130px;}
+.spf-value{font-family:var(--serif);font-size:16px;font-weight:400;color:var(--ink);line-height:1.4;}
+@media (max-width: 600px) {
+  .star-nav{grid-template-columns:1fr 1fr;}
+  .spf-row{flex-direction:column;gap:4px;}
+  .spf-label{min-width:auto;}
+  .star-panel-header{padding:22px 24px;flex-direction:column;gap:6px;}
+  .star-panel-name{font-size:26px;}
+  .star-panel-fields{padding:18px 24px;}
+}
+
+
 /* JUDGES PANEL ─────────────────────────────────────────────────── */
 .judges-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--rule-line);border:1px solid var(--rule-line);margin-top:8px;}
 .judge-card{background:var(--paper-warm);padding:26px 30px;}
@@ -1525,6 +1549,12 @@ a:hover{text-decoration:underline;}
         <div class="dc-note">Every team gets a scheduled meeting. Book your time slot ASAP so we can order and build quickly. Come with your vision. <a href="https://bookings.cloud.microsoft/book/CostumeMeetingsDWTSS2026@childrenslegacycenter.org/s/hseU2bjjK0mz74GJJLsfEA2?ismsaljsauthenabled" target="_blank" style="color:var(--gold);text-decoration:underline;font-weight:600;">Book Your Costume Appointment &rarr;</a></div>
       </div>
       <div class="date-card">
+        <div class="dtag">Production</div>
+        <div class="dc-when" data-isodate="2026-08-28">Thursday &amp; Friday, August 27 &amp; 28, 2026</div>
+        <div class="dc-what">Sit-Down Intro Videos with Benji <em>(Tentative)</em></div>
+        <div class="dc-note">Individual intro video filming for each star and pro dancer team. Different from Benji&apos;s rehearsal drop-ins. Dates are tentative. Booking link coming soon so you can select your time slot.</div>
+      </div>
+      <div class="date-card">
         <div class="dtag">Ongoing</div>
         <div class="dc-when" data-isodate="2026-10-17">Now Through October 17</div>
         <div class="dc-what">Your Fundraising Campaign</div>
@@ -1535,101 +1565,125 @@ a:hover{text-decoration:underline;}
 
   <div class="section">
     <span class="eye">2026 Cast</span>
-    <div class="sec-title">All <em>eight stars.</em></div>
-    <div class="sec-intro">Pairings, musicals, and spotlight assignments are listed on each card. Act and song details are confirmed with Tara Lihn Faires after May 20.</div>
-    <div class="star-cards-gendered">
-        <div class="star-col-label">Women</div>
-        <div class="star-col-label">Men</div>
-        <div class="star-card">
-          <div class="star-card-num">01</div>
-          <div class="star-card-name">Kacee Laine <em>Gibbs</em></div>
-          <div class="star-card-fields">
-            <div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Nick Meyers</span></div>
-            <div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Tasha Breon</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Mean Girls</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Mary Poppins</span></div>
-            <div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Sexual Assault / Crisis Hotline &amp; Hospital Response</span></div>
-          </div>
-        </div>
-        <div class="star-card">
-          <div class="star-card-num">05</div>
-          <div class="star-card-name">Asher <em>Vance</em></div>
-          <div class="star-card-fields">
-            <div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Avery Hazeleur</span></div>
-            <div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Marie Welch</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">West Side Story</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Hamilton</span></div>
-            <div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Human Trafficking / Archway &amp; CLC</span></div>
-          </div>
-        </div>
-        <div class="star-card">
-          <div class="star-card-num">02</div>
-          <div class="star-card-name">Farnaz <em>Chegini</em></div>
-          <div class="star-card-fields">
-            <div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Tyler Williams</span></div>
-            <div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Rachel Lafferty</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Mamma Mia</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Wicked</span></div>
-            <div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Teen Dating Violence / Community Prevention</span></div>
-          </div>
-        </div>
-        <div class="star-card">
-          <div class="star-card-num">06</div>
-          <div class="star-card-name">Tyler <em>Rowley</em></div>
-          <div class="star-card-fields">
-            <div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Halle Witbeck</span></div>
-            <div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Daia Tompkins</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Newsies</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">The Great Gatsby</span></div>
-            <div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Tech-Facilitated Abuse / Community Education</span></div>
-          </div>
-        </div>
-        <div class="star-card">
-          <div class="star-card-num">03</div>
-          <div class="star-card-name">Lidia <em>Manzo</em></div>
-          <div class="star-card-fields">
-            <div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Brandon Baumann</span></div>
-            <div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Deborah Leedy</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Funny Girl</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Hairspray</span></div>
-            <div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Children &amp; Youth / Transitional Housing</span></div>
-          </div>
-        </div>
-        <div class="star-card">
-          <div class="star-card-num">07</div>
-          <div class="star-card-name">Josh <em>Hoines</em></div>
-          <div class="star-card-fields">
-            <div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Elisabeth Knight</span></div>
-            <div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Tori Boersma</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Lion King</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Grease</span></div>
-            <div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Pets &amp; DV / Emergency Shelter</span></div>
-          </div>
-        </div>
-        <div class="star-card">
-          <div class="star-card-num">04</div>
-          <div class="star-card-name">Molly <em>Redmon</em></div>
-          <div class="star-card-fields">
-            <div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Michael Grubaugh</span></div>
-            <div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Kristen Mohline</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Moulin Rouge</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Chicago</span></div>
-            <div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Elder Abuse / Legal Services</span></div>
-          </div>
-        </div>
-        <div class="star-card">
-          <div class="star-card-num">08</div>
-          <div class="star-card-name">Jay <em>Sumerlin</em></div>
-          <div class="star-card-fields">
-            <div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Kristen Lawrence</span></div>
-            <div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Kya Solorio</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Shrek</span></div>
-            <div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Aladdin</span></div>
-            <div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Male Survivors / Crisis Intake &amp; Advocacy</span></div>
-          </div>
-        </div>
+    <div class="sec-title">Meet the <em>eight stars.</em></div>
+    <div class="sec-intro">Select a star below to see their pairing, musicals, and program spotlight.</div>
+    <div class="star-cast-block">
+    <div class="star-nav">
+      <button class="star-nav-btn active" onclick="showStar('01', this)"><span class="star-nav-num">01</span><span class="star-nav-name">Kacee Laine Gibbs</span></button>
+      <button class="star-nav-btn" onclick="showStar('02', this)"><span class="star-nav-num">02</span><span class="star-nav-name">Farnaz Chegini</span></button>
+      <button class="star-nav-btn" onclick="showStar('03', this)"><span class="star-nav-num">03</span><span class="star-nav-name">Lidia Manzo</span></button>
+      <button class="star-nav-btn" onclick="showStar('04', this)"><span class="star-nav-num">04</span><span class="star-nav-name">Molly Redmon</span></button>
+      <button class="star-nav-btn" onclick="showStar('05', this)"><span class="star-nav-num">05</span><span class="star-nav-name">Asher Vance</span></button>
+      <button class="star-nav-btn" onclick="showStar('06', this)"><span class="star-nav-num">06</span><span class="star-nav-name">Tyler Rowley</span></button>
+      <button class="star-nav-btn" onclick="showStar('07', this)"><span class="star-nav-num">07</span><span class="star-nav-name">Josh Hoines</span></button>
+      <button class="star-nav-btn" onclick="showStar('08', this)"><span class="star-nav-num">08</span><span class="star-nav-name">Jay Sumerlin</span></button>
     </div>
-  </div>
+    <div class="star-panel active" data-star="01">
+      <div class="star-panel-header">
+        <div class="star-panel-num">01</div>
+        <div class="star-panel-name">Kacee Laine <em>Gibbs</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Nick Meyers</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Tasha Breon</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Mean Girls</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Mary Poppins</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Sexual Assault / Crisis Hotline &amp; Hospital Response</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="02">
+      <div class="star-panel-header">
+        <div class="star-panel-num">02</div>
+        <div class="star-panel-name">Farnaz <em>Chegini</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Tyler Williams</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Rachel Lafferty</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Mamma Mia</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Wicked</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Teen Dating Violence / Community Prevention</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="03">
+      <div class="star-panel-header">
+        <div class="star-panel-num">03</div>
+        <div class="star-panel-name">Lidia <em>Manzo</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Brandon Baumann</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Deborah Leedy</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Funny Girl</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Hairspray</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Children &amp; Youth / Transitional Housing</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="04">
+      <div class="star-panel-header">
+        <div class="star-panel-num">04</div>
+        <div class="star-panel-name">Molly <em>Redmon</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Michael Grubaugh</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Kristen Mohline</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Moulin Rouge</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Chicago</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Elder Abuse / Legal Services</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="05">
+      <div class="star-panel-header">
+        <div class="star-panel-num">05</div>
+        <div class="star-panel-name">Asher <em>Vance</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Avery Hazeleur</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Marie Welch</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">West Side Story</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Hamilton</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Human Trafficking / Archway &amp; CLC</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="06">
+      <div class="star-panel-header">
+        <div class="star-panel-num">06</div>
+        <div class="star-panel-name">Tyler <em>Rowley</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Halle Witbeck</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Daia Tompkins</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Newsies</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">The Great Gatsby</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Tech-Facilitated Abuse / Community Education</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="07">
+      <div class="star-panel-header">
+        <div class="star-panel-num">07</div>
+        <div class="star-panel-name">Josh <em>Hoines</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Elisabeth Knight</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Tori Boersma</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Lion King</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Grease</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Pets &amp; DV / Emergency Shelter</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="08">
+      <div class="star-panel-header">
+        <div class="star-panel-num">08</div>
+        <div class="star-panel-name">Jay <em>Sumerlin</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Kristen Lawrence</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Kya Solorio</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Shrek</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Aladdin</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Male Survivors / Crisis Intake &amp; Advocacy</span></div>
+      </div>
+    </div>
+
+    </div>  </div>
 
   <div class="section">
     <span class="eye">Season Timeline</span>
@@ -1865,6 +1919,7 @@ a:hover{text-decoration:underline;}
     </div>
   </div>
 
+  <!-- AWARDS -->
   <div class="section">
     <span class="eye">Promote Your Fundraiser</span>
     <div class="sec-title">Tell us what you&apos;re <em>up to.</em></div>
@@ -1889,7 +1944,6 @@ a:hover{text-decoration:underline;}
     </div>
   </div>
 
-  <!-- AWARDS -->
   <div class="section">
     <span class="eye">Raise More Money</span>
     <div class="sec-title">Fundraiser <em>ideas.</em></div>
@@ -3437,18 +3491,122 @@ a:hover{text-decoration:underline;}
   <div class="section">
     <span class="eye">2026 Cast</span>
     <div class="sec-title sec-title-teal">Your <em>stars.</em></div>
-    <div class="sec-intro">This is your cast. Pairings were announced at the May 20 Meet and Greet. Act and song assignments are confirmed with Tara Lihn Faires after that night.</div>
-    <div class="star-cards-gendered">
-        <div class="star-col-label">Women</div>
-        <div class="star-col-label">Men</div>
-        <div class="star-card"><div class="star-card-num">01</div><div class="star-card-name">Kacee Laine <em>Gibbs</em></div><div class="star-card-fields"><div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Nick Meyers</span></div><div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Tasha Breon</span></div><div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Mean Girls</span></div><div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Mary Poppins</span></div><div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Sexual Assault / Crisis Hotline &amp; Hospital Response</span></div></div></div>
-        <div class="star-card"><div class="star-card-num">05</div><div class="star-card-name">Asher <em>Vance</em></div><div class="star-card-fields"><div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Avery Hazeleur</span></div><div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Marie Welch</span></div><div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">West Side Story</span></div><div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Hamilton</span></div><div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Human Trafficking / Archway &amp; CLC</span></div></div></div>
-        <div class="star-card"><div class="star-card-num">02</div><div class="star-card-name">Farnaz <em>Chegini</em></div><div class="star-card-fields"><div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Tyler Williams</span></div><div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Rachel Lafferty</span></div><div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Mamma Mia</span></div><div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Wicked</span></div><div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Teen Dating Violence / Community Prevention</span></div></div></div>
-        <div class="star-card"><div class="star-card-num">06</div><div class="star-card-name">Tyler <em>Rowley</em></div><div class="star-card-fields"><div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Halle Witbeck</span></div><div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Daia Tompkins</span></div><div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Newsies</span></div><div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">The Great Gatsby</span></div><div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Tech-Facilitated Abuse / Community Education</span></div></div></div>
-        <div class="star-card"><div class="star-card-num">03</div><div class="star-card-name">Lidia <em>Manzo</em></div><div class="star-card-fields"><div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Brandon Baumann</span></div><div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Deborah Leedy</span></div><div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Funny Girl</span></div><div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Hairspray</span></div><div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Children &amp; Youth / Transitional Housing</span></div></div></div>
-        <div class="star-card"><div class="star-card-num">07</div><div class="star-card-name">Josh <em>Hoines</em></div><div class="star-card-fields"><div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Elisabeth Knight</span></div><div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Tori Boersma</span></div><div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Lion King</span></div><div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Grease</span></div><div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Pets &amp; DV / Emergency Shelter</span></div></div></div>
-        <div class="star-card"><div class="star-card-num">04</div><div class="star-card-name">Molly <em>Redmon</em></div><div class="star-card-fields"><div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Michael Grubaugh</span></div><div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Kristen Mohline</span></div><div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Moulin Rouge</span></div><div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Chicago</span></div><div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Elder Abuse / Legal Services</span></div></div></div>
-        <div class="star-card"><div class="star-card-num">08</div><div class="star-card-name">Jay <em>Sumerlin</em></div><div class="star-card-fields"><div class="scf-row"><span class="scf-label">Dancer</span><span class="scf-value">Kristen Lawrence</span></div><div class="scf-row"><span class="scf-label">Choreo</span><span class="scf-value">Kya Solorio</span></div><div class="scf-row"><span class="scf-label">Musical 1</span><span class="scf-value">Shrek</span></div><div class="scf-row"><span class="scf-label">Musical 2</span><span class="scf-value">Aladdin</span></div><div class="scf-row"><span class="scf-label">Spotlight</span><span class="scf-value">Male Survivors / Crisis Intake &amp; Advocacy</span></div></div></div>
+    <div class="sec-intro">Pairings were announced at the May 20 kickoff. Select a star below to see the full pairing details for each couple.</div>
+    <div class="star-cast-block">
+    <div class="star-nav">
+      <button class="star-nav-btn active" onclick="showStar('01', this)"><span class="star-nav-num">01</span><span class="star-nav-name">Kacee Laine Gibbs</span></button>
+      <button class="star-nav-btn" onclick="showStar('02', this)"><span class="star-nav-num">02</span><span class="star-nav-name">Farnaz Chegini</span></button>
+      <button class="star-nav-btn" onclick="showStar('03', this)"><span class="star-nav-num">03</span><span class="star-nav-name">Lidia Manzo</span></button>
+      <button class="star-nav-btn" onclick="showStar('04', this)"><span class="star-nav-num">04</span><span class="star-nav-name">Molly Redmon</span></button>
+      <button class="star-nav-btn" onclick="showStar('05', this)"><span class="star-nav-num">05</span><span class="star-nav-name">Asher Vance</span></button>
+      <button class="star-nav-btn" onclick="showStar('06', this)"><span class="star-nav-num">06</span><span class="star-nav-name">Tyler Rowley</span></button>
+      <button class="star-nav-btn" onclick="showStar('07', this)"><span class="star-nav-num">07</span><span class="star-nav-name">Josh Hoines</span></button>
+      <button class="star-nav-btn" onclick="showStar('08', this)"><span class="star-nav-num">08</span><span class="star-nav-name">Jay Sumerlin</span></button>
+    </div>
+    <div class="star-panel active" data-star="01">
+      <div class="star-panel-header">
+        <div class="star-panel-num">01</div>
+        <div class="star-panel-name">Kacee Laine <em>Gibbs</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Nick Meyers</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Tasha Breon</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Mean Girls</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Mary Poppins</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Sexual Assault / Crisis Hotline &amp; Hospital Response</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="02">
+      <div class="star-panel-header">
+        <div class="star-panel-num">02</div>
+        <div class="star-panel-name">Farnaz <em>Chegini</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Tyler Williams</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Rachel Lafferty</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Mamma Mia</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Wicked</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Teen Dating Violence / Community Prevention</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="03">
+      <div class="star-panel-header">
+        <div class="star-panel-num">03</div>
+        <div class="star-panel-name">Lidia <em>Manzo</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Brandon Baumann</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Deborah Leedy</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Funny Girl</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Hairspray</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Children &amp; Youth / Transitional Housing</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="04">
+      <div class="star-panel-header">
+        <div class="star-panel-num">04</div>
+        <div class="star-panel-name">Molly <em>Redmon</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Michael Grubaugh</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Kristen Mohline</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Moulin Rouge</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Chicago</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Elder Abuse / Legal Services</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="05">
+      <div class="star-panel-header">
+        <div class="star-panel-num">05</div>
+        <div class="star-panel-name">Asher <em>Vance</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Avery Hazeleur</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Marie Welch</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">West Side Story</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Hamilton</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Human Trafficking / Archway &amp; CLC</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="06">
+      <div class="star-panel-header">
+        <div class="star-panel-num">06</div>
+        <div class="star-panel-name">Tyler <em>Rowley</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Halle Witbeck</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Daia Tompkins</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Newsies</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">The Great Gatsby</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Tech-Facilitated Abuse / Community Education</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="07">
+      <div class="star-panel-header">
+        <div class="star-panel-num">07</div>
+        <div class="star-panel-name">Josh <em>Hoines</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Elisabeth Knight</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Tori Boersma</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Lion King</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Grease</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Pets &amp; DV / Emergency Shelter</span></div>
+      </div>
+    </div>
+    <div class="star-panel" data-star="08">
+      <div class="star-panel-header">
+        <div class="star-panel-num">08</div>
+        <div class="star-panel-name">Jay <em>Sumerlin</em></div>
+      </div>
+      <div class="star-panel-fields">
+        <div class="spf-row"><span class="spf-label">Dancer</span><span class="spf-value">Kristen Lawrence</span></div>
+        <div class="spf-row"><span class="spf-label">Choreographer</span><span class="spf-value">Kya Solorio</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 1</span><span class="spf-value">Shrek</span></div>
+        <div class="spf-row"><span class="spf-label">Musical 2</span><span class="spf-value">Aladdin</span></div>
+        <div class="spf-row"><span class="spf-label">Spotlight</span><span class="spf-value">Male Survivors / Crisis Intake &amp; Advocacy</span></div>
+      </div>
+    </div>
     </div>
   </div>
 
@@ -3583,6 +3741,15 @@ function showSpotlight(id, btn) {
   btn.classList.add('active');
 }
 
+
+function showStar(id, btn) {
+  var block = btn.closest('.star-cast-block');
+  block.querySelectorAll('.star-panel').forEach(p => p.classList.remove('active'));
+  block.querySelectorAll('.star-nav-btn').forEach(b => b.classList.remove('active'));
+  block.querySelector('.star-panel[data-star="' + id + '"]').classList.add('active');
+  btn.classList.add('active');
+}
+
 function switchTab(tab) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -3652,23 +3819,4 @@ window.addEventListener('load', archivePastDates);
 .date-card.dark.date-past .dc-note { color: rgba(244,232,200,0.15) !important; }
 .date-card.dark.date-past::before { color: rgba(244,232,200,0.2) !important; }
 </style>
-
-<script>
-/* Auto-resize when embedded in an iframe (Webflow). Harmless when standalone. */
-(function(){
-  function postHeight(){
-    parent.postMessage({starsHubHeight: document.documentElement.scrollHeight}, '*');
-  }
-  window.addEventListener('load', postHeight);
-  window.addEventListener('resize', postHeight);
-  setInterval(postHeight, 800);
-})();
-</script>
-<script>
-/* Hub is embedded in an iframe — force outbound links to open in a new browser tab. */
-document.querySelectorAll('a[href^="http"]').forEach(function(a){
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-});
-</script>
 
