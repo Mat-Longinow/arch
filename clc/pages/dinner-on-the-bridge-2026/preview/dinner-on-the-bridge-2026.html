@@ -36,13 +36,32 @@
   the sponsorship-cover thumbnail sizing, the Ten Years dead-space column, the container/gutter
   mismatch on the intro section, the detached gold rule, and the fabricated Google Maps embed
   (was centered on 0x0 / showed a Travelodge, not Diestelhorst Bridge).
+
+  2026-07-28 ROUND 2 — Mat's second screencast pass (tr_20260728_011f755, "looking better, but we
+  have some work to do"). Reworked the banner asset itself (logo removed — redundant with the nav
+  above it; canvas widened 1920->2400 on the same solid navy so the illustration reads smaller and
+  crops less across viewport widths) and capped its rendered height so it no longer eats the full
+  viewport. Added breathing room above the intro section and around the tickets button. Flipped
+  the Ten Years row to image-left/text-right and constrained its photo height to match the copy
+  column instead of dominating the row. Applied the alternating section-background pattern Mat
+  asked for (white / gray / blue / white / gray / blue / white...) — turned out two of the six
+  sections already matched by virtue of their shared site-wide classes (`.map.cfr-what-to-expect`
+  is already navy in the global stylesheet, `.pilot` is already white-smoke), so only Ten Years,
+  the pull-quote, and Impact Stats actually needed color changes. Root-caused the white gap below
+  the stats row to the shared `.page-padding` class's baked-in `margin-bottom:15px`, which isn't
+  reachable by overriding padding alone — zeroed it out directly.
 -->
 
 <!-- 1. HERO — full-width banner (the blue Diestelhorst Bridge illustration Morgan sent).
      Plain responsive image, not the site's `.main-image._4` hero-band classes — see the
-     2026-07-28 fix note in git history for why. -->
+     2026-07-28 fix note in git history for why.
+     ROUND 2: asset itself edited (logo painted out with the sampled navy fill since the bg is a
+     flat solid color; canvas widened 1920x1080 -> 2400x1080 on the same navy so the illustration
+     occupies a smaller share of the frame at any given render width). max-height + object-fit:cover
+     added so the hero reads at roughly half the viewport instead of nearly filling it (Mat: "don't
+     take that verbatim" on the 50% figure — used judgment, not scripture). -->
 <div class="services-main">
-  <img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/dinner-on-the-bridge-2026-banner.jpg" loading="lazy" alt="Dinner on the Bridge — Children's Legacy Center" style="width:100%;height:auto;display:block;">
+  <img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/dinner-on-the-bridge-2026-banner.jpg" loading="lazy" alt="Dinner on the Bridge — Children's Legacy Center" style="width:100%;max-height:55vh;object-fit:cover;display:block;">
 </div>
 
 <!-- 2. EVENT INTRO + TICKETS CTA.
@@ -51,8 +70,10 @@
      is what made this block read as indented/offset relative to the sections below it. Also swapped
      the stray `.yellow-div-copy` (a different, grid-based component, not a rule) for the standard
      `.yellow-div` used as the gold underline everywhere else on this page, and gave the title a
-     size closer to other CLC event pages' hero titles. -->
-<section class="hero-without-image">
+     size closer to other CLC event pages' hero titles.
+     ROUND 2: added top padding on the section so the title doesn't sit squeezed against the hero,
+     and top margin on the tickets button so it doesn't crowd the "Benefiting..." line above it. -->
+<section class="hero-without-image" style="padding-top:48px;">
   <div class="page-padding">
     <div class="container-large">
       <h3 class="heading-26 crab-feed-hero-title" style="font-size:2.75rem;">Dinner on the Bridge<br></h3>
@@ -60,7 +81,7 @@
       <div class="columns-7 w-row" style="margin-top:24px;">
         <div class="w-col w-col-6">
           <p class="paragraph-14 crab-feed-tickets-paragraph"><strong>A first-time fundraising event honoring ten years of service.</strong><br><br>On a Saturday evening in September, the Diestelhorst Bridge will be closed and transformed. One continuous table will run its length, lit from above, framed by the Sacramento River on either side. Odell Craft BBQ has built a multi-course menu specifically for this evening and this place.<br><br><strong>September 12, 2026 | 5:30 PM</strong><br>Diestelhorst Bridge, Redding, California<br>Single seating &middot; One continuous table<br><br><em>Benefiting Children's Legacy Center &middot; Founding Culinary Partner, Odell Craft BBQ</em></p>
-          <a href="https://onesafeplace.ticketspice.com/dinner-on-the-bridge" target="_blank" rel="noopener" class="button-link w-inline-block">
+          <a href="https://onesafeplace.ticketspice.com/dinner-on-the-bridge" target="_blank" rel="noopener" class="button-link w-inline-block" style="margin-top:16px;">
             <div class="button learn-more nomintions-button purple-button">
               <h4 class="h4-type button nominations-text purple-button">Get Your Tickets</h4>
             </div>
@@ -79,23 +100,28 @@
      tall photo overpowering a short text column and dumping dead white space beneath the text.
      Centering the row vertically (instead of the default top-align) distributes the leftover
      space evenly instead of stacking it all below the copy, and the img is set to fill its
-     column at a sane, uncropped scale. -->
-<div class="services-holder crt-section-2">
+     column at a sane, uncropped scale.
+     ROUND 2: flipped to image-left/text-right (the row above is text-left/image-right, so this
+     alternates per Mat's ask) and the row itself carries the section's own background color
+     directly on the outer div rather than a nested wrapper, since `.services-holder.crt-section-2`
+     already carries its own bottom padding and safely contains it. Image capped to a max-height
+     roughly matching the text column instead of the previous 200%-scaled tall crop. -->
+<div class="services-holder crt-section-2" style="background-color:var(--white-smoke);">
   <div class="page-padding">
     <div class="container-large">
       <div class="vertical-page">
         <div class="careers-text _2">
           <div class="div-block-38 white _3">
             <div class="columns _2 whi w-row" style="align-items:center;">
+              <div class="column _2 white w-col w-col-6">
+                <div class="div-block-39 _2"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/dinner-on-the-bridge-2026-diestelhorst-2.jpg" loading="lazy" alt="Diestelhorst Bridge at sunset" style="width:100%;height:auto;max-height:420px;display:block;object-fit:cover;"></div>
+              </div>
               <div class="image-holder _2 white w-col w-col-6">
                 <div class="full-wrap">
                   <h3 class="heading-25">Ten Years. One Bridge. One Evening.</h3>
                   <div class="yellow-div left-side"></div>
                   <p class="paragraph-12 crt-info-blurb">Every day in Shasta County, a child walks through a door after the worst day of their life. A family arrives when the systems they trusted have failed them. An adult survivor steps forward, ready to begin healing. What happens next depends entirely on who is waiting on the other side of that door.<br><br>For ten years, the people of Children's Legacy Center have been waiting. Forensic interviewers. Trauma therapists. Family advocates. Medical professionals. Trafficking response specialists. They do not do this work for recognition &mdash; they do it because the children have nowhere else to go.<br><br>State and federal contracts pay for the floor of what every child deserves. Philanthropy is what raises the ceiling. This is the first time we have gathered the community around a single table to celebrate what has been built.</p>
                 </div>
-              </div>
-              <div class="column _2 white w-col w-col-6">
-                <div class="div-block-39 _2"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/dinner-on-the-bridge-2026-diestelhorst-2.jpg" loading="lazy" alt="Diestelhorst Bridge at sunset" style="width:100%;height:auto;display:block;object-fit:cover;"></div>
               </div>
             </div>
           </div>
@@ -107,10 +133,15 @@
 
 <!-- 3B. PULL QUOTE — promoted from plain body text (was buried mid-paragraph in the sponsorship
      block) to its own designed callout, matching where it sits in the guide's own layout: right
-     after the Ten Years story, before Partnership Tiers. -->
-<div class="page-padding" style="background-color:var(--white-smoke);padding-top:48px;padding-bottom:48px;">
+     after the Ten Years story, before Partnership Tiers.
+     ROUND 2: this is the "Every yes from a sponsor" section in Mat's alternating pattern (white /
+     gray / BLUE / white...) — flipped from white-smoke to navy, quote text to white for contrast,
+     gold left-rule kept. `margin-bottom:0` added since this div's bare `.page-padding` class carries
+     a baked-in 15px bottom margin (the same class that caused the stats-row gap below) — zeroing it
+     here too so no seam sneaks in between this and Partnership Tiers. -->
+<div class="page-padding" style="background-color:var(--dark-slate-blue);padding-top:48px;padding-bottom:48px;margin-bottom:0;">
   <div class="container-large" style="max-width:900px;">
-    <blockquote style="margin:0;padding:0 0 0 24px;border-left:4px solid var(--gold);font-family:utopia-std, sans-serif;font-style:italic;font-size:1.5rem;line-height:1.4;color:var(--dark-slate-blue);">
+    <blockquote style="margin:0;padding:0 0 0 24px;border-left:4px solid var(--gold);font-family:utopia-std, sans-serif;font-style:italic;font-size:1.5rem;line-height:1.4;color:var(--white);">
       &ldquo;Every yes from a sponsor is a yes to a child who needs somewhere to go after the worst day of their life.&rdquo;
     </blockquote>
   </div>
@@ -188,10 +219,16 @@
 </div>
 
 <!-- 5. IMPACT STATS — absent from the first pass. No stat-row precedent exists elsewhere in the
-     CLC/OSP guts (checked), so this is a new, self-contained component: a navy band matching the
-     site's existing `--dark-slate-blue` section treatment (same pattern as the When & Where band
-     below), three figures verbatim from the guide. -->
-<div class="page-padding" style="background-color:var(--dark-slate-blue);color:var(--white);padding-top:56px;padding-bottom:56px;">
+     CLC/OSP guts (checked), so this is a new, self-contained component.
+     ROUND 2: this is the 5th section in Mat's alternating pattern (white / gray / blue / white /
+     GRAY / blue / white...) — flipped from navy to white-smoke, body text to dark-slate-blue for
+     contrast (gold figures untouched, they read fine on light too). Root cause of the white gap
+     Mat flagged below this row: the bare `.page-padding` class carries `margin-bottom:15px` in the
+     site's global stylesheet, which the earlier inline `padding-top/bottom` override never touched
+     (padding and margin are different properties) — that 15px margin was rendering as a strip of
+     the page's default white showing between this section's box and the (already-navy, unrelated)
+     Map section below it. Zeroed out directly. -->
+<div class="page-padding" style="background-color:var(--white-smoke);color:var(--dark-slate-blue);padding-top:56px;padding-bottom:56px;margin-bottom:0;">
   <div class="container-large">
     <div style="display:flex;flex-wrap:wrap;gap:32px;text-align:center;justify-content:center;">
       <div style="flex:1 1 220px;">
