@@ -2,8 +2,11 @@
   PAGE: Dinner on the Bridge 2026 (Children's Legacy Center) — page-guts for the Webflow Hybrid loader.
   ENV: preview  (loaded by every NON-production host — see webflow-embed-loader.html)
   Built from the asset package Sarah + Morgan sent 7/21/26 (Teams + email) and the "DINNER ON THE
-  BRIDGE.pdf" 2026 Sponsorship Guide. Brand color resolves automatically from the live CLC site's
-  :root vars — nothing brand-colored is set here.
+  BRIDGE.pdf" 2026 Sponsorship Guide (full text re-extracted 7/28/26 via pdftotext -layout from
+  the ORIGINAL, uncompressed PDF at ~/Downloads/dinner-on-the-bridge-clc/DINNER ON THE BRIDGE.pdf
+  — the repo's compressed copy is image-rasterized and has no text layer). Brand color resolves
+  automatically from the live CLC site's :root vars (--dark-slate-blue, --gold, --white,
+  --white-smoke) — nothing brand-colored is hardcoded here.
 
   WHAT THIS PAGE IS: a PRE-event promo for Dinner on the Bridge — CLC's first-time fundraising
   event honoring ten years of service. September 12, 2026, 5:30 PM, on the Diestelhorst Bridge in
@@ -20,64 +23,79 @@
   STATIC PAGE — no JSON-CMS, no env-gated content. preview/ and production/ guts are identical
   except this ENV marker comment.
 
-  NEWSLETTER: deliberately omitted (repo-wide standing rule, Mat 2026-06-29).
+  NEWSLETTER: deliberately omitted (repo-wide standing rule, Mat 2026-06-29). Confirmed 7/28/26
+  the stray "Sign Up for OUR Newsletter" section that showed live was added by Webflow Designer
+  directly to the page (a Newsletter component instance sitting after our HTML Embed) — NOT
+  something in these guts. Removed via the Webflow Data API (data_element_tool.remove_element)
+  and republished; nothing to omit here since it was never ours.
+
+  2026-07-28 REBUILD — fixed a first pass that shipped with roughly half the sponsorship guide's
+  content missing plus several layout defects (full list in arch/queue.md and this page's log
+  entry). This version adds: Partnership Tiers (3 cards), Impact Stats row, closing narrative,
+  a promoted pull-quote, the sponsorship deadline/contact/tax-ID block, and fixes the hero crop,
+  the sponsorship-cover thumbnail sizing, the Ten Years dead-space column, the container/gutter
+  mismatch on the intro section, the detached gold rule, and the fabricated Google Maps embed
+  (was centered on 0x0 / showed a Travelodge, not Diestelhorst Bridge).
 -->
 
 <!-- 1. HERO — full-width banner (the blue Diestelhorst Bridge illustration Morgan sent).
-     FIX 2026-07-28: this used to wrap the img in the site's shared `.main-image._4` /
-     `.black-overlay` hero classes (borrowed from the Crab Feed hero, hence the leftover
-     `crab-feed-banner` class name). `.main-image._4` carries a hard-coded stock-photo
-     background (iStock-1183074438) at the Webflow style level, and no
-     `.main-image._4.dinner-on-the-bridge-banner` override was ever created in Designer —
-     unlike Cops & Cones, which DOES have a `.main-image._4.cops-cones` override. Net effect
-     live: the old stock photo bled through above a cropped sliver of our banner. Our banner
-     is a self-contained graphic (title baked in) at 1920x1080, not a crop-to-fill photo, so
-     it doesn't need the hero-band treatment at all — rendering it as a plain responsive image
-     avoids the missing style AND the crop in one move, no Designer class needed. -->
+     Plain responsive image, not the site's `.main-image._4` hero-band classes — see the
+     2026-07-28 fix note in git history for why. -->
 <div class="services-main">
   <img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/dinner-on-the-bridge-2026-banner.jpg" loading="lazy" alt="Dinner on the Bridge — Children's Legacy Center" style="width:100%;height:auto;display:block;">
 </div>
 
-<!-- 2. EVENT INTRO + TICKETS CTA -->
+<!-- 2. EVENT INTRO + TICKETS CTA.
+     FIX: was wrapped in `.container-8` (940px, no side padding) while every other section on
+     this page uses `.page-padding > .container-large` (1200px, 5% side padding) — that mismatch
+     is what made this block read as indented/offset relative to the sections below it. Also swapped
+     the stray `.yellow-div-copy` (a different, grid-based component, not a rule) for the standard
+     `.yellow-div` used as the gold underline everywhere else on this page, and gave the title a
+     size closer to other CLC event pages' hero titles. -->
 <section class="hero-without-image">
-  <div class="container-8">
-    <h3 class="heading-26 crab-feed-hero-title">Dinner on the Bridge<br></h3>
-  </div>
-  <div class="yellow-div-copy"></div>
-  <div class="container-8">
-    <div class="columns-7 w-row">
-      <div class="w-col w-col-6">
-        <p class="paragraph-14 crab-feed-tickets-paragraph"><strong>A first-time fundraising event honoring ten years of service.</strong><br><br>On a Saturday evening in September, the Diestelhorst Bridge will be closed and transformed. One continuous table will run its length, lit from above, framed by the Sacramento River on either side. Odell Craft BBQ has built a multi-course menu specifically for this evening and this place.<br><br><strong>September 12, 2026 | 5:30 PM</strong><br>Diestelhorst Bridge, Redding, California<br>Single seating &middot; One continuous table<br><br><em>Benefiting Children's Legacy Center &middot; Founding Culinary Partner, Odell Craft BBQ</em></p>
-        <a href="https://onesafeplace.ticketspice.com/dinner-on-the-bridge" target="_blank" rel="noopener" class="button-link w-inline-block">
-          <div class="button learn-more nomintions-button purple-button">
-            <h4 class="h4-type button nominations-text purple-button">Get Your Tickets</h4>
-          </div>
-        </a>
-      </div>
-      <div class="column-13 nominations-section-image w-col w-col-6">
-        <div class="div-block-39 _2 nominations-section-image"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/dinner-on-the-bridge-2026-diestelhorst-1.jpg" loading="lazy" alt="Diestelhorst Bridge, Redding, California" class="image-35"></div>
+  <div class="page-padding">
+    <div class="container-large">
+      <h3 class="heading-26 crab-feed-hero-title" style="font-size:2.75rem;">Dinner on the Bridge<br></h3>
+      <div class="yellow-div"></div>
+      <div class="columns-7 w-row" style="margin-top:24px;">
+        <div class="w-col w-col-6">
+          <p class="paragraph-14 crab-feed-tickets-paragraph"><strong>A first-time fundraising event honoring ten years of service.</strong><br><br>On a Saturday evening in September, the Diestelhorst Bridge will be closed and transformed. One continuous table will run its length, lit from above, framed by the Sacramento River on either side. Odell Craft BBQ has built a multi-course menu specifically for this evening and this place.<br><br><strong>September 12, 2026 | 5:30 PM</strong><br>Diestelhorst Bridge, Redding, California<br>Single seating &middot; One continuous table<br><br><em>Benefiting Children's Legacy Center &middot; Founding Culinary Partner, Odell Craft BBQ</em></p>
+          <a href="https://onesafeplace.ticketspice.com/dinner-on-the-bridge" target="_blank" rel="noopener" class="button-link w-inline-block">
+            <div class="button learn-more nomintions-button purple-button">
+              <h4 class="h4-type button nominations-text purple-button">Get Your Tickets</h4>
+            </div>
+          </a>
+        </div>
+        <div class="column-13 nominations-section-image w-col w-col-6">
+          <div class="div-block-39 _2 nominations-section-image"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/dinner-on-the-bridge-2026-diestelhorst-1.jpg" loading="lazy" alt="Diestelhorst Bridge, Redding, California" class="image-35" style="width:100%;height:auto;display:block;"></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 3. TEN YEARS. ONE BRIDGE. ONE EVENING. — double-pane, second Diestelhorst Bridge photo -->
+<!-- 3. TEN YEARS. ONE BRIDGE. ONE EVENING. — double-pane, second Diestelhorst Bridge photo.
+     FIX: the base `.image-6` class scales to `width:200%` with `object-fit:cover`, which left a
+     tall photo overpowering a short text column and dumping dead white space beneath the text.
+     Centering the row vertically (instead of the default top-align) distributes the leftover
+     space evenly instead of stacking it all below the copy, and the img is set to fill its
+     column at a sane, uncropped scale. -->
 <div class="services-holder crt-section-2">
   <div class="page-padding">
     <div class="container-large">
       <div class="vertical-page">
         <div class="careers-text _2">
           <div class="div-block-38 white _3">
-            <div class="columns _2 whi w-row">
+            <div class="columns _2 whi w-row" style="align-items:center;">
               <div class="image-holder _2 white w-col w-col-6">
                 <div class="full-wrap">
                   <h3 class="heading-25">Ten Years. One Bridge. One Evening.</h3>
                   <div class="yellow-div left-side"></div>
-                  <p class="paragraph-12 crt-info-blurb">Every day in Shasta County, a child walks through a door after the worst day of their life. A family arrives when the systems they trusted have failed them. An adult survivor steps forward, ready to begin healing. What happens next depends entirely on who is waiting on the other side of that door.<br><br>For ten years, the people of Children's Legacy Center have been waiting &mdash; forensic interviewers, trauma therapists, family advocates, medical professionals, trafficking response specialists. State and federal contracts pay for the floor of what every child deserves. Philanthropy is what raises the ceiling. This is the first time we have gathered the community around a single table to celebrate what has been built.</p>
+                  <p class="paragraph-12 crt-info-blurb">Every day in Shasta County, a child walks through a door after the worst day of their life. A family arrives when the systems they trusted have failed them. An adult survivor steps forward, ready to begin healing. What happens next depends entirely on who is waiting on the other side of that door.<br><br>For ten years, the people of Children's Legacy Center have been waiting. Forensic interviewers. Trauma therapists. Family advocates. Medical professionals. Trafficking response specialists. They do not do this work for recognition &mdash; they do it because the children have nowhere else to go.<br><br>State and federal contracts pay for the floor of what every child deserves. Philanthropy is what raises the ceiling. This is the first time we have gathered the community around a single table to celebrate what has been built.</p>
                 </div>
               </div>
               <div class="column _2 white w-col w-col-6">
-                <div class="div-block-39 _2"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/dinner-on-the-bridge-2026-diestelhorst-2.jpg" loading="lazy" alt="Diestelhorst Bridge at sunset" class="image-6"></div>
+                <div class="div-block-39 _2"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/dinner-on-the-bridge-2026-diestelhorst-2.jpg" loading="lazy" alt="Diestelhorst Bridge at sunset" style="width:100%;height:auto;display:block;object-fit:cover;"></div>
               </div>
             </div>
           </div>
@@ -87,22 +105,132 @@
   </div>
 </div>
 
-<!-- 4. WHEN & WHERE + MAP -->
+<!-- 3B. PULL QUOTE — promoted from plain body text (was buried mid-paragraph in the sponsorship
+     block) to its own designed callout, matching where it sits in the guide's own layout: right
+     after the Ten Years story, before Partnership Tiers. -->
+<div class="page-padding" style="background-color:var(--white-smoke);padding-top:48px;padding-bottom:48px;">
+  <div class="container-large" style="max-width:900px;">
+    <blockquote style="margin:0;padding:0 0 0 24px;border-left:4px solid var(--gold);font-family:utopia-std, sans-serif;font-style:italic;font-size:1.5rem;line-height:1.4;color:var(--dark-slate-blue);">
+      &ldquo;Every yes from a sponsor is a yes to a child who needs somewhere to go after the worst day of their life.&rdquo;
+    </blockquote>
+  </div>
+</div>
+
+<!-- 4. PARTNERSHIP TIERS — the commercial heart of the sponsorship guide, absent from the first
+     pass entirely. Three tiers verbatim from the guide (Presenting $15,000 / Legacy Founding Table
+     $7,500 / Community Table $3,500), each with its Dinner Experience / Naming / Access bullets.
+     Built with plain inline-styled cards (not the site's `.cards-holder`, which is `display:none`
+     at the base breakpoint and only un-hides at a specific responsive breakpoint — too fragile
+     for a static page that needs to render correctly at every width) so this renders reliably
+     regardless of Designer-side style state. -->
+<div class="page-padding" style="padding-top:60px;padding-bottom:60px;">
+  <div class="container-large">
+    <h3 class="heading-26" style="text-align:center;">Partnership Tiers</h3>
+    <div class="yellow-div center" style="margin-left:auto;margin-right:auto;"></div>
+    <div style="display:flex;flex-wrap:wrap;gap:24px;margin-top:32px;align-items:stretch;">
+
+      <div style="flex:1 1 280px;background:var(--white);border-top:4px solid var(--gold);border-radius:6px;box-shadow:1px 1px 8px rgba(0,0,0,0.12);padding:28px;">
+        <h4 style="margin:0 0 4px;font-family:utopia-std, sans-serif;color:var(--dark-slate-blue);font-size:1.4rem;">Presenting Sponsor</h4>
+        <p style="margin:0 0 12px;font-size:0.9rem;color:var(--grey);">One slot available &middot; Highest-visibility partner of the evening</p>
+        <p style="margin:0 0 20px;font-size:2rem;font-weight:700;color:var(--dark-slate-blue);">$15,000</p>
+        <p style="margin:0 0 6px;font-weight:700;">The Dinner Experience</p>
+        <ul style="margin:0 0 16px;padding-left:20px;">
+          <li>Premier table for twelve at the centerline of the bridge</li>
+          <li>Influence over seating surrounding your table</li>
+          <li>Visit from Odell's culinary team during dinner service</li>
+          <li>Pre-event hosted reception with CLC's executive team and board chair</li>
+        </ul>
+        <p style="margin:0 0 6px;font-weight:700;">Naming</p>
+        <ul style="margin:0 0 16px;padding-left:20px;">
+          <li>Event named in full partnership: &ldquo;Dinner on the Bridge, presented by [Sponsor Name]&rdquo;</li>
+          <li>Founding Sponsor designation in perpetuity</li>
+          <li>Premier logo placement on all printed and digital materials</li>
+        </ul>
+        <p style="margin:0 0 6px;font-weight:700;">Access</p>
+        <ul style="margin:0;padding-left:20px;">
+          <li>Private time with our CEO, Kimberly L. Johnson</li>
+          <li>Personalized post-event impact report with direct service data</li>
+        </ul>
+      </div>
+
+      <div style="flex:1 1 280px;background:var(--white);border-top:4px solid var(--gold);border-radius:6px;box-shadow:1px 1px 8px rgba(0,0,0,0.12);padding:28px;">
+        <h4 style="margin:0 0 4px;font-family:utopia-std, sans-serif;color:var(--dark-slate-blue);font-size:1.4rem;">Legacy Founding Table</h4>
+        <p style="margin:0 0 12px;font-size:0.9rem;color:var(--grey);">Four slots available &middot; Tied to CLC's 10th Anniversary</p>
+        <p style="margin:0 0 20px;font-size:2rem;font-weight:700;color:var(--dark-slate-blue);">$7,500</p>
+        <p style="margin:0 0 6px;font-weight:700;">The Dinner Experience</p>
+        <ul style="margin:0 0 16px;padding-left:20px;">
+          <li>Premium table for eight at a featured position on the bridge</li>
+          <li>Visit from Odell's culinary team during dinner service</li>
+        </ul>
+        <p style="margin:0 0 6px;font-weight:700;">Naming &amp; Access</p>
+        <ul style="margin:0;padding-left:20px;">
+          <li>Founding Sponsor designation in perpetuity</li>
+          <li>Featured logo placement on all printed and digital materials</li>
+          <li>Named recognition from within the program</li>
+          <li>Invitation to the pre-event leadership reception</li>
+        </ul>
+      </div>
+
+      <div style="flex:1 1 280px;background:var(--white);border-top:4px solid var(--gold);border-radius:6px;box-shadow:1px 1px 8px rgba(0,0,0,0.12);padding:28px;">
+        <h4 style="margin:0 0 4px;font-family:utopia-std, sans-serif;color:var(--dark-slate-blue);font-size:1.4rem;">Community Table</h4>
+        <p style="margin:0 0 12px;font-size:0.9rem;color:var(--grey);">Six slots available</p>
+        <p style="margin:0 0 20px;font-size:2rem;font-weight:700;color:var(--dark-slate-blue);">$3,500</p>
+        <p style="margin:0 0 6px;font-weight:700;">The Dinner Experience</p>
+        <ul style="margin:0;padding-left:20px;">
+          <li>Reserved table for eight guests with curated placement on the bridge</li>
+          <li>Logo and name listed on all materials with named recognition from within the program</li>
+          <li>Twelve months of website recognition and standard impact report</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 5. IMPACT STATS — absent from the first pass. No stat-row precedent exists elsewhere in the
+     CLC/OSP guts (checked), so this is a new, self-contained component: a navy band matching the
+     site's existing `--dark-slate-blue` section treatment (same pattern as the When & Where band
+     below), three figures verbatim from the guide. -->
+<div class="page-padding" style="background-color:var(--dark-slate-blue);color:var(--white);padding-top:56px;padding-bottom:56px;">
+  <div class="container-large">
+    <div style="display:flex;flex-wrap:wrap;gap:32px;text-align:center;justify-content:center;">
+      <div style="flex:1 1 220px;">
+        <p style="margin:0;font-family:utopia-std, sans-serif;font-size:3rem;font-weight:700;color:var(--gold);">167</p>
+        <p style="margin:4px 0 0;">Forensic Interviews<br>conducted in 2025</p>
+      </div>
+      <div style="flex:1 1 220px;">
+        <p style="margin:0;font-family:utopia-std, sans-serif;font-size:3rem;font-weight:700;color:var(--gold);">5,824</p>
+        <p style="margin:4px 0 0;">Behavioral Health Sessions<br>provided in 2025 to 503 children, teens and adults</p>
+      </div>
+      <div style="flex:1 1 220px;">
+        <p style="margin:0;font-family:utopia-std, sans-serif;font-size:3rem;font-weight:700;color:var(--gold);">20+</p>
+        <p style="margin:4px 0 0;">Trafficking Survivors<br>housed in dedicated residence</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin:32px 0 0;font-style:italic;max-width:700px;margin-left:auto;margin-right:auto;">State and federal contracts make this possible. Philanthropy is what allows us to do more of it, and do it better.</p>
+  </div>
+</div>
+
+<!-- 6. WHEN & WHERE + MAP.
+     FIX: the previous `pb=` embed string had a fabricated place ID (`...%3A0x0`, not a real Google
+     place) and rendered a Travelodge/Value Inn, not Diestelhorst Bridge. Replaced with a plain
+     `q=`-based embed (no API key required) verified by direct render to center correctly on
+     Diestelhorst Bridge, Redding, CA. -->
 <div class="map cfr-what-to-expect">
   <div class="page-padding cfr-what-to-expect">
     <div class="container-large">
       <div class="vertical-page">
         <div class="columns-2 w-row">
           <div class="column-8 w-col w-col-6 w-col-stack">
-            <div class="map-em">
-              <div class="html-embed w-embed w-iframe"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3029.549!2d-122.3822!3d40.5975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54d2edc1d5b4a0f9%3A0x0!2sDiestelhorst%20Bridge!5e0!3m2!1sen!2sus!4v1785200000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+            <div class="map-em" style="height:400px;">
+              <div class="html-embed w-embed w-iframe" style="height:100%;"><iframe src="https://maps.google.com/maps?q=Diestelhorst+Bridge,+Redding,+CA&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
             </div>
           </div>
           <div class="column-2 cfr-what-to-expect w-col w-col-6 w-col-stack">
             <div class="map-text _2 cfr-what-to-expect less-padding-top">
               <h3 class="map-text cfr-what-to-expect less-padding-top">When &amp; Where</h3>
               <div class="yellow-div"></div>
-              <div class="map-body"><span><strong>When</strong>: September 12, 2026 | 5:30 PM<br><br><strong>Where</strong>: Diestelhorst Bridge, Redding, California<br><br>Single seating &middot; One continuous table</span><br></div>
+              <div class="map-body"><span><strong>When</strong>: September 12, 2026 | 5:30 PM<br><br><strong>Where</strong>: Diestelhorst Bridge, Redding, California<br><br>Single seating &middot; One continuous table<br><br>Founding Culinary Partner, Odell's</span><br></div>
             </div>
             <div class="map-text _2 cfr-what-to-expect padding-top"></div>
           </div>
@@ -112,19 +240,30 @@
   </div>
 </div>
 
-<!-- 5. SPONSORSHIP — text + Sponsorship Guide cover + button linking the PDF.
-     Same layout as the OSP "Dancing with the Stars" sponsorship pattern Sarah referenced on the
-     call: text-left with a purple CTA button, image-right. -->
+<!-- 6B. CLOSING NARRATIVE — absent from the first pass. Verbatim from the guide's closing page. -->
+<div class="page-padding" style="padding-top:56px;padding-bottom:16px;">
+  <div class="container-large" style="max-width:820px;">
+    <p style="text-align:center;font-size:1.15rem;line-height:1.6;color:var(--dark-slate-blue);">The children and youth that Children's Legacy Center serves did not choose the worst day of their lives. The families who walk through our doors did not choose to need us. What the community of Shasta County can choose is what happens next.<br><strong>This evening is that choice.</strong></p>
+  </div>
+</div>
+
+<!-- 7. BECOME A SPONSOR — text + Sponsorship Guide cover + button linking the PDF, plus the
+     deadline/contact/tax-ID block from the guide's closing page (all three were absent from the
+     first pass). Heading corrected from "Interested in Sponsoring?" (carried over from Cops &
+     Cones) to the guide's own "Become a Sponsor." language. Cover image FIX: was `class="image-38"`,
+     a shared 3rem/48px logo-badge style meant for something else entirely, which is why it
+     rendered as a grey sliver — replaced with a sane inline size matching the guide cover's real
+     portrait aspect ratio. -->
 <div class="pilot dwtss-2205-save-the-date">
   <div class="page-padding">
     <div class="container-large">
       <div class="vertical-page">
         <div class="pilot-holder">
-          <h3 class="heading-26 dwtss-2025-save-the-date">Interested in Sponsoring?<br></h3>
+          <h3 class="heading-26 dwtss-2025-save-the-date">Become a Sponsor<br></h3>
           <div class="yellow-div"></div>
           <div class="columns-7 w-row">
             <div class="w-col w-col-6">
-              <div class="text2 dwtss-2025-save-the-date">We welcome conversations with prospective sponsors at any tier. Our team is prepared to discuss custom partnership structures and walk through any details that would be helpful as you consider the right level of involvement for your organization or family.<br><br>Every yes from a sponsor is a yes to a child who needs somewhere to go after the worst day of their life.</div>
+              <div class="text2 dwtss-2025-save-the-date">We welcome conversations with prospective sponsors at any tier. Our team is prepared to discuss custom partnership structures and walk through any details that would be helpful as you consider the right level of involvement for your organization or family.</div>
               <div class="div-block-93 nominations-button dwtss-2026">
                 <div class="div-block-94">
                   <a href="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/documents/compressed_Dinner-on-the-Bridge-Sponsorship-Guide---2026---7.21.26.pdf" target="_blank" rel="noopener" class="button-link w-inline-block">
@@ -136,7 +275,25 @@
               </div>
             </div>
             <div class="column-13 nominations-section-image w-col w-col-6">
-              <div class="div-block-39 _2 nominations-section-image"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/dinner-on-the-bridge-2026-sponsorship-cover.jpg" loading="lazy" alt="Dinner on the Bridge — 2026 Sponsorship Guide" class="image-38"></div>
+              <div class="div-block-39 _2 nominations-section-image" style="max-width:280px;margin-left:auto;margin-right:auto;"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/dinner-on-the-bridge-2026-sponsorship-cover.jpg" loading="lazy" alt="Dinner on the Bridge — 2026 Sponsorship Guide" style="width:100%;height:auto;display:block;border-radius:4px;box-shadow:1px 1px 8px rgba(0,0,0,0.2);"></div>
+            </div>
+          </div>
+
+          <div style="margin-top:48px;padding-top:32px;border-top:1px solid #d9d9d9;display:flex;flex-wrap:wrap;gap:40px;">
+            <div style="flex:1 1 260px;">
+              <p style="margin:0 0 6px;font-weight:700;color:var(--dark-slate-blue);text-transform:uppercase;font-size:0.85rem;letter-spacing:0.03em;">Sponsorship Commitment Deadline</p>
+              <p style="margin:0 0 6px;font-size:1.3rem;font-weight:700;">August 15, 2026</p>
+              <p style="margin:0;font-size:0.92rem;color:var(--grey);">Commitments received by this date are guaranteed inclusion in all printed event materials, signage, and pre-event marketing. Commitments received after this date are included in digital recognition and event-night materials as production timelines allow.</p>
+            </div>
+            <div style="flex:1 1 220px;">
+              <p style="margin:0 0 6px;font-weight:700;color:var(--dark-slate-blue);text-transform:uppercase;font-size:0.85rem;letter-spacing:0.03em;">Sponsor Contact</p>
+              <p style="margin:0 0 2px;font-size:1.05rem;">Elizabeth Schroeder</p>
+              <p style="margin:0 0 6px;font-size:0.92rem;color:var(--grey);">Children's Legacy Center</p>
+              <p style="margin:0;"><a href="mailto:e.schroeder@childrenslegacycenter.org" style="color:var(--dark-slate-blue);">e.schroeder@childrenslegacycenter.org</a></p>
+            </div>
+            <div style="flex:1 1 220px;">
+              <p style="margin:0 0 6px;font-weight:700;color:var(--dark-slate-blue);text-transform:uppercase;font-size:0.85rem;letter-spacing:0.03em;">Tax Information</p>
+              <p style="margin:0;font-size:0.92rem;color:var(--grey);">Children's Legacy Center is a registered 501(c)(3) nonprofit organization. Contributions are tax-deductible to the fullest extent allowed by law. Sponsorship value attributable to direct goods and services received at the event will be itemized on your acknowledgment letter.<br><br><strong>EIN 82-1752216</strong></p>
             </div>
           </div>
         </div>
