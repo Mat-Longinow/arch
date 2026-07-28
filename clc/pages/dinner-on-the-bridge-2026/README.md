@@ -73,8 +73,9 @@ the top — this page has no env-gated content.
 Same mechanism as Cops & Cones: `webflow-embed-loader.html` reads `location.hostname` — the live
 CLC custom domain (`PROD_HOST`) gets `production/`, every other host gets `preview/`.
 
-⚠️ **`PROD_HOST` is the same unconfirmed placeholder** (`childrenslegacycenter.org`) carried over
-from the Cops & Cones page — still unconfirmed as of this build. Confirm with Mat before go-live.
+✅ **`PROD_HOST` is CONFIRMED** as `childrenslegacycenter.org` (Mat, 2026-07-28, at the Designer
+paste). It was carried over from Cops & Cones as an unverified placeholder during the initial
+build; that caveat no longer applies.
 
 ## 🚫 No CDN cache
 
@@ -87,21 +88,24 @@ URLs on this page.
 Same repo-wide rule as every hybrid page. Omitted deliberately from both `production/` and
 `preview/` guts.
 
-## 🚦 Go-live cutover (HOLD until Mat green-lights)
+## ✅ Go-live cutover — COMPLETE (2026-07-28)
 
-This is a **brand-new page** — nothing is live yet. Unlike Cops & Cones (where content pushes are
-now fully autonomous because the Designer embed is already wired), this page needs the full
-cutover before anything is public:
+**This page is LIVE at `https://childrenslegacycenter.org/dinner-on-the-bridge-2026`.** The full
+cutover finished on 2026-07-28; every step below is done. Kept here as the record.
 
-1. Confirm `PROD_HOST` (the real CLC published domain) with Mat.
-2. Mat creates the page in Webflow Designer (URL slug, nav placement — his call) and pastes the
-   loader from `webflow-embed-loader.html` into an HTML Embed. **This is the only Designer step,
-   ever**, and the only step in this list Studio Lead cannot do.
-3. Guts + images + PDF already committed and pushed to this repo (safe — nothing is live until
-   step 2 happens). Verify the raw.githubusercontent.com URLs return 200, the live page renders
-   the injected content, inherits CLC styling, the map embeds, the tickets link opens the
-   ticketspice checkout, and the sponsorship PDF downloads.
-4. From then on, every change is an autonomous `git push` — no Designer.
+1. ✅ `PROD_HOST` confirmed as `childrenslegacycenter.org`.
+2. ✅ Mat created the page in Webflow Designer and pasted the loader from
+   `webflow-embed-loader.html` into an HTML Embed. **This was the only Designer step, ever** —
+   the one step Studio Lead could not do.
+3. ✅ Guts + images + PDF committed and pushed; raw.githubusercontent.com URLs verified 200 and
+   the live page confirmed rendering the injected content (Playwright screenshots of the real
+   custom domain, not raw-URL diffing).
+4. ✅ **From here on, every change is an autonomous `git push` — no Designer, no permissions wall.**
+
+Four content/design rounds have shipped against the live page since cutover (build `7a2275d`;
+fix-list `1da3d4a` + `dd95c6f`; round 2 `37ee211` + `bd26040`; round 3 `c00e260`; hero passes
+`50bf985`, `609f638`, `d28358d`). See `arch/correspondence/2026-07-28-dinner-on-the-bridge-*.md`
+in the notes repo for the review memos.
 
 ## ✍️ How to edit
 
