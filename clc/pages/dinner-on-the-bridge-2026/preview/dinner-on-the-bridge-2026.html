@@ -60,8 +60,12 @@
      occupies a smaller share of the frame at any given render width). max-height + object-fit:cover
      added so the hero reads at roughly half the viewport instead of nearly filling it (Mat: "don't
      take that verbatim" on the 50% figure — used judgment, not scripture). -->
-<div class="services-main">
-  <img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/dinner-on-the-bridge-2026-banner.jpg" loading="lazy" alt="Dinner on the Bridge — Children's Legacy Center" style="width:100%;max-height:55vh;object-fit:cover;object-position:center bottom;display:block;">
+<!-- ROUND 3: the banner's own edge is a flat solid navy (#233A59, sampled — no gradient/texture),
+     so the wrapper is painted that same navy and bled full-viewport-width. The image then sits on
+     top with object-fit:contain and the seam disappears — the artwork reads as a much larger
+     full-bleed band without upscaling the asset or cropping the bridge. -->
+<div class="services-main" style="background-color:#233A59;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);">
+  <img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/images/dinner-on-the-bridge-2026-banner.jpg" loading="lazy" alt="Dinner on the Bridge — Children's Legacy Center" style="width:100%;max-height:55vh;object-fit:contain;object-position:center bottom;display:block;background-color:#233A59;">
 </div>
 
 <!-- 2. EVENT INTRO + TICKETS CTA.
