@@ -1,0 +1,39 @@
+<!--
+  PAGE: DWTS 2026 Live Stream (One SAFE Place) — page-guts for the Webflow Hybrid loader.
+  ENV: preview  (loaded by every NON-production host: Webflow staging *.webflow.io, share links)
+
+  WHAT THIS PAGE IS: a HIDDEN page, not linked in site nav. Sarah asked (7/30 weekly) for
+  a template she can hand Benji: a page that carries the site's normal header/footer
+  (that's Webflow's shell, untouched by these guts) with an otherwise-blank body holding
+  ONE placeholder embed block. This is the page a Donor Perfect paywall link will point
+  viewers to for the DWTS live stream. Benji is still finalizing Vimeo vs. YouTube — do
+  NOT guess a platform or fabricate an embed code. When Sarah/Benji hand over the real
+  embed code (a Vimeo/YouTube iframe snippet), replace the placeholder <div> below with
+  it verbatim and ship.
+
+  Body-only guts, no CMS — same static-page pattern as clc/pages/cops-cones-2026.
+-->
+
+<div class="services-holder crt-section-2">
+  <div class="page-padding">
+    <div class="container-large">
+      <div class="padding-vertical no-padding">
+        <div class="div-block-19">
+          <h1 class="heading-6">Dancing with the Shasta Stars — Live Stream</h1>
+        </div>
+        <p class="paragraph-12 crt-info-blurb">
+          Thanks for tuning in! Your stream will appear below shortly before showtime.
+        </p>
+
+        <!-- ⬇️ PLACEHOLDER EMBED BLOCK — replace this entire <div> with the real
+             Vimeo/YouTube iframe embed code once Benji/Sarah confirm the platform.
+             Keep the wrapping div's classes so the embed inherits page width/spacing. -->
+        <div id="lc-dwts-livestream-embed" class="video-embed-placeholder" style="position:relative; width:100%; max-width:960px; aspect-ratio:16/9; margin:2rem auto; background:#1a1a1a; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-family:inherit; text-align:center; padding:1rem;">
+          Live stream embed goes here — placeholder only, not yet wired.
+        </div>
+        <!-- ⬆️ END PLACEHOLDER EMBED BLOCK -->
+
+      </div>
+    </div>
+  </div>
+</div>
