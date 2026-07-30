@@ -12,8 +12,17 @@ set -euo pipefail
 MSG="${1:?usage: ship.sh \"commit message\" [path ...]}"
 shift || true
 
-REPO_ROOT="$(git rev-parse --show-toplevel)"
+# GUARD (added 2026-07-30 after a real incident): this script used to resolve the repo from the
+# CALLER's cwd. Invoked by absolute path from another repo, `git add -A` then staged and pushed
+# 66,187 unrelated files into the notes repo. Anchor to THIS script's own repo instead, always.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)"
 cd "$REPO_ROOT"
+
+CALLER_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [ -n "$CALLER_ROOT" ] && [ "$CALLER_ROOT" != "$REPO_ROOT" ]; then
+  echo "ship.sh: note — called from '$CALLER_ROOT'; shipping '$REPO_ROOT' (this script's own repo)." >&2
+fi
 
 if [ "$#" -gt 0 ]; then
   git add -- "$@"
