@@ -50,7 +50,23 @@
   the pull-quote, and Impact Stats actually needed color changes. Root-caused the white gap below
   the stats row to the shared `.page-padding` class's baked-in `margin-bottom:15px`, which isn't
   reachable by overriding padding alone — zeroed it out directly.
+
+  2026-08-03 NAV FIX — Morgan (iMessage): "DOTB header is following you as you scroll, can you
+  revise?" Diagnosis: CLC's global Webflow nav (`.navbar-responsive.w-nav`) is `position:fixed`
+  sitewide (confirmed identical on the CLC homepage) — not something in our guts, and a deliberate
+  pattern the ROUND 4 hero padding-band above was specifically tuned to clear. Scoped the fix via
+  the page's own `data-wf-page` attribute (Webflow bakes this onto <html>, unique per page) so
+  ONLY this page is touched — every other CLC page keeps its fixed nav untouched. Switched
+  fixed -> absolute: identical rendering on load (still overlays the hero exactly as ROUND 4
+  intended), but the nav now scrolls away with the page instead of staying pinned to the viewport.
+  Verified via Playwright at a 390px viewport: top-of-page screenshot pixel-identical to before,
+  nav moves fully off-screen on scroll, hamburger menu still opens and renders correctly.
 -->
+<style>
+html[data-wf-page="6a68da2f003a8f4b177f4435"] .navbar-responsive.w-nav {
+  position: absolute !important;
+}
+</style>
 
 <!-- 1. HERO — full-width banner (the blue Diestelhorst Bridge illustration Morgan sent).
      Plain responsive image, not the site's `.main-image._4` hero-band classes — see the
