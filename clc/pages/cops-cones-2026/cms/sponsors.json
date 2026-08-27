@@ -1,9 +1,13 @@
 {
   "collection": "sponsors",
   "fields": ["name", "image", "preview"],
-  "_notes": "Git-backed CMS for the Cops & Cones 'Sponsors' grid. Each item renders a .team-card > img.team-member-image, mirroring the live Webflow grid. 'image' = filename in ./assets/. 'preview': true = show on preview hosts only; false/omit = also live in production. Pared down per Sarah 7/7/26 weekly: 2026 confirmed sponsors so far are 32 Below + BBSI only (the rest of the 2025 roster hadn't re-upped) — Sarah expects to add more as they confirm. The other 2025 logo files stay in ./assets/ (unused, not deleted) for quick re-add. See ../README.md.",
+  "_notes": "Git-backed CMS for the Cops & Cones 'Sponsors' grid. Each item renders a .team-card > img.team-member-image, mirroring the live Webflow grid. 'image' = filename in ./assets/. 'preview': true = show on preview hosts only; false/omit = also live in production. Pared down per Sarah 7/7/26 weekly to 32 Below + BBSI (2025 roster hadn't re-upped yet). Updated 2026-08-27 per Morgan's 8/25 'Sponsor Website' email (2026 THANK YOU TO OUR SPONSORS.png) — full 2026 confirmed list: 32 Below, Wagner Electric, Linda Santiago, Caliber Office, Wave Technologies, BBSI. New assets (sp-linda-santiago.png, sp-wave-technologies.png, sp-caliber-office.png) were cropped from Morgan's combined graphic since she sent one flattened image rather than individual logo files — swap for cleaner originals if Morgan ever sends them separately. The other unused 2025 logo files stay in ./assets/ for quick re-add. See ../README.md.",
   "items": [
     { "name": "32 Below Ice Cream",                "image": "sp-32-below-ice-cream.png",       "preview": false },
+    { "name": "Wagner Electric",                   "image": "sp-wagner.png",                   "preview": false },
+    { "name": "Linda Santiago",                    "image": "sp-linda-santiago.png",           "preview": false },
+    { "name": "Caliber Office",                    "image": "sp-caliber-office.png",           "preview": false },
+    { "name": "Wave Technologies",                 "image": "sp-wave-technologies.png",        "preview": false },
     { "name": "BBSI",                              "image": "sp-bbsi.png",                     "preview": false }
   ]
 }
