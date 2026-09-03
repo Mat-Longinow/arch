@@ -1,0 +1,48 @@
+<!-- ============================================================================
+     10 YEARS OF IMPACT (Children's Legacy Center) — Webflow HTML Embed (the ONLY
+     Designer step, ever).
+
+     ⚠️ NOT YET PASTED. Mat must do this ONCE before the QR code resolves to anything:
+        1. In the CLC Webflow Designer, create a new page with slug EXACTLY  10-years-of-impact
+           (the QR is printed against https://childrenslegacycenter.org/10-years-of-impact —
+           the slug cannot change afterward without reprinting).
+        2. Drop an HTML Embed onto it and paste everything below.
+        3. Publish to the childrenslegacycenter.org custom domain.
+        4. Do NOT add a Newsletter component to the page (repo-wide standing rule) — Designer
+           has added one on its own before (Dinner on the Bridge, 7/28).
+
+     After that, every content change — including swapping in the actual 10 Years of Impact
+     report when Morgan sends it — ships by `git push`. No Designer, ever again.
+
+     PROD_HOST is childrenslegacycenter.org, confirmed on this site since 2026-07-28
+     (Dinner on the Bridge). www.<host> is handled by the leading-www strip.
+     ============================================================================ -->
+<div id="lc-block-10-years-of-impact" class="lc-embed"></div>
+<script>
+(function () {
+  var TARGET    = "lc-block-10-years-of-impact";
+  var PROD_HOST = "childrenslegacycenter.org";
+  var REPO_BASE = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/10-years-of-impact/";
+
+  var host   = location.hostname.replace(/^www\./, "");
+  var isProd = (host === PROD_HOST);
+  var SRC    = REPO_BASE + (isProd ? "production" : "preview") + "/10-years-of-impact.html";
+
+  fetch(SRC, { cache: "no-store" })
+    .then(function (r) { return r.text(); })
+    .then(function (html) {
+      var target = document.getElementById(TARGET);
+      target.innerHTML = html;
+      // innerHTML doesn't run injected <script> — re-create each so any future script fires.
+      target.querySelectorAll("script").forEach(function (old) {
+        var s = document.createElement("script");
+        for (var i = 0; i < old.attributes.length; i++) {
+          s.setAttribute(old.attributes[i].name, old.attributes[i].value);
+        }
+        s.textContent = old.textContent;
+        old.parentNode.replaceChild(s, old);
+      });
+    })
+    .catch(function (e) { console.error("LC 10 Years of Impact embed load failed:", e); });
+})();
+</script>
