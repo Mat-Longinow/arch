@@ -1,0 +1,24 @@
+<!--
+  PAGE: Careers (One SAFE Place) — page-guts for the Webflow Hybrid loader.
+  ENV: production  (loaded by the LIVE custom domain only — see webflow-embed-loader.html)
+
+  WHY (2026-09-10): HR (Barbara Anderson + Brittney Eaker, 8/11-8/12) asked that CLC and OSP stop
+  mirroring job listings: "clear it out, stop any mirroring or sharing, and add a link to their
+  respective full job listings pages ... View All Open Positions", and that recruitment and
+  volunteer postings only go on each organization's own website from now on.
+
+  WHAT CHANGED vs the old Designer page: the three hand-built job cards (Director of Clinical
+  Services, STRTP Administrator, Mental Health Clinician I & II), which were identical on BOTH
+  sites, are gone. The CMS job list is replaced by ONE static link to this org's own Paylocity
+  page. Section 1 below is the page's body copy carried over VERBATIM (classes and w-node ids
+  unchanged, so the shared stylesheet still lays it out exactly as before).
+
+  The page hero (title band) stays native in Webflow; only the body sections load from here.
+  To change the link or copy: edit this file (and its preview/ twin), then scripts/ship.sh.
+-->
+
+<!-- 1. BODY COPY (verbatim from the live page, 2026-09-10) -->
+<div class="careers-body"><div class="page-padding"><div class="container-large"><div class="vertical-page"><div class="careers-text"><h3 class="careers-text _3">We’re hiring! Come join our fast-growing team dedicated to ending cycles of abuse  in Shasta County and surrounding counties.</h3><div class="yellow-div-longer"></div><div class="text-block-13">At One Safe Place, we&#x27;re on a mission to break the cycle of violence and trauma, creating a safer, more compassionate world through crisis intervention and community education. Our commitment is rooted in all-inclusive trauma-informed care, where we tailor our approach to the unique needs of each individual we serve.<br/><br/>Being a part of something greater than yourself is a rare and rewarding gift. Imagine walking alongside a team of passionate, brilliant, and kind-hearted individuals who make both challenging days more bearable and good days truly exceptional. At One Safe Place, we understand the value of investing in our organization&#x27;s health, nurturing our staff&#x27;s well-being, and fostering a culture of growth.</div></div><div class="values-wrapper"><h3 class="heading-49">Our Values</h3><div class="yellow-div _2"></div><div class="vaule-wrapper"><div class="value-item"><img src="https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73864/64eecc0e2b20a803b485ff01_handshake.png" loading="lazy" alt=""/><div class="text-block-30">Collaboration</div></div><div class="value-item"><img src="https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73864/64eecc0ee3f0649a05e75e34_giving%20hands.png" loading="lazy" alt=""/><div class="text-block-30">Humility</div></div><div class="value-item"><img src="https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73864/64eecc0ff112480bc5f23b86_speech%20bubbles.png" loading="lazy" alt=""/><div class="text-block-30">Transparency</div></div><div class="value-item"><img src="https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73864/64eecc0e7576e9baae4a9d66_shapes.png" loading="lazy" alt=""/><div class="text-block-30">Integrity</div></div><div class="value-item"><img src="https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73864/64eecc0e43fd8d3f673e46cd_lightbulb.png" loading="lazy" alt=""/><div class="text-block-30">Innovation</div></div><div class="value-item"><img src="https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73864/64eecc0e43fd8d3f673e46c0_heart.png" loading="lazy" alt=""/><div class="text-block-30">Dedication</div></div></div></div></div></div></div></div>
+
+<!-- 2. OPEN POSITIONS: one link to this org's own listings, nothing shared -->
+<div class="positions"><div class="page-padding"><div class="container-large"><div class="vertical-page top-padding"><div class="positions-holder"><div class="open-holder"><h3 class="heading-17">Open Positions</h3><div class="yellow-div _2"></div></div><div class="collection-list-wrapper-2"><div role="list"><div role="listitem" class="collection-item-3"><a href="https://recruiting.paylocity.com/recruiting/jobs/All/388cdbbe-4290-4689-90e7-139c634f8c5b/Shasta-Womens-Refuge-Inc?source=OSP+Website" target="_blank" rel="noopener" class="link-block-4 w-inline-block"><div class="w-layout-grid grid"><div id="w-node-d7ca11cd-013e-8556-5543-f880169eab10-e22afde2" class="jobs-text"><h3 class="jobs-text">View All Open Positions</h3><div class="jobs-body"></div></div><img src="https://cdn.prod.website-files.com/64dc6469dc8981cbbbb73864/64e6f2566b97e6efd73ced23_right-arrow%20(purple).svg" loading="lazy" width="30" height="30" alt="" id="w-node-_4a9b5eab-5cf6-a1cf-9631-897971c15110-e22afde2"/></div></a></div></div></div></div></div></div></div></div>

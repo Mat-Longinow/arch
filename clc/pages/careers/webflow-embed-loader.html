@@ -1,0 +1,25 @@
+<!-- Careers (Children's Legacy Center) loader. Pasted into an HTML Embed placed before the page's (hidden) 'Careers body' section. -->
+<div id="lc-block-careers" class="lc-embed"></div>
+<script>
+(function () {
+  var TARGET    = "lc-block-careers";
+  var PROD_HOST = "childrenslegacycenter.org";
+  var REPO_BASE = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/careers/";
+  var host   = location.hostname.replace(/^www\./, "");
+  var isProd = (host === PROD_HOST);
+  var SRC    = REPO_BASE + (isProd ? "production" : "preview") + "/careers.html";
+  fetch(SRC, { cache: "no-store" })
+    .then(function (r) { return r.text(); })
+    .then(function (html) {
+      var target = document.getElementById(TARGET);
+      target.innerHTML = html;
+      target.querySelectorAll("script").forEach(function (old) {
+        var s = document.createElement("script");
+        for (var i = 0; i < old.attributes.length; i++) { s.setAttribute(old.attributes[i].name, old.attributes[i].value); }
+        s.textContent = old.textContent;
+        old.parentNode.replaceChild(s, old);
+      });
+    })
+    .catch(function (e) { console.error("LC careers embed load failed:", e); });
+})();
+</script>
