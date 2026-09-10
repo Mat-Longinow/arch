@@ -1,0 +1,136 @@
+<!--
+  PAGE: Annual Reports (Children's Legacy Center) — page-guts for the Webflow Hybrid loader.
+  ENV: preview  (loaded by every NON-production host — see webflow-embed-loader.html)
+
+  WHY: Morgan Bergstrom (call with Mat, 2026-09-10) — turn the old single-report
+  /annual-report page into a Resources-style page: one document card per year of report, each
+  with a preview and a CTA to view it, plus a QR code to the page for printables. The second
+  report ("CDSS Pilot Report - 04.06.26 Final.pdf") came from Morgan by email 2026-09-10.
+
+  URL: https://childrenslegacycenter.org/annual-report — the EXISTING Webflow slug, kept so
+  every inbound link (nav, the /articles/regional-pilot article, anything already printed)
+  keeps working. The QR points here. Do not rename the slug.
+
+  TEMPLATE: the CLC Resources page's class chain — `.founding` navy band > `.div-block-69`
+  grid > `.cards.auto > .div-block-36` white card > `h4.heading-11` > `.div-block-68` rule >
+  `.button._2.center.mt-25`. Inherits the live site's styling rather than re-inventing it.
+
+  PREVIEW: a cover image (page 1 of each report), NOT the Resources page's inline <object>
+  PDF viewer. That viewer does not render on mobile and in several desktop browsers (see
+  ../10-years-of-impact/README.md). A cover image works everywhere; clicking it or the button
+  opens the PDF in a new tab. PDFs are hosted on the Webflow CDN, which serves them as
+  application/pdf, so they open in the browser's own viewer instead of force-downloading.
+
+  ADDING NEXT YEAR'S REPORT: upload the PDF (Webflow assets or anywhere serving
+  application/pdf), render its cover into ../images/ (pdftoppm -f 1 -l 1 -r 110, then resize to
+  720px wide), and copy one `.cards.auto` block to the TOP of the grid. Newest first. Then
+  scripts/ship.sh. No Designer step, and the QR never changes.
+
+  SUPPORTING DOCUMENTS: every reference PDF from the old Designer-built page (the 2023-2024
+  report's cover letter, the CSEC RFI, the 2019 regional survey, and the four statutes/letters)
+  is carried over below so nothing that was live disappears.
+
+  NEWSLETTER: deliberately omitted (repo-wide standing rule, Mat 2026-06-29).
+  STATIC PAGE — preview/ and production/ guts are identical except the ENV marker.
+-->
+
+<style>
+  .lc-ar-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:32px; max-width:940px; margin:36px auto 0; }
+  .lc-ar-grid .cards.auto { width:auto; max-width:none; margin:0; display:flex; }
+  .lc-ar-grid .div-block-36 { background-color:var(--white); padding:28px 24px 32px; display:flex; flex-direction:column; width:100%; }
+  .lc-ar-cover { display:block; margin:20px 0 0; border-radius:8px; overflow:hidden; border:1px solid #e5e5e5; box-shadow:0 6px 18px rgba(15,61,115,.18); transition:transform .2s ease, box-shadow .2s ease; }
+  .lc-ar-cover:hover { transform:translateY(-3px); box-shadow:0 10px 26px rgba(15,61,115,.28); }
+  .lc-ar-cover img { display:block; width:100%; height:auto; aspect-ratio:720/932; object-fit:cover; }
+  .lc-ar-title { margin:18px 0 0; color:var(--dark-slate-blue); font-size:17px; font-weight:600; line-height:1.4; }
+  .lc-ar-dates { margin:6px 0 0; color:var(--dark-slate-blue); opacity:.75; font-size:15px; }
+  .lc-ar-spacer { flex:1 1 auto; }
+  .lc-ar-secondary { display:block; margin-top:14px; text-align:center; font-size:15px; color:var(--dark-slate-blue); text-decoration:underline; }
+  .lc-ar-docs { list-style:none; margin:28px auto 0; padding:0; max-width:760px; display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:12px 28px; }
+  .lc-ar-docs a { display:block; padding:12px 16px; border-left:3px solid var(--gold); background:var(--white); color:var(--dark-slate-blue); text-decoration:none; font-size:16px; line-height:1.4; }
+  .lc-ar-docs a:hover { text-decoration:underline; }
+</style>
+
+<!-- 1. TITLE BAND (navy) — same full-bleed treatment as the 10 Years of Impact page. -->
+<div class="services-main" style="background-color:var(--dark-slate-blue);width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding:clamp(72px, 9vw, 132px) 5% clamp(48px, 6vw, 80px);text-align:center;">
+  <p style="margin:0 0 12px;font-family:proxima-nova, sans-serif;font-size:.95rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);">Children&rsquo;s Legacy Center</p>
+  <h1 style="margin:0;font-family:utopia-std, sans-serif;font-size:clamp(2.4rem, 6vw, 4rem);font-weight:600;line-height:1.1;color:var(--white);">Annual Reports</h1>
+  <div style="width:64px;height:3px;background-color:var(--gold);margin:20px auto 0;"></div>
+</div>
+
+<!-- 2. INTRO (white). Wording drawn from the reports' own covers — nothing new claimed. -->
+<section class="hero-without-image" style="padding-top:56px;padding-bottom:8px;">
+  <div class="page-padding">
+    <div class="container-large" style="max-width:820px;">
+      <p class="paragraph-12 crt-info-blurb" style="text-align:center;margin:0;">Reports on Children&rsquo;s Legacy Center&rsquo;s Pilot, funded by the California Department of Social Services, to build a placement and services continuum for commercially sexually exploited youth in rural Northern California. Select a report to read it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. THE REPORTS — Resources-page pattern. NEWEST FIRST. -->
+<div class="founding" style="margin-top:48px;">
+  <div class="page-padding">
+    <div class="container-large">
+      <div class="vertical-page">
+        <div class="our-team full">
+          <h3 class="heading-10" style="color:var(--white);">Our Reports</h3>
+          <div class="yellow-div _2" style="margin-left:auto;margin-right:auto;"></div>
+        </div>
+
+        <div class="div-block-69 lc-ar-grid">
+
+          <!-- 2024 – 2026 (received from Morgan 2026-09-10) -->
+          <div class="cards auto">
+            <div class="div-block-36">
+              <h4 class="heading-11">2024 &ndash; 2026</h4>
+              <div class="div-block-68"></div>
+              <a class="lc-ar-cover" href="https://cdn.prod.website-files.com/61b0c04396e8a2fc240c4b96/6aa2cf67dc4fd7438ee9bc7e_CLC-Annual-Report-2024-2026.pdf" target="_blank" rel="noopener" aria-label="Open the 2024 to 2026 report (PDF)">
+                <img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/annual-report/images/annual-report-2024-2026-cover.jpg" alt="Cover of the 2024 to 2026 report: From Exploitation Response to Systems Reform" loading="lazy" width="720" height="932">
+              </a>
+              <p class="lc-ar-title">From Exploitation Response to Systems Reform: How a Rural CSEC Pilot Informs Broader Cross-System Innovation</p>
+              <p class="lc-ar-dates">March 2024 &ndash; April 2026</p>
+              <div class="lc-ar-spacer"></div>
+              <a href="https://cdn.prod.website-files.com/61b0c04396e8a2fc240c4b96/6aa2cf67dc4fd7438ee9bc7e_CLC-Annual-Report-2024-2026.pdf" target="_blank" rel="noopener" class="w-inline-block">
+                <div class="button _2 center mt-25"><h4 class="heading-9">View Report</h4></div>
+              </a>
+            </div>
+          </div>
+
+          <!-- 2023 – 2024 (the report the old page was built around) -->
+          <div class="cards auto">
+            <div class="div-block-36">
+              <h4 class="heading-11">2023 &ndash; 2024</h4>
+              <div class="div-block-68"></div>
+              <a class="lc-ar-cover" href="https://cdn.prod.website-files.com/61b0c04396e8a2fc240c4b96/668ef8afa219a8593eae06d7_2023-2024%20CLC%20CA%20Appropriation%20Report%20(Final).pdf" target="_blank" rel="noopener" aria-label="Open the 2023 to 2024 annual report (PDF)">
+                <img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/annual-report/images/annual-report-2023-2024-cover.jpg" alt="Cover of the 2023 to 2024 annual report: Addressing Exploitation Through Multi-Systems Partnership, A Rural Pilot" loading="lazy" width="720" height="934">
+              </a>
+              <p class="lc-ar-title">Addressing Exploitation Through Multi-Systems Partnership: A Rural Pilot</p>
+              <p class="lc-ar-dates">March 1, 2023 &ndash; February 29, 2024</p>
+              <div class="lc-ar-spacer"></div>
+              <a href="https://cdn.prod.website-files.com/61b0c04396e8a2fc240c4b96/668ef8afa219a8593eae06d7_2023-2024%20CLC%20CA%20Appropriation%20Report%20(Final).pdf" target="_blank" rel="noopener" class="w-inline-block">
+                <div class="button _2 center mt-25"><h4 class="heading-9">View Report</h4></div>
+              </a>
+              <a class="lc-ar-secondary" href="https://cdn.prod.website-files.com/61b0c04396e8a2fc240c4b96/66a13e666e9ce0a492b34300_Annual%20Report%20Cover%20Letter.pdf" target="_blank" rel="noopener">Read the cover letter</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. SUPPORTING DOCUMENTATION (white-smoke) — carried over from the old page, same files. -->
+<div class="page-padding" style="background-color:var(--white-smoke);padding-top:56px;padding-bottom:64px;margin-bottom:0;">
+  <div class="container-large">
+    <h3 class="heading-10" style="text-align:center;">Supporting Documentation</h3>
+    <div class="yellow-div" style="margin-left:auto;margin-right:auto;"></div>
+    <ul class="lc-ar-docs">
+      <li><a href="https://cdn.prod.website-files.com/61b0c04396e8a2fc240c4b96/6690453713a3735e4cf186ea_CSEC%20RFI%20.pdf" target="_blank" rel="noopener">CSEC Request for Information</a></li>
+      <li><a href="https://cdn.prod.website-files.com/61b0c04396e8a2fc240c4b96/66904a7ed38f50349065a14e_2019%20Regional%20CSEC%20Model%20Survey.pdf" target="_blank" rel="noopener">2019 Regional CSEC Model Survey</a></li>
+      <li><a href="https://cdn.prod.website-files.com/61b0c04396e8a2fc240c4b96/668f1873191d6fe96188caf6_SB-855.pdf" target="_blank" rel="noopener">California Senate Bill 855</a></li>
+      <li><a href="https://cdn.prod.website-files.com/61b0c04396e8a2fc240c4b96/66904cc9a069cbdff9c01ae8_PEN_236.1..pdf" target="_blank" rel="noopener">California PC 236.1 &ndash; Human Trafficking</a></li>
+      <li><a href="https://cdn.prod.website-files.com/61b0c04396e8a2fc240c4b96/6690585647001465279e2264_20150SB794_93.pdf" target="_blank" rel="noopener">California Senate Bill 794</a></li>
+      <li><a href="https://cdn.prod.website-files.com/61b0c04396e8a2fc240c4b96/66905bc8291bafe7ff6aaefc_DHCS%20letter%20to%20BH%20Directors%2012.14.pdf" target="_blank" rel="noopener">DHCS Letter to Behavioral Health Directors</a></li>
+    </ul>
+  </div>
+</div>

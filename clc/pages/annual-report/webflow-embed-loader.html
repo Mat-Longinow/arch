@@ -1,0 +1,44 @@
+<!-- ============================================================================
+     ANNUAL REPORTS (Children's Legacy Center) — Webflow HTML Embed (the ONLY
+     Designer-side step, ever).
+
+     Lives on the EXISTING Webflow page at slug  annual-report  (page id
+     668ef11bddc704ce0c20cf25). The slug is load-bearing: the printed QR code points at
+     https://childrenslegacycenter.org/annual-report — do not rename the page.
+
+     Placement: an HTML Embed directly after the navbar components, with the page's old
+     Designer-built sections hidden (not deleted) so the pre-2026-09-10 layout can be
+     restored by un-hiding them.
+
+     After this is in place, every content change (adding next year's report, swapping a
+     cover, editing copy) ships by `git push`. No Designer, ever again.
+     ============================================================================ -->
+<div id="lc-block-annual-report" class="lc-embed"></div>
+<script>
+(function () {
+  var TARGET    = "lc-block-annual-report";
+  var PROD_HOST = "childrenslegacycenter.org";
+  var REPO_BASE = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/annual-report/";
+
+  var host   = location.hostname.replace(/^www\./, "");
+  var isProd = (host === PROD_HOST);
+  var SRC    = REPO_BASE + (isProd ? "production" : "preview") + "/annual-report.html";
+
+  fetch(SRC, { cache: "no-store" })
+    .then(function (r) { return r.text(); })
+    .then(function (html) {
+      var target = document.getElementById(TARGET);
+      target.innerHTML = html;
+      // innerHTML doesn't run injected <script> — re-create each so any future script fires.
+      target.querySelectorAll("script").forEach(function (old) {
+        var s = document.createElement("script");
+        for (var i = 0; i < old.attributes.length; i++) {
+          s.setAttribute(old.attributes[i].name, old.attributes[i].value);
+        }
+        s.textContent = old.textContent;
+        old.parentNode.replaceChild(s, old);
+      });
+    })
+    .catch(function (e) { console.error("LC Annual Report embed load failed:", e); });
+})();
+</script>
