@@ -6,7 +6,9 @@
   var TARGET = "lc-block-giving-donate", PROD_HOST = "childrenslegacycenter.org";
   var REPO_BASE = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/giving-donate/";
   var isProd = (location.hostname.replace(/^www\./, "") === PROD_HOST);
-  var SRC = REPO_BASE + (isProd ? "production" : "preview") + "/giving-donate.html";
+  // 1-minute cache-buster: raw.githubusercontent caches per full URL for 5 min and its edges
+  // expire unevenly, so without this a fix to the donation form can take 10+ min to show.
+  var SRC = REPO_BASE + (isProd ? "production" : "preview") + "/giving-donate.html?v=" + Math.floor(Date.now() / 60000);
   fetch(SRC, { cache: "no-store" }).then(function (r) { return r.text(); }).then(function (html) {
     var t = document.getElementById(TARGET); t.innerHTML = html;
     t.querySelectorAll("script").forEach(function (o) { var s = document.createElement("script"); for (var i = 0; i < o.attributes.length; i++) { s.setAttribute(o.attributes[i].name, o.attributes[i].value); } s.textContent = o.textContent; o.parentNode.replaceChild(s, o); });
