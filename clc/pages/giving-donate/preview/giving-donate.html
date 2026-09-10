@@ -1,0 +1,32 @@
+<!--
+  BLOCK: CLC Giving page — donation form (section-level Webflow Hybrid loader).
+  ENV: preview
+
+  WHY (2026-09-09): Gloriana Rhodes (Volunteer Coordinator) + Elizabeth Schroeder asked to swap
+  the Give Cloud payment form on childrenslegacycenter.org/giving for CLC's DonorPerfect form,
+  with the appearance mirroring OSP's giving page (ospshasta.org/giving).
+
+  WHAT: loads into the page's existing #Give-Now div (inside the #Donate section, so every
+  "/giving#Donate" link still lands here). Same iframe + .row-container/.second-row structure
+  OSP uses (those classes are styled site-wide on both sites), with two fixes over OSP's copy:
+    1. OSP's iframe tag is malformed (class="second-row"> seamless=...), so its attributes end up
+       as text. Here they're real attributes.
+    2. The site-wide .row-container background is literally `blue` — on OSP that's a solid blue
+       box for the few seconds the form takes to load. Overridden here to the site's light gray.
+  Height is fixed (DonorPerfect doesn't auto-resize a cross-origin iframe); taller on mobile,
+  where the form stacks into one column. scrolling stays on as a safety net.
+
+  Give Cloud itself is still loaded site-wide (Site Settings > Custom Code, head). It no longer
+  renders anything here; removing it site-wide is a separate call once CLC confirms nothing
+  else uses it.
+-->
+<style>
+  #lc-block-giving-donate .row-container { background-color: var(--white-smoke, #f3f3f3); height: 1200px; border-radius: 12px; }
+  #lc-block-giving-donate .second-row { width: 100%; height: 100%; display: block; }
+  @media (max-width: 767px) { #lc-block-giving-donate .row-container { height: 1750px; } }
+</style>
+<div class="html-embed-3 w-embed w-iframe">
+  <div class="row-container">
+    <iframe src="https://form-renderer-app.donorperfect.io/give/childrens-legacy-center/clc-website-donation-form" class="second-row" title="Donate to Children's Legacy Center" seamless="seamless" scrolling="auto" frameborder="0" allow="payment" allowfullscreen loading="lazy"></iframe>
+  </div>
+</div>

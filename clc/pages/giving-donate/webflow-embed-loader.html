@@ -1,0 +1,15 @@
+<!-- CLC Giving donate block loader. HTML Embed placed INSIDE the page's #Give-Now div
+     (section #Donate). Content: clc/pages/giving-donate/<env>/giving-donate.html -->
+<div id="lc-block-giving-donate" class="lc-embed"></div>
+<script>
+(function () {
+  var TARGET = "lc-block-giving-donate", PROD_HOST = "childrenslegacycenter.org";
+  var REPO_BASE = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/clc/pages/giving-donate/";
+  var isProd = (location.hostname.replace(/^www\./, "") === PROD_HOST);
+  var SRC = REPO_BASE + (isProd ? "production" : "preview") + "/giving-donate.html";
+  fetch(SRC, { cache: "no-store" }).then(function (r) { return r.text(); }).then(function (html) {
+    var t = document.getElementById(TARGET); t.innerHTML = html;
+    t.querySelectorAll("script").forEach(function (o) { var s = document.createElement("script"); for (var i = 0; i < o.attributes.length; i++) { s.setAttribute(o.attributes[i].name, o.attributes[i].value); } s.textContent = o.textContent; o.parentNode.replaceChild(s, o); });
+  }).catch(function (e) { console.error("LC giving-donate embed load failed:", e); });
+})();
+</script>
