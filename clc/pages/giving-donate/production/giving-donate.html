@@ -40,9 +40,13 @@
      display:none, so OSP shows its form on phones and CLC showed nothing, while CLC's "Give NOW"
      button jumped to a hidden section. Elizabeth asked for CLC to mirror OSP; this turns it back on.
      Scoped to #Donate on this page only; the shared Webflow class is untouched. */
-  @media (max-width: 479px) { #Donate.donate-iframe { display: block !important; } }
+  /* Also (found on the same check): at <=479px Webflow caps `.html-embed-3` (a wrapper class copied
+     from OSP's embed) at 700px with overflow:scroll, and #Donate at ~835px with overflow:scroll, so
+     the 2060px form sat in a small scroll box. The wrapper no longer uses that class, and #Donate
+     is forced to grow with its content, so the form flows in the page at full height. */
+  @media (max-width: 479px) { #Donate.donate-iframe { display: block !important; height: auto !important; max-height: none !important; overflow: visible !important; } }
 </style>
-<div class="html-embed-3 w-embed w-iframe">
+<div class="lc-donate-wrap">
   <div class="row-container">
     <iframe src="https://form-renderer-app.donorperfect.io/give/childrens-legacy-center/clc-website-donation-form" class="second-row" title="Donate to Children's Legacy Center" seamless="seamless" scrolling="auto" frameborder="0" allow="payment" allowfullscreen loading="lazy"></iframe>
   </div>
