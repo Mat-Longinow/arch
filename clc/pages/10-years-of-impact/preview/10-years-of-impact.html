@@ -44,10 +44,16 @@
   @media (max-width: 991px) { #lc-10y-give .row-container { height: 2190px; } }
   @media (max-width: 479px) { #lc-10y-give .row-container { height: 2060px; } }
   #lc-10y-flipbook iframe { display: block; width: 100%; height: clamp(480px, 58vw, 760px); border: 0; border-radius: 8px; background: #0b1f3a; }
+  /* HERO vs FIXED NAV (2026-09-12, Elizabeth's screenshot): the site nav is position:fixed — 86-89px
+     below 992px wide, 100px at desktop. The old padding scaled with viewport width (as low as 72px), so
+     the gold eyebrow line slid under the nav at phone, tablet and ~1100px widths. Padding is now
+     nav height + ~40px of breathing room. Overrides the inline padding-top only. */
+  .lc-hero-band { padding-top: max(140px, 10vw) !important; }
+  @media (max-width: 991px) { .lc-hero-band { padding-top: 128px !important; } }
 </style>
 
 <!-- 1. TITLE BAND (navy). Full-bleed out of the Webflow container. -->
-<div class="services-main" style="background-color:var(--dark-slate-blue);width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding:clamp(72px, 9vw, 132px) 5% clamp(48px, 6vw, 80px);text-align:center;">
+<div class="services-main lc-hero-band" style="background-color:var(--dark-slate-blue);width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding:clamp(72px, 9vw, 132px) 5% clamp(48px, 6vw, 80px);text-align:center;">
   <p style="margin:0 0 12px;font-family:proxima-nova, sans-serif;font-size:.95rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);">Children&rsquo;s Legacy Center</p>
   <h1 style="margin:0;font-family:utopia-std, sans-serif;font-size:clamp(2.4rem, 6vw, 4rem);font-weight:600;line-height:1.1;color:var(--white);">10 Years of Impact</h1>
   <div style="width:64px;height:3px;background-color:var(--gold);margin:20px auto 0;"></div>
