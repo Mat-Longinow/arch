@@ -2,7 +2,8 @@
      10 YEARS OF IMPACT (Children's Legacy Center) — Webflow HTML Embed (the ONLY
      Designer step, ever).
 
-     ⚠️ NOT YET PASTED. Mat must do this ONCE before the QR code resolves to anything:
+     ✅ PASTED 2026-09-10 via the Webflow MCP (the page had been a raw duplicate of Resources until then).
+     Original one-time steps, kept for reference:
         1. In the CLC Webflow Designer, create a new page with slug EXACTLY  10-years-of-impact
            (the QR is printed against https://childrenslegacycenter.org/10-years-of-impact —
            the slug cannot change afterward without reprinting).
@@ -26,7 +27,8 @@
 
   var host   = location.hostname.replace(/^www\./, "");
   var isProd = (host === PROD_HOST);
-  var SRC    = REPO_BASE + (isProd ? "production" : "preview") + "/10-years-of-impact.html";
+  // 1-minute cache-buster (added 2026-09-12): raw.githubusercontent edges expire unevenly (10+ min seen 9/10).
+  var SRC    = REPO_BASE + (isProd ? "production" : "preview") + "/10-years-of-impact.html?v=" + Math.floor(Date.now() / 60000);
 
   fetch(SRC, { cache: "no-store" })
     .then(function (r) { return r.text(); })
@@ -42,6 +44,7 @@
         s.textContent = old.textContent;
         old.parentNode.replaceChild(s, old);
       });
+      if (location.hash) { var el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
     })
     .catch(function (e) { console.error("LC 10 Years of Impact embed load failed:", e); });
 })();
