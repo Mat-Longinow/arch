@@ -35,6 +35,12 @@
   #lc-block-giving-donate .row-container { height: 1840px; }
   @media (max-width: 991px) { #lc-block-giving-donate .row-container { height: 2190px; } }
   @media (max-width: 479px) { #lc-block-giving-donate .row-container { height: 2060px; } }
+  /* PHONE FIX (2026-09-12): the CLC Webflow stylesheet hides the whole donate section at <=479px
+     (`.donate-iframe { display: none }` in its phone breakpoint). OSP has the identical rule WITHOUT
+     display:none, so OSP shows its form on phones and CLC showed nothing, while CLC's "Give NOW"
+     button jumped to a hidden section. Elizabeth asked for CLC to mirror OSP; this turns it back on.
+     Scoped to #Donate on this page only; the shared Webflow class is untouched. */
+  @media (max-width: 479px) { #Donate.donate-iframe { display: block !important; } }
 </style>
 <div class="html-embed-3 w-embed w-iframe">
   <div class="row-container">
