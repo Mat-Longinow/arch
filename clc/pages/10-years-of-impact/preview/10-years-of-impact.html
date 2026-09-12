@@ -16,10 +16,11 @@
   finalized" placeholder card removed (the flipbook IS the report). The story, pull quote and
   closing narrative stay below.
 
-  DONATE IFRAME HEIGHT: cross-origin, so it can't auto-size. The form measured 1795px tall at
-  desktop width on 2026-09-12 ("Review Donation" button at ~1578px). 1900 / 2200 / 2800px leaves
-  headroom so the submit button is never clipped (the mistake the /giving page shipped with on
-  9/10). scrolling stays on as a safety net. If CLC edits the form and it grows, bump these.
+  DONATE IFRAME HEIGHT: cross-origin, and DonorPerfect sends no height postMessage (checked
+  2026-09-12), so it can't auto-size. Heights are MEASURED per width band (see the <style> note):
+  1840 / 2190 / 2060px. Too short clips "Review Donation" (the /giving bug of 9/10); too tall leaves
+  an empty gap (Elizabeth caught ~770px on her phone from an earlier 2800px guess). scrolling stays
+  on as a safety net. If CLC edits the form in DonorPerfect, re-measure.
 
   FLIPBOOK HEIGHT: Elizabeth's embed code says height="480"; that's cramped for reading a
   document. Scales with the viewport instead (clamp 480-760px). allowfullscreen kept, so readers
