@@ -26,10 +26,15 @@
      (branded header + fields + payment + "Review Donation"). The iframe is cross-origin so it
      can't auto-size; these leave headroom so the submit button is never clipped. Phone/tablet
      values are deliberately generous (fields stack into one column). */
-  #lc-block-giving-donate .row-container { background-color: var(--white-smoke, #f3f3f3); height: 1900px; border-radius: 12px; }
+  /* Heights MEASURED 2026-09-12 (Playwright, real iframe widths): 980px wide = 1795-1805px, 700px = 2149-2158px,
+     390px = 2006-2011px, 340px = 2026-2031px. (Oddly the form is tallest around 700px wide.) Each band is
+     the band's tallest measurement + ~30px, so no clipping and no big empty gap (Elizabeth flagged a
+     ~770px gap on her phone from the earlier 2800px guess). If CLC edits the form in DonorPerfect, re-measure. */
+  #lc-block-giving-donate .row-container { background-color: var(--white-smoke, #f3f3f3); border-radius: 12px; }
   #lc-block-giving-donate .second-row { width: 100%; height: 100%; display: block; }
-  @media (max-width: 991px) { #lc-block-giving-donate .row-container { height: 2200px; } }
-  @media (max-width: 767px) { #lc-block-giving-donate .row-container { height: 2800px; } }
+  #lc-block-giving-donate .row-container { height: 1840px; }
+  @media (max-width: 991px) { #lc-block-giving-donate .row-container { height: 2190px; } }
+  @media (max-width: 479px) { #lc-block-giving-donate .row-container { height: 2060px; } }
 </style>
 <div class="html-embed-3 w-embed w-iframe">
   <div class="row-container">

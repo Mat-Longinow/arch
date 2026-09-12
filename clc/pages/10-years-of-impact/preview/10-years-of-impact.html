@@ -33,10 +33,15 @@
 -->
 
 <style>
-  #lc-10y-give .row-container { background-color: var(--white-smoke, #f3f3f3); height: 1900px; border-radius: 12px; overflow: hidden; }
+  /* Heights MEASURED 2026-09-12 (Playwright, real iframe widths): 980px wide = 1795-1805px, 700px = 2149-2158px,
+     390px = 2006-2011px, 340px = 2026-2031px. (Oddly the form is tallest around 700px wide.) Each band is
+     the band's tallest measurement + ~30px, so no clipping and no big empty gap (Elizabeth flagged a
+     ~770px gap on her phone from the earlier 2800px guess). If CLC edits the form in DonorPerfect, re-measure. */
+  #lc-10y-give .row-container { background-color: var(--white-smoke, #f3f3f3); border-radius: 12px; overflow: hidden; }
   #lc-10y-give iframe { width: 100%; height: 100%; display: block; border: 0; }
-  @media (max-width: 991px) { #lc-10y-give .row-container { height: 2200px; } }
-  @media (max-width: 767px) { #lc-10y-give .row-container { height: 2800px; } }
+  #lc-10y-give .row-container { height: 1840px; }
+  @media (max-width: 991px) { #lc-10y-give .row-container { height: 2190px; } }
+  @media (max-width: 479px) { #lc-10y-give .row-container { height: 2060px; } }
   #lc-10y-flipbook iframe { display: block; width: 100%; height: clamp(480px, 58vw, 760px); border: 0; border-radius: 8px; background: #0b1f3a; }
 </style>
 
