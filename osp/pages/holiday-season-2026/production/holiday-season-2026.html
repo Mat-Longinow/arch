@@ -1,0 +1,131 @@
+<!--
+  PAGE: Holiday Season 2026 (One SAFE Place) — page-guts for the Webflow Hybrid loader.
+  ENV: production  (loaded by the LIVE OSP custom domain only — see webflow-embed-loader.html)
+
+  URL (FINAL — a QR code is printed against it, never rename the slug):
+      https://www.ospshasta.org/holiday-season-2026
+  Browser tab / SEO title: "Holiday Season 2026" (set on the Webflow page, not here).
+  On-page title (H1):      "Holiday Cheer Starts With You".
+  Names are Morgan Bergstrom's, 2026-09-24.
+
+  WHAT IT IS: a small holiday-giving landing page with three action cards — Donate, Amazon
+  Christmas wishlist, Christmas event flyer. Built for a printed QR code.
+
+  ★ THE ONE-LINE SWAP ★  Each card's link lives in the HOLIDAY_LINKS object in the <script> at the
+  bottom of this file. Blank ("") = the card shows a disabled "Coming Soon" state. Paste a URL =
+  the card goes live with an active button. No other edit, no Webflow.
+      donate   already live: OSP's own /giving page (DonorPerfect form)
+      wishlist  paste Morgan's Amazon wishlist URL
+      flyer     paste the flyer URL (a PDF or image on the Webflow CDN, or anywhere public)
+  Edit BOTH preview/ and production/ (identical except the ENV marker), then scripts/ship.sh.
+
+  BRAND: OSP = purple (--osp #632466) + gold accent (--gold). Never CLC navy (--dark-slate-blue).
+  See work/longinow-creative/arch/brand-palettes.md. Nav + footer stay native in the Webflow shell.
+  NEWSLETTER: deliberately omitted (repo-wide standing rule, Mat 2026-06-29).
+-->
+
+<style>
+  .hc-hero { background-color: var(--osp, #632466); width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding: max(140px, 10vw) 6% clamp(56px, 7vw, 92px); text-align: center; }
+  @media (max-width: 991px) { .hc-hero { padding-top: 128px; } }
+  .hc-eyebrow { margin: 0 0 12px; font-family: proxima-nova, sans-serif; font-size: .95rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold, #f2be00); }
+  .hc-hero h1 { margin: 0; font-family: utopia-std, sans-serif; font-size: clamp(2.3rem, 6vw, 4rem); font-weight: 600; line-height: 1.1; color: #fff; }
+  .hc-rule { width: 64px; height: 3px; background-color: var(--gold, #f2be00); margin: 22px auto 0; }
+  .hc-intro { background: #fff; padding: 56px 6% 8px; }
+  .hc-intro p { max-width: 720px; margin: 0 auto; text-align: center; font-family: proxima-nova, sans-serif; font-size: clamp(1.05rem, 2.2vw, 1.25rem); line-height: 1.65; color: #333; }
+  .hc-cards-wrap { background: #fff; padding: 40px 6% 80px; }
+  .hc-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1100px; margin: 0 auto; }
+  @media (max-width: 991px) { .hc-cards { grid-template-columns: 1fr; max-width: 520px; } }
+  .hc-card { display: flex; flex-direction: column; align-items: center; text-align: center; background: var(--white-smoke, #f3f3f3); border-top: 4px solid var(--gold, #f2be00); border-radius: 6px; padding: 36px 28px 32px; box-shadow: 0 6px 18px rgba(99, 36, 102, .10); }
+  .hc-icon { width: 72px; height: 72px; border-radius: 50%; background: var(--osp, #632466); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+  .hc-icon svg { width: 36px; height: 36px; stroke: #fff; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .hc-card h2 { margin: 0 0 10px; font-family: utopia-std, sans-serif; font-size: 1.5rem; line-height: 1.2; font-weight: 600; color: var(--osp, #632466); }
+  .hc-card p { margin: 0 0 24px; font-family: proxima-nova, sans-serif; font-size: 1.05rem; line-height: 1.55; color: #444; }
+  .hc-spacer { flex: 1 1 auto; }
+  .hc-btn { display: inline-block; min-width: 190px; padding: 14px 26px; border-radius: 4px; background: var(--osp, #632466); color: #fff !important; font-family: proxima-nova, sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; text-align: center; border: 2px solid var(--osp, #632466); transition: background-color .2s ease, border-color .2s ease, color .2s ease; }
+  .hc-btn:hover { background: var(--gold, #f2be00); border-color: var(--gold, #f2be00); color: #222 !important; }
+  .hc-card.is-soon .hc-btn { background: transparent; border-color: #b9b9b9; color: #7a7a7a !important; cursor: default; pointer-events: none; }
+  .hc-badge { display: none; margin: 0 0 14px; padding: 4px 12px; border-radius: 999px; background: #fff; border: 1px solid var(--gold, #f2be00); font-family: proxima-nova, sans-serif; font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--osp, #632466); }
+  .hc-card.is-soon .hc-badge { display: inline-block; }
+  .hc-thanks { background: var(--white-smoke, #f3f3f3); padding: 40px 6% 56px; text-align: center; }
+  .hc-thanks p { max-width: 640px; margin: 0 auto; font-family: utopia-std, sans-serif; font-size: clamp(1.15rem, 2.4vw, 1.4rem); line-height: 1.5; color: var(--osp, #632466); }
+</style>
+
+<!-- 1. HERO (OSP purple) -->
+<div class="hc-hero">
+  <p class="hc-eyebrow">One SAFE Place &middot; Holiday Season 2026</p>
+  <h1>Holiday Cheer Starts With You</h1>
+  <div class="hc-rule"></div>
+</div>
+
+<!-- 2. INTRO -->
+<div class="hc-intro">
+  <p>The holidays are a season of giving, and there are a few simple ways you can help One SAFE Place bring warmth to survivors and families across Shasta County this year. Give a gift, shop our wishlist, or join us for our Christmas event.</p>
+</div>
+
+<!-- 3. THREE ACTION CARDS. State (live vs Coming Soon) is driven by HOLIDAY_LINKS in the script below. -->
+<div class="hc-cards-wrap">
+  <div class="hc-cards">
+
+    <div class="hc-card" data-card="donate">
+      <div class="hc-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+      <h2>Donate to One SAFE Place</h2>
+      <p>Your gift helps One SAFE Place provide crisis support and services to survivors across Shasta County, this season and all year long.</p>
+      <div class="hc-spacer"></div>
+      <span class="hc-badge">Coming Soon</span>
+      <a class="hc-btn" href="https://www.ospshasta.org/giving">Donate Now</a>
+    </div>
+
+    <div class="hc-card is-soon" data-card="wishlist">
+      <div class="hc-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M5 12v9h14v-9"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></div>
+      <h2>Amazon Christmas Wishlist</h2>
+      <p>Shop our Christmas wishlist on Amazon and send a gift straight to the families we serve.</p>
+      <div class="hc-spacer"></div>
+      <span class="hc-badge">Coming Soon</span>
+      <a class="hc-btn" href="#" aria-disabled="true">View Wishlist</a>
+    </div>
+
+    <div class="hc-card is-soon" data-card="flyer">
+      <div class="hc-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+      <h2>Christmas Event Flyer</h2>
+      <p>Join us for our Christmas event. The full details and flyer will be posted here soon.</p>
+      <div class="hc-spacer"></div>
+      <span class="hc-badge">Coming Soon</span>
+      <a class="hc-btn" href="#" aria-disabled="true">View the Flyer</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- 4. THANK-YOU LINE -->
+<div class="hc-thanks">
+  <p>Thank you for helping make this season brighter for our neighbors.</p>
+</div>
+
+<script>
+/* ★ ONE-LINE SWAPS ★ — edit ONLY this object. "" = Coming Soon (disabled); a URL = live button. */
+var HOLIDAY_LINKS = {
+  donate:   "https://www.ospshasta.org/giving",  // OSP's live DonorPerfect giving page
+  wishlist: "",                                  // paste Morgan's Amazon wishlist URL here
+  flyer:    ""                                   // paste the Christmas event flyer URL (PDF/image) here
+};
+(function () {
+  Object.keys(HOLIDAY_LINKS).forEach(function (key) {
+    var card = document.querySelector('.hc-card[data-card="' + key + '"]');
+    if (!card) return;
+    var btn = card.querySelector(".hc-btn");
+    var url = HOLIDAY_LINKS[key];
+    if (url) {
+      card.classList.remove("is-soon");
+      btn.setAttribute("href", url);
+      btn.removeAttribute("aria-disabled");
+      if (key !== "donate") { btn.setAttribute("target", "_blank"); btn.setAttribute("rel", "noopener"); }
+    } else {
+      card.classList.add("is-soon");
+      btn.setAttribute("href", "#");
+      btn.setAttribute("aria-disabled", "true");
+      btn.setAttribute("tabindex", "-1");
+      btn.addEventListener("click", function (e) { e.preventDefault(); });
+    }
+  });
+})();
+</script>
