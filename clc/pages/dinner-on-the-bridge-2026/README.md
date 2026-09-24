@@ -24,7 +24,17 @@ Evening." story section (second bridge photo, copy pulled from the sponsorship g
 narrative) → When & Where + map → Sponsorship block (guide cover + "View Sponsorship Guide"
 button). **No newsletter section** — see the standing rule below.
 
-## 🎟️ Ticketing link
+## 🏁 POST-EVENT STATE (2026-09-24, SL-10)
+
+Event happened 9/12/26. Morgan's 9/21 Teams ask: remove the ticket links. Done: intro "Get Your Tickets"
+button + the "Individual and Premier Couple tickets" line both removed (no ticketing link left on the
+page), intro copy moved to past tense, closing line -> "That evening was that choice.", Partnership
+Tiers and Become a Sponsor / guide CTA blocks HIDDEN (kept in the file inside `hidden` wrappers with
+`data-post-event-hidden=...` attributes; delete the wrapper div to restore). Empty
+`#dotb-thank-you-slot` div in the intro is where Sarah's thank-you blurb goes. The two sections below
+describe the pre-event build.
+
+## 🎟️ Ticketing link (pre-event; REMOVED from the page 2026-09-24)
 
 `https://onesafeplace.ticketspice.com/dinner-on-the-bridge` — confirmed by Sarah via email
 7/21/26 (the PDF itself was NOT hyperlinked, as flagged in the 7/21 weekly brief). Used for both
