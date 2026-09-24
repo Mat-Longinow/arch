@@ -38,3 +38,9 @@ Then `scripts/ship.sh "OSP holiday: wishlist link" osp/pages/holiday-season-2026
 
 - Donate card links to OSP's own `/giving` page (DonorPerfect form `one-safe-place-website-form`).
 - Brand: OSP purple `--osp` + gold. Never CLC navy. No newsletter section (repo-wide rule).
+
+## QR code
+
+`qr/holiday-season-2026-qr.png` (OSP purple `#632466`, 1960px, ready for print), `-black.png` (black, for one-colour print),
+`.svg` (vector, 49mm viewBox). Error correction H, 4-module quiet zone, encodes exactly the final URL above.
+Decode-tested (PNG x2 + SVG render) 2026-09-24. If the slug ever changes, regenerate — the QR is the URL.
