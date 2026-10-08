@@ -3,8 +3,7 @@
 A **hidden** page, not linked in site nav. Sarah asked (7/30 weekly) for a template she
 can hand Benji: same header/footer as every other OSP event page (that's Webflow's
 shell — untouched by these guts), otherwise-blank body, with one placeholder embed
-block. This is the page a Donor Perfect paywall link will point viewers to for the DWTS
-live stream. Benji is still deciding Vimeo vs. YouTube.
+block. Free stream page (sponsor-covered; Donor Perfect paywall plan DROPPED 2026-10-07). Benji is still deciding Vimeo vs. YouTube.
 
 Body-only guts, no CMS — same static-page pattern as `clc/pages/cops-cones-2026`.
 
@@ -27,17 +26,12 @@ by host).
 Same mechanism as every other Hybrid page — see `../../../HYBRID-CMS.md`. PROD_HOST is
 reused from the DWTS 2026 event page (`ospshasta.org`, confirmed by Mat 2026-06-23).
 
-## ⏭️ What's left before go-live
+## ⏭️ Go-live (2026-10-07)
 
-1. **Get the real embed code from Benji/Sarah** once the Vimeo-vs-YouTube call is made.
-   Replace the `<div id="lc-dwts-livestream-embed">` placeholder block in BOTH
-   `production/` and `preview/` guts with the real iframe embed snippet verbatim. Do
-   not fabricate a platform or code.
-2. **Mat's one-time Designer step:** create a new page in the OSP Webflow site, hidden
-   from nav, and paste `webflow-embed-loader.html` into an HTML Embed replacing the
-   body. Confirm the published slug so Sarah's Donor Perfect paywall link can point at
-   it.
-3. Push. Every embed-code swap after that ships by `git push`, no Designer.
+Stream is FREE on YouTube + Facebook. The embed on this page and the site-wide banner
+(`osp/site/live-banner.js`) both read `osp/site/live-stream.json` (preview hosts read
+`live-stream.preview.json`). On show night: fill `embed_url`, `watch_url`, `sponsor_logo`,
+`sponsor_name` there and push. The banner auto-reveals inside [show_start, show_end].
 
 ## ✍️ How to edit
 

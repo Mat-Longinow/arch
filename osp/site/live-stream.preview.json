@@ -3,7 +3,7 @@
   "enabled": true,
   "show_start": "2026-10-17T17:00:00-07:00",
   "show_end": "2026-10-17T22:30:00-07:00",
-  "force_on": false,
+  "force_on": true,
   "banner_text": "Dancing with the Shasta Stars is LIVE tonight - free to watch",
   "button_text": "Watch live",
   "modal_title": "Dancing with the Shasta Stars: Live",

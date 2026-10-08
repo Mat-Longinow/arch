@@ -22,16 +22,29 @@
           <h1 class="heading-6">Dancing with the Shasta Stars — Live Stream</h1>
         </div>
         <p class="paragraph-12 crt-info-blurb">
-          Thanks for tuning in! Your stream will appear below shortly before showtime.
+          Thanks for tuning in! The stream is free, thanks to our sponsor. It appears below on show night (Sat Oct 17) - also on YouTube and Facebook.
         </p>
 
-        <!-- ⬇️ PLACEHOLDER EMBED BLOCK — replace this entire <div> with the real
-             Vimeo/YouTube iframe embed code once Benji/Sarah confirm the platform.
-             Keep the wrapping div's classes so the embed inherits page width/spacing. -->
-        <div id="lc-dwts-livestream-embed" class="video-embed-placeholder" style="position:relative; width:100%; max-width:960px; aspect-ratio:16/9; margin:2rem auto; background:#1a1a1a; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-family:inherit; text-align:center; padding:1rem;">
-          Live stream embed goes here — placeholder only, not yet wired.
+        <div id="lc-dwts-livestream-embed" style="position:relative; width:100%; max-width:960px; aspect-ratio:16/9; margin:2rem auto; background:#1a1a1a; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; text-align:center; padding:1rem;">
+          The stream appears here on show night.
         </div>
-        <!-- ⬆️ END PLACEHOLDER EMBED BLOCK -->
+        <script>
+        (function () {
+          var prod = /^(www\.)?ospshasta\.org$/.test(location.hostname);
+          fetch("https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/site/" + (prod ? "live-stream.json" : "live-stream.preview.json") + "?t=" + Date.now(), { cache: "no-store" })
+            .then(function (r) { return r.json(); })
+            .then(function (c) {
+              var box = document.getElementById("lc-dwts-livestream-embed");
+              var u; try { u = new URL(c.embed_url); } catch (e) { return; }
+              if (u.protocol !== "https:" || !/^(www\.youtube\.com|www\.youtube-nocookie\.com|www\.facebook\.com|player\.vimeo\.com)$/.test(u.hostname)) return;
+              var f = document.createElement("iframe");
+              f.src = u.href; f.title = c.modal_title || "Live stream";
+              f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
+              f.style.cssText = "position:absolute;inset:0;width:100%;height:100%;border:0";
+              box.textContent = ""; box.appendChild(f);
+            }).catch(function () {});
+        })();
+        </script>
 
       </div>
     </div>

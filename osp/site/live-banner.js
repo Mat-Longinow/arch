@@ -7,7 +7,9 @@
   try {
     if (window.__lcLiveBannerLoaded) return;
     window.__lcLiveBannerLoaded = true;
-    var CFG = "https://cdn.jsdelivr.net/gh/Mat-Longinow/arch@main/osp/site/live-stream.json";
+    // raw GitHub, not jsDelivr: @main edge cache lags ~7 days. Non-prod hosts read the preview config.
+    var PROD = /^(www\.)?ospshasta\.org$/.test(location.hostname);
+    var CFG = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/site/" + (PROD ? "live-stream.json" : "live-stream.preview.json");
     var OK_HOSTS = /^(www\.youtube\.com|www\.youtube-nocookie\.com|www\.facebook\.com|player\.vimeo\.com)$/;
 
     function safeUrl(u) {
@@ -33,6 +35,9 @@
         var css = document.createElement("style");
         css.textContent =
           "#lc-live-bar{position:sticky;top:0;z-index:99998;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px 16px;background:#b3123b;color:#fff;font:600 15px/1.3 inherit;text-align:center}" +
+          "#lc-live-bar .lc-sp{display:flex;align-items:center;gap:8px;font:500 12px/1 inherit;opacity:.95}#lc-live-bar .lc-sp img{height:26px;width:auto;max-width:120px;background:#fff;border-radius:4px;padding:3px 6px}" +
+          "#lc-live-box .lc-sp{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px}#lc-live-box .lc-sp img{height:30px;width:auto;max-width:140px;background:#fff;border-radius:4px;padding:3px 6px}" +
+          "@media(max-width:600px){#lc-live-bar{padding:8px 10px;gap:8px;font-size:13px}#lc-live-bar .lc-sp{display:none}}" +
           "#lc-live-bar .lc-dot{width:10px;height:10px;border-radius:50%;background:#fff;animation:lcp 1.2s infinite}" +
           "@keyframes lcp{50%{opacity:.25}}" +
           "#lc-live-bar button{cursor:pointer;border:2px solid #fff;background:#fff;color:#b3123b;font:700 14px/1 inherit;padding:8px 18px;border-radius:999px}" +
@@ -51,7 +56,9 @@
         bar.id = "lc-live-bar";
         bar.setAttribute("role", "region");
         bar.setAttribute("aria-label", "Live stream");
-        bar.innerHTML = '<span class="lc-dot"></span><span>' + esc(c.banner_text) + '</span><button type="button">' + esc(c.button_text || "Watch live") + "</button>";
+        var logo = safeUrl(c.sponsor_logo);
+        var sponsor = logo ? '<span class="lc-sp">' + esc(c.sponsor_label || "Sponsored by") + ' <img src="' + esc(logo.href) + '" alt="' + esc(c.sponsor_name || "Stream sponsor") + '"></span>' : "";
+        bar.innerHTML = '<span class="lc-dot"></span><span>' + esc(c.banner_text) + '</span><button type="button">' + esc(c.button_text || "Watch live") + "</button>" + sponsor;
         document.body.insertBefore(bar, document.body.firstChild);
 
         var modal = document.createElement("div");
@@ -59,7 +66,7 @@
         modal.setAttribute("role", "dialog");
         modal.setAttribute("aria-modal", "true");
         modal.innerHTML = '<div id="lc-live-box"><button id="lc-live-x" type="button" aria-label="Close">&times;</button><h2>' + esc(c.modal_title) + '</h2><div id="lc-live-frame"></div>' +
-          (watch ? '<a href="' + esc(watch.href) + '" target="_blank" rel="noopener">Having trouble? Open the stream in a new tab</a>' : "") + "</div>";
+          (watch ? '<a href="' + esc(watch.href) + '" target="_blank" rel="noopener">Having trouble? Open the stream in a new tab</a>' : "") + sponsor + "</div>";
         document.body.appendChild(modal);
 
         var frame = modal.querySelector("#lc-live-frame");
