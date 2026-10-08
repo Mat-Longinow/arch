@@ -1,0 +1,12 @@
+{
+  "_readme": "Flip enabled to true on show night and fill embed_url. Banner appears site-wide only while enabled AND now is inside [show_start, show_end]. embed_url = the iframe src (YouTube: https://www.youtube.com/embed/<VIDEO_ID>?autoplay=1 ; Facebook: https://www.facebook.com/plugins/video.php?href=<urlencoded video url>&show_text=false&autoplay=true). watch_url = plain link used as the fallback 'open in new tab' link.",
+  "enabled": false,
+  "show_start": "2026-10-17T17:00:00-07:00",
+  "show_end": "2026-10-17T22:30:00-07:00",
+  "force_on": false,
+  "banner_text": "Dancing with the Shasta Stars is LIVE tonight",
+  "button_text": "Watch live",
+  "modal_title": "Dancing with the Shasta Stars: Live",
+  "embed_url": "",
+  "watch_url": ""
+}
