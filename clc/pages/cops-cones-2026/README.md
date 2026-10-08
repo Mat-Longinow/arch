@@ -43,7 +43,7 @@ The two logo grids render from JSON, not hardcoded markup (mirrors the Aster "Ou
 
 ```
 cms/
-├── sponsors.json   ← 10 sponsor logos (order = display order)
+├── sponsors.json   ← sponsor logos (order = display order)
 ├── partners.json   ← 4 law-enforcement partner agencies
 └── assets/         ← the 14 logo files (sp-*.png/jpg sponsors, pt-*.png/jpg partners)
 ```
