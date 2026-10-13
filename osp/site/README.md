@@ -16,3 +16,7 @@ Site-wide footer snippet (one-time):
 - Because jsDelivr lags, Webflow loads the script via fetch+inject from raw GitHub, not a `<script src>`:
   `<script>fetch("https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/site/live-banner.js",{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var s=document.createElement("script");s.textContent=t;document.head.appendChild(s)})</script>`
 - Show-night steps: fill embed_url / watch_url / sponsor_logo / sponsor_name in live-stream.json, push.
+
+## Update 2026-10-13 (SL-85): teaser live on ospshasta.org
+- Loader (fetch+inject snippet above) is installed in the OSP Webflow site Footer custom code (appended after the faith-crisis-bar block) and published. Undo: delete the `<!-- LC DWTS live banner (SL-85) -->` comment + its `<script>` from Site Settings > Custom Code > Footer and republish; or set `"enabled": false` and `"teaser_enabled": false` in live-stream.json and push (instant, no republish).
+- Phases are by date, no manual flip: teaser from `teaser_start` (10/13) -> LIVE bar + Watch button inside `show_start`..`show_end` (10/17 5:00-10:30 PM PT) **only once `embed_url` or `watch_url` is filled**; until then the teaser holds. Hidden after `show_end`.
