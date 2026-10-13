@@ -31,10 +31,11 @@
         if (embed && !OK_HOSTS.test(embed.hostname)) embed = null;
         var watch = safeUrl(c.watch_url);
         var liveReady = !!(embed || watch);
-        // Phases: teaser (enabled, before show_end, and no stream to show yet) -> live (in window with a stream) -> hidden after show_end.
         var live = !!(liveReady && (c.force_on || (c.enabled && inWindow)));
-        var teaser = !live && !!c.enabled && !!c.teaser_text && now <= Date.parse(c.show_end);
-        if (c.force_on && !live && c.teaser_text) teaser = true;
+        // teaser: from teaser_start until show_end, and it holds through show night until a stream URL exists
+        var tStart = c.teaser_start ? Date.parse(c.teaser_start) : 0;
+        var teaser = !live && !!c.teaser_text && (!!c.force_teaser || (!!c.teaser_enabled && now >= tStart && now <= Date.parse(c.show_end)));
+        try { if (teaser && !c.force_teaser && sessionStorage.getItem("lcLiveTeaserX") === String(c.teaser_start)) return; } catch (e) {}
         if (!live && !teaser) return;
         var teaserUrl = safeUrl(c.teaser_url);
 
@@ -51,8 +52,6 @@
           "#lc-live-bar.lc-teaser{padding-right:40px}#lc-live-bar .lc-tx{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:#fff;font-size:24px;line-height:1;padding:0 6px;cursor:pointer}" +
           "#lc-live-bar .lc-short{display:none}@media(max-width:600px){#lc-live-bar .lc-long{display:none}#lc-live-bar .lc-short{display:inline}#lc-live-bar a.lc-go{font-size:13px;padding:6px 12px}}" +
           "#lc-live-bar button:hover{background:transparent;color:#fff}" +
-          "#lc-live-bar a.lc-tb{border:2px solid #fff;background:#fff;color:#b3123b;font:700 14px/1 inherit;padding:8px 18px;border-radius:999px;text-decoration:none}" +
-          "#lc-live-bar a.lc-tb:hover{background:transparent;color:#fff}" +
           "#lc-live-modal{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.8);padding:16px}" +
           "#lc-live-modal.open{display:flex}" +
           "#lc-live-box{position:relative;width:100%;max-width:960px;background:#111;border-radius:10px;padding:14px;color:#fff}" +
@@ -79,11 +78,6 @@
             bar.parentNode.removeChild(bar);
             try { sessionStorage.setItem("lcLiveTeaserX", c.teaser_start); } catch (e) {}
           });
-          return;
-        }
-        if (teaser) {
-          bar.innerHTML = "<span>" + esc(c.teaser_text) + "</span>" + (teaserUrl ? '<a class="lc-tb" href="' + esc(teaserUrl.href) + '">' + esc(c.teaser_button_text || "Learn more") + "</a>" : "");
-          document.body.insertBefore(bar, document.body.firstChild);
           return;
         }
         bar.innerHTML = '<span class="lc-dot"></span><span>' + esc(c.banner_text) + '</span><button type="button">' + esc(c.button_text || "Watch live") + "</button>" + sponsor;
