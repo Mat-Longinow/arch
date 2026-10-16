@@ -22,6 +22,13 @@
       });
     }
 
+    // two-line copy: explicit title + description, else split a legacy single string at the first ": " or ". "
+    function split2(t, d, whole) {
+      if (t) return [t, d || ""];
+      var w = String(whole || ""), m = w.match(/^(.*?)(?::\s+|\.\s+)(.*)$/);
+      return m ? [m[1], m[2].charAt(0).toUpperCase() + m[2].slice(1)] : [w, ""];
+    }
+
     fetch(CFG + "?t=" + Date.now(), { cache: "no-store" })
       .then(function (r) { return r.json(); })
       .then(function (c) {
@@ -42,18 +49,21 @@
         var css = document.createElement("style");
         css.textContent =
           "#lc-live-wrap{position:relative;z-index:1;box-sizing:border-box;padding:0 16px 14px;margin:0;background:#fff}" +
-          "#lc-live-bar{position:relative;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;box-sizing:border-box;max-width:1100px;margin:0 auto;padding:14px 44px 14px 16px;background:#f7eef8;border:1px solid #8e4f92;border-radius:8px;box-shadow:0 2px 8px rgba(99,36,102,.08);color:#632466;font-family:proxima-nova,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:center}" +
+          "#lc-live-bar{position:relative;display:flex;gap:16px;align-items:center;justify-content:space-between;box-sizing:border-box;width:100%;max-width:1100px;margin:0 auto;padding:16px 20px;background:#f7eef8;border:1px solid #8e4f92;border-radius:8px;box-shadow:0 2px 8px rgba(99,36,102,.08);color:#632466;font-family:proxima-nova,Arial,sans-serif;text-align:left}" +
+          "#lc-live-bar .lc-l{display:flex;align-items:center;gap:14px;min-width:0;flex:1 1 auto}" +
+          "#lc-live-bar .lc-r{display:flex;align-items:center;gap:12px;flex:0 0 auto}" +
+          "#lc-live-bar .lc-ic{flex:0 0 auto;width:24px;height:24px;box-sizing:border-box;background:#632466;color:#fff;border-radius:50%;font:italic 700 15px/24px Georgia,serif;text-align:center}" +
+          "#lc-live-bar .lc-dot{flex:0 0 auto;width:14px;height:14px;margin:5px;border-radius:50%;background:#632466;animation:lcp 1.2s infinite}" +
+          "@keyframes lcp{50%{opacity:.25}}" +
+          "#lc-live-bar .lc-txt{display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left}" +
+          "#lc-live-bar .lc-t1{font-size:17px;font-weight:700;line-height:24px;color:#632466}" +
+          "#lc-live-bar .lc-t2{font-size:15px;font-weight:400;line-height:22px;color:#632466}" +
           "#lc-live-bar .lc-sp{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:400;line-height:1}#lc-live-bar .lc-sp img{height:26px;width:auto;max-width:120px;background:#fff;border-radius:6px;padding:3px 6px}" +
           "#lc-live-box .lc-sp{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px}#lc-live-box .lc-sp img{height:30px;width:auto;max-width:140px;background:#fff;border-radius:7px;padding:3px 6px}" +
-          "#lc-live-bar .lc-dot{flex:0 0 auto;width:12px;height:12px;border-radius:50%;background:#632466;animation:lcp 1.2s infinite}" +
-          "@keyframes lcp{50%{opacity:.25}}" +
-          "#lc-live-bar:before{content:'i';flex:0 0 auto;width:22px;height:22px;box-sizing:border-box;background:#632466;color:#fff;border-radius:50%;font:italic 700 14px/22px Georgia,serif;text-align:center}" +
-          "#lc-live-bar.lc-livebar:before{display:none}" +
-          "#lc-live-bar button.lc-btn,#lc-live-bar a.lc-go{cursor:pointer;text-decoration:none;display:inline-block;border:1px solid #f2be00;background:#f2be00;color:#632466;font-family:proxima-nova,Arial,sans-serif;font-size:14px;font-weight:600;line-height:1;text-transform:uppercase;letter-spacing:.02em;padding:10px 20px;border-radius:6px}" +
+          "#lc-live-bar button.lc-btn,#lc-live-bar a.lc-go{cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;border:1px solid #f2be00;background:#f2be00;color:#632466;font-family:proxima-nova,Arial,sans-serif;font-size:14px;font-weight:600;line-height:1;text-transform:uppercase;letter-spacing:.02em;padding:11px 20px;border-radius:6px}" +
           "#lc-live-bar button.lc-btn:hover,#lc-live-bar a.lc-go:hover{background:#fff;color:#632466;border-color:#632466}" +
-          "#lc-live-bar .lc-tx{position:absolute;right:8px;top:8px;width:28px;height:28px;background:none;border:0;border-radius:4px;color:#632466;opacity:.6;font-size:22px;line-height:1;padding:0;cursor:pointer}#lc-live-bar .lc-tx:hover{opacity:1;background:rgba(99,36,102,.08)}" +
-          "#lc-live-bar .lc-short{display:none}" +
-          "@media(max-width:600px){#lc-live-wrap{padding:0 10px 10px}#lc-live-bar{gap:10px;padding:12px 40px 12px 12px;font-size:15px;line-height:22px;text-align:left;justify-content:flex-start}#lc-live-bar .lc-sp{display:none}#lc-live-bar .lc-long{display:none}#lc-live-bar .lc-short{display:inline;flex:1 1 calc(100% - 40px);min-width:0}#lc-live-bar button.lc-btn,#lc-live-bar a.lc-go{margin-left:34px;padding:9px 16px}}" +
+          "#lc-live-bar .lc-tx{flex:0 0 auto;width:28px;height:28px;background:none;border:0;border-radius:4px;color:#632466;opacity:.6;font-size:22px;line-height:1;padding:0;cursor:pointer}#lc-live-bar .lc-tx:hover{opacity:1;background:rgba(99,36,102,.08)}" +
+          "@media(max-width:600px){#lc-live-wrap{padding-left:10px!important;padding-right:10px!important;padding-bottom:10px}#lc-live-bar{flex-wrap:wrap;gap:12px;padding:14px 44px 14px 14px}#lc-live-bar .lc-l{flex:1 1 100%}#lc-live-bar .lc-t1{font-size:16px;line-height:22px}#lc-live-bar .lc-t2{font-size:14px;line-height:20px}#lc-live-bar .lc-r{display:contents}#lc-live-bar .lc-tx{position:absolute;right:8px;top:8px}#lc-live-bar .lc-sp{display:none}#lc-live-bar button.lc-btn,#lc-live-bar a.lc-go{margin-left:38px;padding:10px 16px}}" +
           "#lc-live-modal{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.8);padding:16px}" +
           "#lc-live-modal.open{display:flex}" +
           "#lc-live-box{position:relative;width:100%;max-width:960px;background:#111;border-radius:10px;padding:14px;color:#fff}" +
@@ -101,6 +111,22 @@
           });
           return { h: h, bg: bg };
         }
+        // left edge of the first nav link ("Services") and right edge of the last ("Giving"), viewport coords
+        function navSpan() {
+          var links = [], navs = document.querySelectorAll(".w-nav");
+          Array.prototype.forEach.call(navs, function (nv) {
+            if (/navbar-2|footer/.test(nv.className)) return;
+            Array.prototype.forEach.call(nv.querySelectorAll("a"), function (a) {
+              var r = a.getBoundingClientRect(), cs = getComputedStyle(a);
+              if (cs.display === "none" || cs.visibility === "hidden" || r.width < 8 || r.height < 8 || r.top > 200 || r.bottom < 0) return;
+              if (/^(services|giving)$/i.test((a.textContent || "").trim())) links.push(r);
+            });
+          });
+          var first = null, last = null;
+          links.forEach(function (r) { if (!first || r.left < first.left) first = r; if (!last || r.right > last.right) last = r; });
+          if (!first || !last || last.right - first.left < 300) return null;
+          return { l: first.left, r: last.right };
+        }
         var raf = 0;
         function place() {
           if (raf) return;
@@ -111,6 +137,15 @@
             if (wrap.style.paddingTop !== pad + "px") wrap.style.paddingTop = pad + "px";
             var bg = (!m.bg || /rgba\(.*,\s*0\)$|transparent/.test(m.bg)) ? "#632466" : m.bg;
             if (wrap.style.background !== bg) wrap.style.background = bg;
+            // width: card edges sit a little inside the first (Services) and last (Giving) top-nav links
+            var L = "", R = "";
+            if (window.innerWidth > 600) {
+              var sp = navSpan();
+              if (sp) { L = Math.max(16, Math.round(sp.l + 40)) + "px"; R = Math.max(16, Math.round(window.innerWidth - sp.r + 40)) + "px"; }
+            }
+            if (wrap.style.paddingLeft !== L) wrap.style.paddingLeft = L;
+            if (wrap.style.paddingRight !== R) wrap.style.paddingRight = R;
+            bar.style.maxWidth = L ? "none" : ""; // measured span wins; else the CSS max-width, centred
           });
         }
         function mount() {
@@ -132,17 +167,20 @@
         var sponsor = logo ? '<span class="lc-sp">' + esc(c.sponsor_label || "Sponsored by") + ' <img src="' + esc(logo.href) + '" alt="' + esc(c.sponsor_name || "Stream sponsor") + '"></span>' : "";
         if (teaser) {
           bar.className = "lc-teaser";
-          bar.innerHTML = '<span class="lc-long">' + esc(c.teaser_text) + '</span><span class="lc-short">' + esc(c.teaser_text_short || c.teaser_text) + "</span>" +
-            (teaserUrl ? '<a class="lc-go" href="' + esc(teaserUrl.href) + '">' + esc(c.teaser_button_text || "Learn more") + "</a>" : "") + sponsor +
-            '<button type="button" class="lc-tx" aria-label="Dismiss">&times;</button>';
+          var tt = split2(c.teaser_title, c.teaser_desc, c.teaser_text);
+          bar.innerHTML = '<div class="lc-l"><span class="lc-ic" aria-hidden="true">i</span><div class="lc-txt"><span class="lc-t1">' + esc(tt[0]) + '</span><span class="lc-t2">' + esc(tt[1]) + "</span></div></div>" +
+            '<div class="lc-r">' + sponsor + (teaserUrl ? '<a class="lc-go" href="' + esc(teaserUrl.href) + '">' + esc(c.teaser_button_text || "Learn more") + "</a>" : "") +
+            '<button type="button" class="lc-tx" aria-label="Dismiss">&times;</button></div>';
           mount();
           bar.querySelector(".lc-tx").addEventListener("click", function () {
-                        wrap.parentNode.removeChild(wrap);
+          wrap.parentNode.removeChild(wrap);
             try { sessionStorage.setItem("lcLiveTeaserX", c.teaser_start); } catch (e) {}
           });
           return;
         }
-        bar.innerHTML = '<span class="lc-dot"></span><span>' + esc(c.banner_text) + '</span><button type="button" class="lc-btn">' + esc(c.button_text || "Watch live") + "</button>" + sponsor;
+        var lt = split2(c.live_title, c.live_desc, c.banner_text);
+        bar.innerHTML = '<div class="lc-l"><span class="lc-dot"></span><div class="lc-txt"><span class="lc-t1">' + esc(lt[0]) + '</span><span class="lc-t2">' + esc(lt[1]) + "</span></div></div>" +
+          '<div class="lc-r">' + sponsor + '<button type="button" class="lc-btn">' + esc(c.button_text || "Watch live") + "</button></div>";
         bar.className = "lc-livebar";
         mount();
 
