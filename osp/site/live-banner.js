@@ -42,7 +42,7 @@
         var css = document.createElement("style");
         css.textContent =
           "#lc-live-wrap{position:relative;z-index:1;box-sizing:border-box;padding:0 16px 14px;margin:0;background:#fff}" +
-          "#lc-live-bar{position:relative;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;box-sizing:border-box;max-width:1100px;margin:0 auto;padding:14px 44px 14px 16px;background:#f7eef8;border:1px solid #d6b3d8;border-radius:8px;box-shadow:0 2px 8px rgba(99,36,102,.08);color:#632466;font-family:proxima-nova,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:center}" +
+          "#lc-live-bar{position:relative;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;box-sizing:border-box;max-width:1100px;margin:0 auto;padding:14px 44px 14px 16px;background:#f7eef8;border:1px solid #8e4f92;border-radius:8px;box-shadow:0 2px 8px rgba(99,36,102,.08);color:#632466;font-family:proxima-nova,Arial,sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:center}" +
           "#lc-live-bar .lc-sp{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:400;line-height:1}#lc-live-bar .lc-sp img{height:26px;width:auto;max-width:120px;background:#fff;border-radius:6px;padding:3px 6px}" +
           "#lc-live-box .lc-sp{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px}#lc-live-box .lc-sp img{height:30px;width:auto;max-width:140px;background:#fff;border-radius:7px;padding:3px 6px}" +
           "#lc-live-bar .lc-dot{flex:0 0 auto;width:12px;height:12px;border-radius:50%;background:#632466;animation:lcp 1.2s infinite}" +
@@ -69,31 +69,62 @@
         var bar = document.createElement("div");
         bar.id = "lc-live-bar";
         wrap.appendChild(bar);
-        // Webflow navs are position:fixed (no flow space), some transparent with white links over the hero.
-        // So the wrap sits in flow at the top of body, padded down by the visible nav's real height; its
-        // background is the nav's own colour (brand purple when the nav is transparent) so the nav stays
-        // legible. It never covers the nav or the hero, and scrolls away with the page.
-        function place() {
-          var h = 0, bg = "";
-          ["navbar-responsive", "navbar-copy", "navbar-2"].forEach(function (cl) {
-            var n = document.querySelector("." + cl + ".w-nav");
-            if (!n) return;
+        // Webflow navs are out of flow (fixed OR absolute, depending on breakpoint/interaction state), some
+        // transparent with white links over the hero. The wrap sits in flow at the top of body, padded down by
+        // the bottom of whatever nav-like element is really occupying the top of the page (measured, never a
+        // fixed px), plus 12px. Its background is the nav's own colour (brand purple when transparent) so the
+        // nav stays legible. Re-measured on load, resize, scroll, fonts, images, DOM/size changes and on a
+        // short timer, because Webflow reveals/resizes the nav late. Never covers the nav or hero.
+        function navBottom() {
+          var h = 0, bg = "", seen = [];
+          function consider(n) {
+            if (!n || n === wrap || wrap.contains(n) || seen.indexOf(n) > -1) return;
+            seen.push(n);
             var cs = getComputedStyle(n);
-            if (cs.display === "none" || cs.visibility === "hidden") return;
+            if (cs.display === "none" || cs.visibility === "hidden" || cs.opacity === "0") return;
+            if (cs.position !== "fixed" && cs.position !== "absolute" && cs.position !== "sticky") return;
             var r = n.getBoundingClientRect();
-            if (cs.position === "fixed" || cs.position === "sticky") {
-              if (r.bottom > h) { h = r.bottom; bg = cs.backgroundColor; }
-            }
+            if (r.height < 20 || r.width < window.innerWidth * 0.5 || r.top > 150 || r.bottom < 20) return;
+            var bottom = cs.position === "absolute" ? r.bottom + window.pageYOffset : r.bottom;
+            if (bottom > h) { h = bottom; bg = cs.backgroundColor; }
+          }
+          // the scroll-reveal nav (.navbar-2) only appears after scrolling; it must not resize the page mid-scroll
+          document.querySelectorAll(".w-nav[role=banner],.w-nav").forEach(function (n) {
+            if (/navbar-2|footer/.test(n.className)) return;
+            consider(n);
           });
-          wrap.style.paddingTop = Math.round(h + 12) + "px";
-          wrap.style.background = (!bg || /rgba\(.*,\s*0\)$|transparent/.test(bg)) ? "#632466" : bg;
+          Array.prototype.forEach.call(document.body.children, function (n) {
+            if (n.id === "lc-live-modal" || /navbar-2|footer/.test(n.className)) return;
+            consider(n);
+            if (/w-nav/.test(n.className)) return; // never treat a nav's own menu overlay as the nav
+            Array.prototype.forEach.call(n.children || [], function (k) { if (!/w-nav/.test(k.className)) consider(k); });
+          });
+          return { h: h, bg: bg };
+        }
+        var raf = 0;
+        function place() {
+          if (raf) return;
+          raf = requestAnimationFrame(function () {
+            raf = 0;
+            var m = navBottom();
+            var pad = Math.round(m.h + 12);
+            if (wrap.style.paddingTop !== pad + "px") wrap.style.paddingTop = pad + "px";
+            var bg = (!m.bg || /rgba\(.*,\s*0\)$|transparent/.test(m.bg)) ? "#632466" : m.bg;
+            if (wrap.style.background !== bg) wrap.style.background = bg;
+          });
         }
         function mount() {
           document.body.insertBefore(wrap, document.body.firstChild);
           place();
-          window.addEventListener("resize", place);
-          window.addEventListener("load", place);
-          setTimeout(place, 800);
+          ["resize", "load", "scroll", "orientationchange"].forEach(function (ev) { window.addEventListener(ev, place, { passive: true }); });
+          try { if (document.fonts && document.fonts.ready) document.fonts.ready.then(place); } catch (e) {}
+          document.addEventListener("load", place, true); // images/fonts finishing anywhere (capture)
+          try {
+            var ro = new ResizeObserver(place);
+            document.querySelectorAll(".w-nav").forEach(function (n) { ro.observe(n); });
+            new MutationObserver(place).observe(document.body, { attributes: true, attributeFilter: ["class", "style"], subtree: true, childList: false });
+          } catch (e) {}
+          [300, 800, 1500, 3000, 6000].forEach(function (t) { setTimeout(place, t); });
         }
         bar.setAttribute("role", "region");
         bar.setAttribute("aria-label", "Live stream");
@@ -106,8 +137,7 @@
             '<button type="button" class="lc-tx" aria-label="Dismiss">&times;</button>';
           mount();
           bar.querySelector(".lc-tx").addEventListener("click", function () {
-            window.removeEventListener("resize", place);
-            wrap.parentNode.removeChild(wrap);
+                        wrap.parentNode.removeChild(wrap);
             try { sessionStorage.setItem("lcLiveTeaserX", c.teaser_start); } catch (e) {}
           });
           return;
