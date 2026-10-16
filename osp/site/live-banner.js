@@ -48,8 +48,8 @@
 
         var css = document.createElement("style");
         css.textContent =
-          "#lc-live-wrap{position:relative;z-index:1;box-sizing:border-box;padding:0 16px 14px;margin:0;background:#fff}" +
-          "#lc-live-bar{position:relative;display:flex;gap:16px;align-items:center;justify-content:space-between;box-sizing:border-box;width:100%;max-width:1100px;margin:0 auto;padding:16px 20px;background:#f7eef8;border:1px solid #8e4f92;border-radius:8px;box-shadow:0 2px 8px rgba(99,36,102,.08);color:#632466;font-family:proxima-nova,Arial,sans-serif;text-align:left}" +
+          "#lc-live-wrap{position:absolute;left:0;right:0;top:0;z-index:50;box-sizing:border-box;padding:0 16px;margin:0;background:none;pointer-events:none;height:0}" +
+          "#lc-live-bar{position:relative;display:flex;gap:16px;align-items:center;justify-content:space-between;box-sizing:border-box;width:100%;max-width:1100px;margin:0 auto;padding:16px 20px;background:#fff;border:1px solid #d9c3db;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.22);pointer-events:auto;color:#632466;font-family:proxima-nova,Arial,sans-serif;text-align:left}" +
           "#lc-live-bar .lc-l{display:flex;align-items:center;gap:14px;min-width:0;flex:1 1 auto}" +
           "#lc-live-bar .lc-r{display:flex;align-items:center;gap:12px;flex:0 0 auto}" +
           "#lc-live-bar .lc-ic{flex:0 0 auto;width:24px;height:24px;box-sizing:border-box;background:#632466;color:#fff;border-radius:50%;font:italic 700 15px/24px Georgia,serif;text-align:center}" +
@@ -63,7 +63,7 @@
           "#lc-live-bar button.lc-btn,#lc-live-bar a.lc-go{cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;border:1px solid #f2be00;background:#f2be00;color:#632466;font-family:proxima-nova,Arial,sans-serif;font-size:14px;font-weight:600;line-height:1;text-transform:uppercase;letter-spacing:.02em;padding:11px 20px;border-radius:6px}" +
           "#lc-live-bar button.lc-btn:hover,#lc-live-bar a.lc-go:hover{background:#fff;color:#632466;border-color:#632466}" +
           "#lc-live-bar .lc-tx{flex:0 0 auto;width:28px;height:28px;background:none;border:0;border-radius:4px;color:#632466;opacity:.6;font-size:22px;line-height:1;padding:0;cursor:pointer}#lc-live-bar .lc-tx:hover{opacity:1;background:rgba(99,36,102,.08)}" +
-          "@media(max-width:600px){#lc-live-wrap{padding-left:10px!important;padding-right:10px!important;padding-bottom:10px}#lc-live-bar{flex-wrap:wrap;gap:12px;padding:14px 44px 14px 14px}#lc-live-bar .lc-l{flex:1 1 100%}#lc-live-bar .lc-t1{font-size:16px;line-height:22px}#lc-live-bar .lc-t2{font-size:14px;line-height:20px}#lc-live-bar .lc-r{display:contents}#lc-live-bar .lc-tx{position:absolute;right:8px;top:8px}#lc-live-bar .lc-sp{display:none}#lc-live-bar button.lc-btn,#lc-live-bar a.lc-go{margin-left:38px;padding:10px 16px}}" +
+          "@media(max-width:600px){#lc-live-wrap{padding-left:10px!important;padding-right:10px!important;}#lc-live-bar{flex-wrap:wrap;gap:12px;padding:14px 44px 14px 14px}#lc-live-bar .lc-l{flex:1 1 100%}#lc-live-bar .lc-t1{font-size:16px;line-height:22px}#lc-live-bar .lc-t2{font-size:14px;line-height:20px}#lc-live-bar .lc-r{display:contents}#lc-live-bar .lc-tx{position:absolute;right:8px;top:8px}#lc-live-bar .lc-sp{display:none}#lc-live-bar button.lc-btn,#lc-live-bar a.lc-go{margin-left:38px;padding:10px 16px}}" +
           "#lc-live-modal{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.8);padding:16px}" +
           "#lc-live-modal.open{display:flex}" +
           "#lc-live-box{position:relative;width:100%;max-width:960px;background:#111;border-radius:10px;padding:14px;color:#fff}" +
@@ -80,10 +80,10 @@
         bar.id = "lc-live-bar";
         wrap.appendChild(bar);
         // Webflow navs are out of flow (fixed OR absolute, depending on breakpoint/interaction state), some
-        // transparent with white links over the hero. The wrap sits in flow at the top of body, padded down by
+        // transparent with white links over the hero. The wrap is absolutely positioned (zero height, no background,
+        // so the hero never moves and the transparent nav is untouched) and floats over the hero, offset by
         // the bottom of whatever nav-like element is really occupying the top of the page (measured, never a
-        // fixed px), plus 12px. Its background is the nav's own colour (brand purple when transparent) so the
-        // nav stays legible. Re-measured on load, resize, scroll, fonts, images, DOM/size changes and on a
+        // fixed px), plus 12px. Re-measured on load, resize, scroll, fonts, images, DOM/size changes and on a
         // short timer, because Webflow reveals/resizes the nav late. Never covers the nav or hero.
         function navBottom() {
           var h = 0, bg = "", seen = [];
@@ -133,10 +133,8 @@
           raf = requestAnimationFrame(function () {
             raf = 0;
             var m = navBottom();
-            var pad = Math.round(m.h + 12);
-            if (wrap.style.paddingTop !== pad + "px") wrap.style.paddingTop = pad + "px";
-            var bg = (!m.bg || /rgba\(.*,\s*0\)$|transparent/.test(m.bg)) ? "#632466" : m.bg;
-            if (wrap.style.background !== bg) wrap.style.background = bg;
+            var top = Math.round(m.h + 12);
+            if (wrap.style.top !== top + "px") wrap.style.top = top + "px";
             // width: card edges sit a little inside the first (Services) and last (Giving) top-nav links
             var L = "", R = "";
             if (window.innerWidth > 600) {
