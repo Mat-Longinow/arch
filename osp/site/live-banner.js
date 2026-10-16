@@ -127,11 +127,30 @@
           if (!first || !last || last.right - first.left < 300) return null;
           return { l: first.left, r: last.right };
         }
+        // Home hero overlay (.black-overlay.home) is a native 75vh Webflow block; the card floats over its top, so give the hero the card's
+        // height back (+ the 12px gap) while the card is up. Only touches the home hero, only when its native
+        // height is still 75vh, and is undone on dismiss.
+        function heroFix(extra) {
+          var overlay = document.querySelector(".services-main.home .black-overlay.home");
+          var img = document.querySelector(".services-main.home .main-image.home");
+          if (!overlay || !img) return;
+          if (!extra) {
+            if (overlay.getAttribute("data-lc-hero")) { overlay.style.height = ""; img.style.height = ""; overlay.removeAttribute("data-lc-hero"); }
+            return;
+          }
+          if (!overlay.getAttribute("data-lc-hero")) {
+            if (Math.abs(overlay.getBoundingClientRect().height - window.innerHeight * 0.75) > 3) return; // not the native 75vh: leave alone
+            overlay.setAttribute("data-lc-hero", "1");
+          }
+          var v = "calc(75vh + " + extra + "px)";
+          if (overlay.style.height !== v) { overlay.style.height = v; img.style.height = v; }
+        }
         var raf = 0;
         function place() {
           if (raf) return;
           raf = requestAnimationFrame(function () {
             raf = 0;
+            if (!wrap.parentNode) return;
             var m = navBottom();
             var top = Math.round(m.h + 12);
             if (wrap.style.top !== top + "px") wrap.style.top = top + "px";
@@ -144,6 +163,7 @@
             if (wrap.style.paddingLeft !== L) wrap.style.paddingLeft = L;
             if (wrap.style.paddingRight !== R) wrap.style.paddingRight = R;
             bar.style.maxWidth = L ? "none" : ""; // measured span wins; else the CSS max-width, centred
+            heroFix(Math.round(bar.offsetHeight + 12));
           });
         }
         function mount() {
@@ -171,7 +191,7 @@
             '<button type="button" class="lc-tx" aria-label="Dismiss">&times;</button></div>';
           mount();
           bar.querySelector(".lc-tx").addEventListener("click", function () {
-          wrap.parentNode.removeChild(wrap);
+          wrap.parentNode.removeChild(wrap); heroFix(0);
             try { sessionStorage.setItem("lcLiveTeaserX", c.teaser_start); } catch (e) {}
           });
           return;
