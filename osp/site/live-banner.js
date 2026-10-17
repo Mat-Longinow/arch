@@ -189,7 +189,7 @@
           bar.className = "lc-teaser";
           var tt = split2(c.teaser_title, c.teaser_desc, c.teaser_text);
           bar.innerHTML = '<div class="lc-l"><span class="lc-ic" aria-hidden="true">i</span><div class="lc-txt"><span class="lc-t1">' + esc(tt[0]) + '</span><span class="lc-t2">' + esc(tt[1]) + "</span></div></div>" +
-            '<div class="lc-r">' + sponsor + (teaserUrl ? '<a class="lc-go" href="' + esc(teaserUrl.href) + '">' + esc(c.teaser_button_text || "Learn more") + "</a>" : "") +
+            '<div class="lc-r">' + (teaserUrl ? '<a class="lc-go" href="' + esc(teaserUrl.href) + '">' + esc(c.teaser_button_text || "Learn more") + "</a>" : "") +
             '<button type="button" class="lc-tx" aria-label="Dismiss">&times;</button></div>';
           mount();
           bar.querySelector(".lc-tx").addEventListener("click", function () {
