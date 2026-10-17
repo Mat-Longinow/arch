@@ -200,7 +200,7 @@
         }
         var lt = split2(c.live_title, c.live_desc, c.banner_text);
         bar.innerHTML = '<div class="lc-l"><span class="lc-dot"></span><div class="lc-txt"><span class="lc-t1">' + esc(lt[0]) + '</span><span class="lc-t2">' + esc(lt[1]) + "</span></div></div>" +
-          '<div class="lc-r">' + sponsor + '<button type="button" class="lc-btn">' + esc(c.button_text || "Watch live") + "</button></div>";
+          '<div class="lc-r"><button type="button" class="lc-btn">' + esc(c.button_text || "Watch live") + "</button></div>";
         bar.className = "lc-livebar";
         mount();
 
