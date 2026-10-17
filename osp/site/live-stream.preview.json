@@ -2,7 +2,6 @@
   "_readme": "Phases: TEASER (teaser_text + link) shows while enabled and before show_end; auto-switches to LIVE (banner_text + Watch live button + modal) inside [show_start, show_end] once embed_url or watch_url is set; hidden after show_end. Show day: fill embed_url (iframe src; Vimeo event https://vimeo.com/event/<ID>/embed/interaction; YouTube https://www.youtube.com/embed/<ID>?autoplay=1 or Facebook plugins/video.php?href=<urlencoded>&show_text=false&autoplay=true), watch_url, sponsor_logo, sponsor_name, push.",
   "enabled": true,
   "show_start": "2026-10-17T16:30:00-07:00",
-  "stream_start": "2026-10-17T18:00:00-07:00",
   "show_end": "2026-10-17T22:30:00-07:00",
   "teaser_enabled": true,
   "teaser_start": "2026-10-13T00:00:00-07:00",
