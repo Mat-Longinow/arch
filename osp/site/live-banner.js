@@ -60,20 +60,20 @@
           "#lc-live-bar .lc-txt{display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left}" +
           "#lc-live-bar .lc-t1{font-size:17px;font-weight:700;line-height:24px;color:#632466}" +
           "#lc-live-bar .lc-t2{font-size:15px;font-weight:400;line-height:22px;color:#632466}" +
-          "#lc-live-bar .lc-sp{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:400;line-height:1}#lc-live-bar .lc-sp img{height:26px;width:auto;max-width:120px;background:#fff;border-radius:6px;padding:3px 6px}" +
-          "#lc-live-box .lc-sp{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px}#lc-live-box .lc-sp img{height:30px;width:auto;max-width:140px;background:#fff;border-radius:7px;padding:3px 6px}" +
-          "#lc-live-bar button.lc-btn,#lc-live-bar a.lc-go{cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;border:1px solid #f2be00;background:#f2be00;color:#632466;font-family:proxima-nova,Arial,sans-serif;font-size:14px;font-weight:600;line-height:1;text-transform:uppercase;letter-spacing:.02em;padding:11px 20px;border-radius:6px}" +
+                    "#lc-live-bar button.lc-btn,#lc-live-bar a.lc-go{cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;border:1px solid #f2be00;background:#f2be00;color:#632466;font-family:proxima-nova,Arial,sans-serif;font-size:14px;font-weight:600;line-height:1;text-transform:uppercase;letter-spacing:.02em;padding:11px 20px;border-radius:6px}" +
           "#lc-live-bar button.lc-btn:hover,#lc-live-bar a.lc-go:hover{background:#fff;color:#632466;border-color:#632466}" +
           "#lc-live-bar .lc-tx{flex:0 0 auto;width:28px;height:28px;background:none;border:0;border-radius:4px;color:#632466;opacity:.6;font-size:22px;line-height:1;padding:0;cursor:pointer}#lc-live-bar .lc-tx:hover{opacity:1;background:rgba(99,36,102,.08)}" +
-          "@media(max-width:600px){#lc-live-wrap{padding-left:10px!important;padding-right:10px!important;}#lc-live-bar{flex-wrap:wrap;gap:12px;padding:14px 44px 14px 14px}#lc-live-bar .lc-l{flex:1 1 100%}#lc-live-bar .lc-t1{font-size:16px;line-height:22px}#lc-live-bar .lc-t2{font-size:14px;line-height:20px}#lc-live-bar .lc-r{display:contents}#lc-live-bar .lc-tx{position:absolute;right:8px;top:8px}#lc-live-bar .lc-sp{display:none}#lc-live-bar button.lc-btn,#lc-live-bar a.lc-go{margin-left:38px;padding:10px 16px}}" +
-          "#lc-live-modal{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.8);padding:16px}" +
+          "@media(max-width:600px){#lc-live-wrap{padding-left:10px!important;padding-right:10px!important;}#lc-live-bar{flex-wrap:wrap;gap:12px;padding:14px 44px 14px 14px}#lc-live-bar .lc-l{flex:1 1 100%}#lc-live-bar .lc-t1{font-size:16px;line-height:22px}#lc-live-bar .lc-t2{font-size:14px;line-height:20px}#lc-live-bar .lc-r{display:contents}#lc-live-bar .lc-tx{position:absolute;right:8px;top:8px}#lc-live-bar button.lc-btn,#lc-live-bar a.lc-go{margin-left:38px;padding:10px 16px}}" +
+          "#lc-live-modal{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;background:rgba(40,12,42,.78);padding:16px;font-family:proxima-nova,Arial,sans-serif}" +
           "#lc-live-modal.open{display:flex}" +
-          "#lc-live-box{position:relative;width:100%;max-width:960px;background:#111;border-radius:10px;padding:14px;color:#fff}" +
-          "#lc-live-box h2{margin:0 36px 10px 2px;font-size:18px;color:#fff}" +
-          "#lc-live-x{position:absolute;top:8px;right:10px;background:none;border:0;color:#fff;font-size:28px;line-height:1;cursor:pointer}" +
-          "#lc-live-frame{position:relative;width:100%;aspect-ratio:16/9;background:#000}" +
+          "#lc-live-box{position:relative;box-sizing:border-box;width:100%;max-width:960px;max-height:100%;overflow:auto;background:#fff;border:1px solid #d9c3db;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.22);padding:20px;color:#632466}" +
+          "#lc-live-box .lc-sp{display:flex;flex-direction:column;align-items:center;gap:6px;margin:0 36px 14px;text-align:center;font-size:13px;line-height:1.2;color:#632466}#lc-live-box .lc-sp img{height:56px;width:auto;max-width:220px}" +
+          "#lc-live-box h2{margin:0 36px 14px;text-align:center;font-size:22px;line-height:1.25;font-weight:700;color:#632466}" +
+          "#lc-live-x{position:absolute;top:10px;right:12px;width:28px;height:28px;background:none;border:0;border-radius:4px;color:#632466;opacity:.6;font-size:24px;line-height:1;padding:0;cursor:pointer}#lc-live-x:hover{opacity:1;background:rgba(99,36,102,.08)}" +
+          "#lc-live-frame{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:6px;overflow:hidden}" +
           "#lc-live-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}" +
-          "#lc-live-box a{color:#fff;font-size:13px;display:inline-block;margin-top:8px}";
+          "#lc-live-box a.lc-alt{display:inline-block;margin-top:12px;font-size:14px;font-weight:600;color:#632466;text-decoration:underline}" +
+          "@media(max-width:600px){#lc-live-box{padding:14px}#lc-live-box h2{font-size:18px}#lc-live-box .lc-sp img{height:44px}}";
         document.head.appendChild(css);
 
         var wrap = document.createElement("div");
@@ -208,8 +208,8 @@
         modal.id = "lc-live-modal";
         modal.setAttribute("role", "dialog");
         modal.setAttribute("aria-modal", "true");
-        modal.innerHTML = '<div id="lc-live-box"><button id="lc-live-x" type="button" aria-label="Close">&times;</button><h2>' + esc(c.modal_title) + '</h2><div id="lc-live-frame"></div>' +
-          (watch ? '<a href="' + esc(watch.href) + '" target="_blank" rel="noopener">Having trouble? Open the stream in a new tab</a>' : "") + sponsor + "</div>";
+        modal.innerHTML = '<div id="lc-live-box"><button id="lc-live-x" type="button" aria-label="Close">&times;</button>' + sponsor + '<h2>' + esc(c.modal_title) + '</h2><div id="lc-live-frame"></div>' +
+          (watch ? '<a class="lc-alt" href="' + esc(watch.href) + '" target="_blank" rel="noopener">Having trouble? Open the stream in a new tab</a>' : "") + "</div>";
         document.body.appendChild(modal);
 
         var frame = modal.querySelector("#lc-live-frame");
