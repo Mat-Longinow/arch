@@ -11,7 +11,7 @@
     // raw GitHub, not jsDelivr: @main edge cache lags ~7 days. Non-prod hosts read the preview config.
     var PROD = /^(www\.)?ospshasta\.org$/.test(location.hostname);
     var CFG = "https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/site/" + (PROD ? "live-stream.json" : "live-stream.preview.json");
-    var OK_HOSTS = /^(www\.youtube\.com|www\.youtube-nocookie\.com|www\.facebook\.com|player\.vimeo\.com)$/;
+    var OK_HOSTS = /^(www\.youtube\.com|www\.youtube-nocookie\.com|www\.facebook\.com|player\.vimeo\.com|vimeo\.com)$/;
 
     function safeUrl(u) {
       try { var x = new URL(u); return x.protocol === "https:" ? x : null; } catch (e) { return null; }
@@ -38,7 +38,9 @@
         if (embed && !OK_HOSTS.test(embed.hostname)) embed = null;
         var watch = safeUrl(c.watch_url);
         var liveReady = !!(embed || watch);
-        var live = !!(liveReady && (c.force_on || (c.enabled && inWindow)));
+        // ?live=preview forces LIVE mode at any time (ignores the time window and the enabled flag); plain URLs keep the window logic
+        var previewLive = /[?&]live=preview(&|$)/.test(location.search);
+        var live = !!(liveReady && (previewLive || c.force_on || (c.enabled && inWindow)));
         // teaser: from teaser_start until show_end, and it holds through show night until a stream URL exists
         var tStart = c.teaser_start ? Date.parse(c.teaser_start) : 0;
         var teaser = !live && !!c.teaser_text && (!!c.force_teaser || (!!c.teaser_enabled && now >= tStart && now <= Date.parse(c.show_end)));
@@ -215,7 +217,7 @@
           if (embed && !frame.firstChild) {
             var f = document.createElement("iframe");
             f.src = embed.href;
-            f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+            f.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media; web-share";
             f.allowFullscreen = true;
             f.title = c.modal_title || "Live stream";
             frame.appendChild(f);
