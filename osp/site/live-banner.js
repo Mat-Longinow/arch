@@ -5,6 +5,16 @@
  * teaser_url, dismissable per session. LIVE (enabled && now in [show_start, show_end], or force_on, AND
  * embed_url or watch_url set): "watch live" bar + modal player. Teaser holds on show night until URLs exist. Never throws into the host page. */
 (function () {
+  function lcStartOverlay(host, c) {
+    var t = Date.parse(c.stream_start); if (!(t > Date.now())) return;
+    var lbl = new Date(t).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", timeZone: "America/Los_Angeles" });
+    var o = document.createElement("div"); o.className = "lc-start-ov";
+    o.style.cssText = "position:absolute;inset:0;z-index:3;background:rgba(45,45,45,.75);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;font-family:proxima-nova,Arial,sans-serif;padding:16px;box-sizing:border-box";
+    o.innerHTML = '<div style="font-size:clamp(16px,2.6vw,24px);font-weight:600;letter-spacing:.02em">Live Stream Starting At</div><div style="font-size:clamp(30px,6vw,56px);font-weight:700;line-height:1.1;margin-top:8px">' + lbl + "</div>";
+    host.appendChild(o);
+    var iv = setInterval(function () { if (Date.now() >= t) { if (o.parentNode) o.parentNode.removeChild(o); clearInterval(iv); } }, 10000);
+  }
+
   try {
     if (window.__lcLiveBannerLoaded) return;
     window.__lcLiveBannerLoaded = true;
@@ -221,6 +231,7 @@
             f.allowFullscreen = true;
             f.title = c.modal_title || "Live stream";
             frame.appendChild(f);
+            lcStartOverlay(frame, c);
           } else if (!embed && watch) { window.open(watch.href, "_blank", "noopener"); return; }
           modal.classList.add("open");
         }
