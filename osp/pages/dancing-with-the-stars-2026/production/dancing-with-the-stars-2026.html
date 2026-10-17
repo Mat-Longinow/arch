@@ -268,7 +268,7 @@
           items (section match; production hides preview:true rows), renders cards
           reusing the live Webflow classes so they inherit OSP styling
        3. SVG-avatar onerror fallback for missing photos
-       4. per-card CTA: 2026 dancers (support_url present) get a direct "Support Dancer"
+       4. per-card CTA: 2026 dancers (support_url present) get a direct "Vote Now"
           donation link opening in a new tab; staff / past cast (no support_url) keep the
           "Learn More" → popup-board interaction (Webflow IX2 won't run on injected guts),
           a self-contained centered modal independent of the live CSS. RECONSTRUCTION.
@@ -345,7 +345,7 @@
       btn.href = it.support_url;
       btn.target = "_blank";
       btn.rel = "noopener";
-      btn.innerHTML = '<div class="button learn-more nomintions-button purple-button"><h4 class="h4-type button nominations-text purple-button">Support Dancer</h4></div>';
+      btn.innerHTML = '<div class="button learn-more nomintions-button purple-button"><h4 class="h4-type button nominations-text purple-button">Vote Now</h4></div>';
       mem.appendChild(img);
       mem.appendChild(nameEl);
       mem.appendChild(btn);
