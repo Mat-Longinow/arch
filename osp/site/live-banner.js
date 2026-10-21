@@ -1,3 +1,21 @@
+/* SL-119 nav patch: the desktop nav "Other Opportunities" dropdown link is a Webflow DropdownLink the API cannot re-point,
+ * and it pointed at /careers (duplicate of Careers). Point it at the CLC page, same as the mobile nav. Idempotent, never throws.
+ * Undo: delete this block (or restore href="/careers"). Proper fix is a native Designer edit of the navbar component. */
+(function () {
+  function fix() {
+    try {
+      var a = document.querySelectorAll("a.dropdown-link");
+      for (var i = 0; i < a.length; i++) {
+        if (a[i].textContent.trim() === "Other Opportunities" && /^\/careers\/?$/.test(a[i].getAttribute("href") || "")) {
+          a[i].setAttribute("href", "https://www.childrenslegacycenter.org/other-opportunities");
+          a[i].classList.remove("w--current"); a[i].removeAttribute("aria-current");
+        }
+      }
+    } catch (e) {}
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fix); else fix();
+})();
+
 /* OSP site-wide "Watch live" banner + modal (DWTS 2026).
  * Loaded on EVERY page via Webflow site-wide custom code (one-time). Behaviour is driven by
  * live-stream.json in this repo, so show-night changes ship by git push, no Designer.
