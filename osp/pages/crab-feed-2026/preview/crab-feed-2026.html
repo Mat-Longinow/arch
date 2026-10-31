@@ -28,6 +28,14 @@
 <style>
 .yellow-div,.yellow-div-copy,.yellow-div-2{margin-top:24px !important;margin-bottom:24px !important}
 </style>
+<!-- Wide-screen banner fix (Mat 2026-10-31, SL-122): the 950px art was pinned in a 50vh band with a top:-30vh offset, so on 1920+ screens it was clipped under the nav and its sand edges showed as a box. At >=992px the band now sizes to the art (max 1100px, edges feathered into the sand backdrop). Below 992px the stylesheet's own sizing is untouched. -->
+<style>
+@media (min-width:992px){
+.main-image._4.crab-feed-banner._2026{height:auto !important;background-size:cover !important;background-position:50% 50% !important}
+.main-image._4.crab-feed-banner._2026 .black-overlay{height:auto !important;width:100% !important;padding-top:0 !important;display:block !important}
+.main-image._4.crab-feed-banner._2026 .image-43{position:static !important;top:auto !important;width:100% !important;max-width:1100px !important;height:auto !important;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%)}
+}
+</style>
 <div class="services-main">
   <div class="main-image _4 crab-feed-banner _2026">
     <div class="black-overlay" style="background-color:transparent"><img src="https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/Crab-Feed-Banner-2027-40th.jpg" loading="lazy" alt="One SAFE Place 40th Annual Crab Feed, March 13, 2027" class="image-43">
