@@ -85,7 +85,7 @@
       <div class="vertical-page">
         <div class="careers-text _2">
           <div id="Forensic-Interview" class="div-block-38 white _3">
-            <h3 class="heading-24"><strong class="bold-text">Meet Our 2026 Cast</strong></h3>
+            <h3 class="heading-24"><strong class="bold-text">Thank You To Our 2026 Cast</strong></h3>
             <div class="yellow-div"></div>
           </div>
           <!-- LC Git-backed CMS — section "2026-cast". Rendered from cms/stars.json by the
@@ -232,28 +232,6 @@
     </div>
   </div>
 </div>
-<div class="services-holder">
-  <div class="page-padding">
-    <div class="container-large">
-      <div class="vertical-page">
-        <div class="careers-text _2">
-          <div id="Forensic-Interview" class="div-block-38 white _3">
-            <h3 class="heading-24"><strong class="bold-text">Thank You To Our 2025 Cast</strong></h3>
-            <div class="yellow-div"></div>
-          </div>
-          <!-- LC Git-backed CMS — section "2025-cast" (the archive block). -->
-          <div class="board-wrapper dtws-stars">
-            <div class="lc-dwts-stars collection-list-3 dwts-stars w-dyn-items" role="list" data-env="production" data-section="2025-cast"></div>
-            <div class="w-dyn-empty lc-dwts-empty" style="display:none;">
-              <div>2025 cast archive coming soon.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- ============================================================================
      DWTS-STARS-CMS render script (adapted from Aster's ASTER-TEAM-CMS).
      The Webflow loader re-creates injected <script> tags (innerHTML doesn't execute
@@ -337,13 +315,9 @@
     // 2026 dancers carry a support_url -> the card CTA IS a direct donation link
     // (opens in a new tab). Staff / past cast (no support_url) keep the bio popup.
     if (it.support_url) {
-      btn.href = it.support_url;
-      btn.target = "_blank";
-      btn.rel = "noopener";
-      btn.innerHTML = '<div class="button learn-more nomintions-button purple-button"><h4 class="h4-type button nominations-text purple-button">Vote Now</h4></div>';
+      // SL-127: 'Vote Now' button removed (voting closed) — image + name only.
       mem.appendChild(img);
       mem.appendChild(nameEl);
-      mem.appendChild(btn);
       listitem.appendChild(mem);
       return listitem;
     }
