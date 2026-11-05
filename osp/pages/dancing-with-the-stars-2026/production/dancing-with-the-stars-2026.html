@@ -41,6 +41,10 @@
 <style>
 /* SL-121: 2027 hero banner (Morgan, 28 Oct 2026 "Final final maybe version") overrides the Webflow-stylesheet backdrop */
 .main-image._4.dancing-with-the-stars-main-image._2025 { background-image: url("https://raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/images/DWTSS-2027-Hero-Banner.png"); background-size: cover; background-position: center 30%; }
+/* SL-128: "Nominate a 2027 Star" button was purple on purple (Mat 5 Nov 2026) -> white fill, OSP purple text. Scoped to this section's button only. */
+.dwtss-noinations-section .button.learn-more.nomintions-button.purple-button { background-color: var(--white, #fff); border-color: var(--white, #fff); }
+.dwtss-noinations-section .button.learn-more.nomintions-button.purple-button .h4-type.button.nominations-text.purple-button { color: var(--osp); }
+.dwtss-noinations-section .button.learn-more.nomintions-button.purple-button:hover { background-color: var(--gold); }
 </style>
 <div class="services-main">
   <div class="main-image _4 dancing-with-the-stars-main-image _2025">
