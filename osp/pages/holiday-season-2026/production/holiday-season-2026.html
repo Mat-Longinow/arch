@@ -14,7 +14,7 @@
   ★ THE ONE-LINE SWAP ★  Each card's link lives in the HOLIDAY_LINKS object in the <script> at the
   bottom of this file. Blank ("") = the card shows a disabled "Coming Soon" state. Paste a URL =
   the card goes live with an active button. No other edit, no Webflow.
-      donate   already live: OSP's own /giving page (DonorPerfect form)
+      donate   live: OSP Givecloud donation form
       wishlist  paste Morgan's Amazon wishlist URL
       flyer     paste the flyer URL (a PDF or image on the Webflow CDN, or anywhere public)
   Edit BOTH preview/ and production/ (identical except the ENV marker), then scripts/ship.sh.
@@ -71,17 +71,15 @@
       <h2>Donate to One SAFE Place</h2>
       <p>Your gift helps One SAFE Place provide crisis support and services to survivors across Shasta County, this season and all year long.</p>
       <div class="hc-spacer"></div>
-      <span class="hc-badge">Coming Soon</span>
-      <a class="hc-btn" href="https://www.ospshasta.org/giving">Donate Now</a>
+      <a class="hc-btn" href="https://onesafeplace.givecloud.co/fundraising/forms/GKDPJYDR">Donate Now</a>
     </div>
 
-    <div class="hc-card is-soon" data-card="wishlist">
+    <div class="hc-card" data-card="wishlist">
       <div class="hc-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M5 12v9h14v-9"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></div>
       <h2>Amazon Christmas Wishlist</h2>
       <p>Shop our Christmas wishlist on Amazon and send a gift straight to the families we serve.</p>
       <div class="hc-spacer"></div>
-      <span class="hc-badge">Coming Soon</span>
-      <a class="hc-btn" href="#" aria-disabled="true">View Wishlist</a>
+      <a class="hc-btn" href="https://www.amazon.com/ab/manage/logout?requestedUrl=/ab/urx/listview/3KRFJMO71W3S0&isExtUrl=1" target="_blank" rel="noopener">View Wishlist</a>
     </div>
 
     <div class="hc-card is-soon" data-card="flyer">
@@ -104,8 +102,8 @@
 <script>
 /* ★ ONE-LINE SWAPS ★ — edit ONLY this object. "" = Coming Soon (disabled); a URL = live button. */
 var HOLIDAY_LINKS = {
-  donate:   "https://www.ospshasta.org/giving",  // OSP's live DonorPerfect giving page
-  wishlist: "",                                  // paste Morgan's Amazon wishlist URL here
+  donate:   "https://onesafeplace.givecloud.co/fundraising/forms/GKDPJYDR",  // OSP Givecloud donation form
+  wishlist: "https://www.amazon.com/ab/manage/logout?requestedUrl=/ab/urx/listview/3KRFJMO71W3S0&isExtUrl=1",  // Morgan's Amazon wishlist
   flyer:    ""                                   // paste the Christmas event flyer URL (PDF/image) here
 };
 (function () {
