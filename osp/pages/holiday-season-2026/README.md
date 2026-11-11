@@ -26,11 +26,13 @@ Open BOTH guts files, find `HOLIDAY_LINKS` in the `<script>` at the bottom:
 var HOLIDAY_LINKS = {
   donate:   "https://www.ospshasta.org/giving",
   wishlist: "",   // ← paste Morgan's Amazon wishlist URL
+  fulfill:  "",   // ← paste Morgan's "Fulfill a Wishlist" form URL (2026 Holiday Season form)
   flyer:    ""    // ← paste the flyer URL (PDF or image)
 };
 ```
 
-`""` shows the card as a disabled "Coming Soon". A URL turns it into a live button (wishlist and flyer open in a new tab).
+`""` shows the card as a disabled "Coming Soon". A URL turns it into a live button (wishlist, fulfill and flyer open in a new tab).
+Four cards render 2x2 on desktop, one column under 991px. `fulfill` was added at Morgan's request (email 2026-11-10); form URL still pending.
 Then `scripts/ship.sh "OSP holiday: wishlist link" osp/pages/holiday-season-2026`. Live in about 5 minutes
 (raw.githubusercontent cache). To host the flyer, upload the PDF/PNG to the Webflow assets (or any public URL).
 
