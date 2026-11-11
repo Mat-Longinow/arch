@@ -83,13 +83,12 @@
       <a class="hc-btn" href="https://www.amazon.com/hz/wishlist/ls/3KRFJMO71W3S0" target="_blank" rel="noopener">View Wishlist</a>
     </div>
 
-    <div class="hc-card is-soon" data-card="fulfill">
+    <div class="hc-card" data-card="fulfill">
       <div class="hc-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 2h6v4H9z"/><path d="M9 12l2 2 4-4M9 17h6"/></svg></div>
       <h2>Fulfill a Wishlist</h2>
       <p>2026 Holiday Season. Fill out our form to fulfill a wishlist for a family this holiday season.</p>
       <div class="hc-spacer"></div>
-      <span class="hc-badge">Coming Soon</span>
-      <a class="hc-btn" href="#" aria-disabled="true">Fill Out Form</a>
+      <a class="hc-btn" href="https://forms.cloud.microsoft/r/a4y7TK43sa" target="_blank" rel="noopener noreferrer">Fill Out Form</a>
     </div>
 
     <div class="hc-card is-soon" data-card="flyer">
@@ -114,7 +113,7 @@
 var HOLIDAY_LINKS = {
   donate:   "https://onesafeplace.givecloud.co/fundraising/forms/GKDPJYDR",  // OSP Givecloud donation form
   wishlist: "https://www.amazon.com/hz/wishlist/ls/3KRFJMO71W3S0",  // Morgan's Amazon wishlist
-  fulfill:  "",                                  // paste Morgan's Fulfill a Wishlist form URL here
+  fulfill:  "https://forms.cloud.microsoft/r/a4y7TK43sa",  // Morgan's Fulfill a Wishlist form (2026 Holiday Season)
   flyer:    ""                                   // paste the Christmas event flyer URL (PDF/image) here
 };
 (function () {
@@ -127,7 +126,7 @@ var HOLIDAY_LINKS = {
       card.classList.remove("is-soon");
       btn.setAttribute("href", url);
       btn.removeAttribute("aria-disabled");
-      if (key !== "donate") { btn.setAttribute("target", "_blank"); btn.setAttribute("rel", "noopener"); }
+      if (key !== "donate") { btn.setAttribute("target", "_blank"); if (!btn.hasAttribute("rel")) btn.setAttribute("rel", "noopener"); }
     } else {
       card.classList.add("is-soon");
       btn.setAttribute("href", "#");
