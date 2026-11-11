@@ -34,7 +34,7 @@ var HOLIDAY_LINKS = {
 `""` shows the card as a disabled "Coming Soon". A URL turns it into a live button (wishlist, fulfill and flyer open in a new tab).
 Four cards render 2x2 on desktop, one column under 991px. `fulfill` was added at Morgan's request (email 2026-11-10); form URL still pending.
 Then `scripts/ship.sh "OSP holiday: wishlist link" osp/pages/holiday-season-2026`. Live in about 5 minutes
-(raw.githubusercontent cache). To host the flyer, upload the PDF/PNG to the Webflow assets (or any public URL).
+(raw.githubusercontent cache). The flyer (Sunday with Santa) is hosted in this repo at `flyer/sunday-with-santa-2026.png` (+ `.pdf`), served from raw.githubusercontent.com/Mat-Longinow/arch/main/osp/pages/holiday-season-2026/flyer/. Live 2026-11-11.
 
 ## Notes
 
